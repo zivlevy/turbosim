@@ -1,0 +1,36 @@
+<app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
+
+<div class="main-container">
+    <div class="airport-title">From</div>
+    <div class="airport-title">to</div>
+    <div class="airport-title">altitude</div>
+</div>
+
+<div class="main-container">
+    <div class="airport-name" (click)="showModal($event,'takeoff' ,20,0)">{{toAirport.ICAO}}</div>
+    <div class="airport-name" (click)="showModal($event,'landing', 20 ,0)">{{landAirport.ICAO}}</div>
+    <div id="alt-select" class="airport-name">
+        <select id="gotoaltitude"  name="altitude" (change)="setAltitude($event)">
+            <option value="30000">30000</option>
+            <option value="31000">31000</option>
+            <option value="32000">32000</option>
+            <option value="33000">33000</option>
+            <option value="34000">34000</option>
+            <option value="35000">35000</option>
+            <option value="36000">36000</option>
+            <option value="37000">37000</option>
+            <option value="38000">38000</option>
+            <option value="39000">39000</option>
+        </select>
+    </div>
+    <button (click)="addRoute()">add</button>
+</div>
+
+<div class="route-list" *ngFor="let route of routes ; let i = index">
+    <div class="route-list-row">{{route.toAirport.ICAO}}</div>
+    <div class="route-list-row">{{route.landAirport.ICAO}}</div>
+    <div class="route-list-row">{{route.altitude}}</div>
+    <button (click)="deleteRoute(i)">delete</button>
+
+</div>
+

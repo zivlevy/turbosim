@@ -1,0 +1,79 @@
+<app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
+
+<div id="mapid"></div>
+<!--Top Pane-->
+<div id="toppane">
+    <div id="toppane_leftbuttons">
+        <img id="satellite" class="toppane-button" src="../../assets/satellite_green.png">
+        <img id="navarrow" class="toppane-button" src="../../assets/navArrow_green.png">
+        <img id="screenlight" class="toppane-button" src="../../assets/bright-7_white.png">
+        <div id="altitude">Altitude: {{airplane.currentAltitude}} feet</div>
+    </div>
+</div>
+
+<!--Left Pane-->
+<div id="leftpane">
+    <div id="rightpane_buttons">
+        <img id="routeedit-off" *ngIf="!isEditRouteMode" class="leftpane-button" src="../../assets/route_off.png">
+        <img id="routeedit-on" *ngIf="isEditRouteMode" class="leftpane-button" src="../../assets/route_on.png">
+
+        <div id="toogle-myinfo-text" class="pane-text">my info</div>
+        <div id="toogle-myinfo">
+            <app-toggle></app-toggle>
+
+        </div>
+
+
+    </div>
+</div>
+
+<!--Right pane-->
+<div id="rightpane">
+    <img id="airplane-from" class="rightpane-button" src="../../assets/to@2x.png" (click)="showModal($event,'takeoff')">
+    <div class="airport-name" (click)="showModal($event,'takeoff')">{{toAirport.ICAO}}</div>
+    <img id="swap-id" class="rightpane-button" src="../../assets/swap.png" (click)="swapAirports()">
+    <img id="airplane-to" class="rightpane-button" src="../../assets/land@2x.png" (click)="showModal($event,'landing')">
+    <div class="airport-name" (click)="showModal($event,'landing')">{{landAirport.ICAO}}</div>
+    <elevation-buttons [currentAltitude]="airplane.currentAltitude" (altitudeselected)="altitude_clicked($event)"></elevation-buttons>
+</div>
+
+<!--Bottom pane-->
+<div id="bottompane">
+    <div class="row" style="width: 100%;">
+        <div class="col-xs-4">
+
+        </div>
+        <div class="col-xs-4">
+            <div class="simcontroller">
+                <div class="contorol-button" (click)="simSlow()"><i class="fa fa-backward fa-1x"></i></div>
+                <div class="contorol-button">x{{simSpeed}}</div>
+                <div class="contorol-button" (click)="simFast()"><i class="fa fa-forward fa-1x"></i></div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div id="alt-select" class="pull-right">
+                <span>Set Altitude: </span>
+                <select id="gotoaltitude" [value]="airplane.targetAltitude" name="altitude" (change)="gotoAltitude($event)">
+                    <option value="30000">30000</option>
+                    <option value="31000">31000</option>
+                    <option value="32000">32000</option>
+                    <option value="33000">33000</option>
+                    <option value="34000">34000</option>
+                    <option value="35000">35000</option>
+                    <option value="36000">36000</option>
+                    <option value="37000">37000</option>
+                    <option value="38000">38000</option>
+                    <option value="39000">39000</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div>
+
+
+</div>
+

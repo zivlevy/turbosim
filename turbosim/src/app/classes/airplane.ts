@@ -1,0 +1,76 @@
+import {SimulatorService} from "../services/simulator.service";
+import {GeoHelperService} from "../services/geo-helper.service";
+
+
+export class Airplane {
+    routePoints: Array <{lat: number, lng: number}>;
+    greatCircleArray: Array <{lat: number, lng: number}>;
+    currentPosition: {lat: number, lng: number};
+    currentAzimuth: number;
+    currentAltitude: number;
+    targetAltitude: number;// the altitude the airplane needs to get to
+    currentwaypoint: number; //the waypoint the airplane is headed to
+    simulatorService: SimulatorService;
+    geoHelperService: GeoHelperService;
+
+    distancePerTick:number = 1;
+    counter: number = 0;
+
+    constructor(from, to, targetAltitude) {
+
+
+        this.simulatorService = new SimulatorService();
+        this.geoHelperService = new GeoHelperService();
+        this.currentAltitude = 25000;
+        this.targetAltitude = targetAltitude;
+        this.initRoute(from, to);
+
+
+    }
+
+    simTick() {
+        this.move();
+    }
+
+    move() :number{
+
+        if (this.currentwaypoint > this.greatCircleArray.length - 1) return;
+        //new altitude
+        if (this.targetAltitude !== this.currentAltitude) {
+            this.currentAltitude = this.targetAltitude > this.currentAltitude ? this.currentAltitude + 500 : this.currentAltitude - 500;
+        }
+        //new position
+        this.currentPosition = this.geoHelperService.newLocationFromPointWithDistanceBearing(this.currentPosition, this.distancePerTick, this.currentAzimuth);
+        this.currentAzimuth = this.geoHelperService.bigCircleAzimuth(this.currentPosition, this.greatCircleArray[this.currentwaypoint]);
+        let dist = this.geoHelperService.dist(this.currentPosition.lat, this.currentPosition.lng, this.greatCircleArray[this.currentwaypoint].lat, this.greatCircleArray[this.currentwaypoint].lng);
+
+        //check if there is turbulence
+
+        if (dist < this.distancePerTick * 1600 * 1.1) {
+            this.currentwaypoint++;
+        }
+    }
+
+    gotoAltitude(altitude: number) {
+        this.targetAltitude = altitude;
+    }
+
+    /***********************
+     *  route
+     **********************/
+    initRoute(from, to) {
+        this.routePoints = [];
+        this.routePoints.push({lat: from.lat, lng: from.lng});
+        this.routePoints.push({lat: to.lat, lng: to.lng});
+        this.greatCircleArray = this.geoHelperService.bigCircleBetweenPoints(this.routePoints[0], this.routePoints[1]);
+        this.currentwaypoint = 1;
+        this.currentPosition = {
+            lat: this.greatCircleArray[0].lat,
+            lng: this.greatCircleArray[0].lng
+        }
+        this.currentAzimuth = this.geoHelperService.bigCircleAzimuth(this.greatCircleArray[0], this.greatCircleArray[1]);
+
+    };
+
+
+}

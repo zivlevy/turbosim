@@ -1,0 +1,16 @@
+<!--<app-map></app-map>-->
+<!--<app-mainview></app-mainview>-->
+<!--<app-airport-picker></app-airport-picker>-->
+<div class="main-container">
+    <div class="menue-popup" [@showMenu]="menuState">
+
+
+        <i class="menubutton fa fa-bars fa-2x" aria-hidden="true" (click)="toggleMenu()"></i>
+        <div class="menuItem" (click)="navigateTo('/main-view')">simulator</div>
+        <div class="menuItem" (click)="navigateTo('/scenario')">scenario</div>
+        <div class="menuItem" (click)="navigateTo('/turbo-editor')">editor</div>
+
+
+    </div>
+</div>
+<router-outlet></router-outlet>

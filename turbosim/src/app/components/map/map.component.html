@@ -1,0 +1,62 @@
+<div id="mapid" [ngClass]="{crosshair: isInsertTurboArea}"></div>
+
+<!--a button to add new TurboArea-->
+<div class="addTurboArea myButton" *ngIf="!isEditTurboArea" (click)="addTurboAreaClicked()"><span>Add Turbo Area</span></div>
+
+
+
+<div *ngIf="isEditTurboArea" id="turboarea-form">
+
+    <div class="row">
+      <!--altitude-->
+      <div class="form-group col-xs-4">
+        <label for="altitude">Altitude</label>
+        <select class="form-control" id="altitude" name="altitude" [(ngModel)]="tempTurboArea.altitude">
+          <option>30000</option>
+          <option>31000</option>
+          <option>32000</option>
+          <option>33000</option>
+          <option>34000</option>
+          <option>35000</option>
+          <option>36000</option>
+          <option>37000</option>
+          <option>38000</option>
+          <option>39000</option>
+        </select>
+      </div>
+
+      <!--height span-->
+      <div class="form-group col-xs-4">
+        <label for="heightspan">Height span</label>
+        <select class="form-control"  id="heightspan" name="heightspan" [(ngModel)]="tempTurboArea.heightSpan">
+          <option>1000</option>
+          <option>2000</option>
+          <option>3000</option>
+          <option>4000</option>
+          <option>5000</option>
+        </select>
+      </div>
+      <!--severity-->
+      <div class="form-group col-xs-4">
+        <label for="severity">Severity</label>
+        <select class="form-control" id="severity" name="severity" [(ngModel)]="tempTurboArea.severity">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row form-group zl-buttons">
+
+      <button style="color:darkgreen" (click)="submit_clicked()">Submit</button>
+      <button (click)="cancel_clicked()">Cancel</button>
+      <button (click)="delete_clicked()" style="color:darkred">Delete</button>
+
+    </div>
+
+
+
+</div>

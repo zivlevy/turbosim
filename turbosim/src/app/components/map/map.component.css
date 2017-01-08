@@ -1,0 +1,49 @@
+#mapid {
+  height: 100%;
+  width: 100%;
+}
+
+.addTurboArea {
+  background-color: #2aabd2;
+  position: absolute;
+  width:150px;
+  height:30px;
+  top: 10px;
+  left: calc(50% - 38px);
+  border-radius: 3px;
+  z-index: 10000;
+  text-align: center;
+
+  color:white;
+
+}
+.addTurboArea:hover {
+  color: #1f2021;
+  cursor: pointer;
+}
+.addTurboArea  span {
+
+  font-size: 16px;
+    line-height: 30px;
+}
+
+.mypopup {
+  background-color: aquamarine;
+}
+
+.crosshair {
+  cursor: crosshair;
+}
+
+#turboarea-form {
+  width: 400px;
+  padding-top: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  border-radius: 10px;
+  background-color: skyblue;
+  position: absolute;
+  top: 10px;
+  left: calc(50% - 200px);
+  z-index: 1000;
+}

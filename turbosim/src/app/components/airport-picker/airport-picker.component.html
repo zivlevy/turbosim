@@ -1,0 +1,19 @@
+<div (click)="hide()" class="modal fade" tabindex="-1" [ngClass]="{'in': visibleAnimate}"
+     [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
+
+<div class="moveable" [ngStyle]="{'left':modalLeft, 'top':modalTop}">
+  <input (click)="searchclicked($event)" class="searchbar" placeholder="Search airport ..." #airport (keyup)="onKey(airport.value)">
+
+  <div class="airport-scroll" (click)="searchclicked($event)">
+    <div class="airport-cell" *ngFor="let airport of filteredAirports" (click)="airportDblClick(airport)">
+
+      <div class="first-row">{{airport.ICAO}} / {{airport.symbol}}</div>
+      <div class="second-row">{{airport.name}} / {{airport.city}}</div>
+    </div>
+  </div>
+
+</div>
+
+
+
+</div>

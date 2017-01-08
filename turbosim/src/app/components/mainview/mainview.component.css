@@ -1,0 +1,147 @@
+#toppane {
+    position: absolute;
+    top: 0;
+    margin: 0;
+    width: 100%;
+    height: 80px;
+    background-color: rgb(39, 44, 54);
+    z-index: 0;
+}
+
+#bottompane {
+    position: absolute;
+    top: calc(100% - 50px);
+    margin: 0;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(39, 44, 54);
+
+    display:flex;
+}
+
+#leftpane {
+    position: absolute;
+    top: 15%;
+    margin: 0;
+    width: 80px;
+    height: 70%;
+    background-color: rgb(39, 44, 54);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+#rightpane {
+    position: absolute;
+    top: 15%;
+    left: calc(100% - 80px);
+    margin: 0;
+    width: 80px;
+    height: 70%;
+    background-color: rgb(39, 44, 54);
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+#mapid {
+    height: 100%;
+    width: 100%;
+    z-index: 0;
+}
+
+/*buttons*/
+.toppane-button {
+    position: relative;
+    top: 35px;
+    margin-left: 15px;
+}
+
+.leftpane-button {
+    margin-left: 18px;
+    margin-top: 10px;
+    height: 44px;
+    width: 44px;
+}
+
+.rightpane-button {
+    margin-left: 18px;
+    margin-top: 10px;
+    height: 44px;
+    width: 44px;
+}
+
+.airport-name {
+    color: white;
+    font-size: 14px;
+    text-align: center;
+}
+
+#swap-id {
+    margin-left: 25px;
+    height: 30px;
+    width: 30px;
+
+}
+
+.pane-text {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+}
+
+#alt-select{
+    margin-top: 15px;
+    color:whitesmoke;
+}
+#gotoaltitude {
+    margin-left: 20px;
+}
+
+
+#altitude {
+    color:whitesmoke;
+    text-align: center;
+}
+
+#toogle-myinfo-text {
+    margin-top: 150px;
+}
+
+#toogle-myinfo {
+    margin-top: 2px;
+    margin-left: 12px;
+
+}
+
+/*sim buttons*/
+.simcontroller {
+
+    display: flex;
+    width: 200px;
+    line-height: 30px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+.contorol-button {
+    width: 60px;
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    border-style: solid;
+
+    text-align: center;
+    vertical-align: middle;
+    border-color: white;
+    border-width: 0px;
+    margin-left: 10px;
+
+}
+
+.contorol-button-text {
+    font-size: 8px;
+    width: 200px;
+}
+
+.contorol-button:hover {
+    color: gray;
+}
