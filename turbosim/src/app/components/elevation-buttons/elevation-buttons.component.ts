@@ -10,6 +10,7 @@ export class ElevationButtonsComponent implements OnInit {
     elevationButtons: Array<any> = [];
 
     @Output() altitudeselected: EventEmitter<any> = new EventEmitter();
+    @Output() autoAltChanged : EventEmitter<any> = new EventEmitter();
 
     @Input() currentAltitude : number = 0; // the altitude of the plane;
     isAuto: boolean = false;
@@ -26,6 +27,7 @@ export class ElevationButtonsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.autoAltChanged.emit(this.isAuto);
     }
     ngOnChanges(changes: SimpleChanges) {
         for (let propName in changes) {
@@ -51,6 +53,7 @@ export class ElevationButtonsComponent implements OnInit {
         this.altitudeselected.emit(this.currentAltLevel);
         this.selectedButton = this.currentAltLevel;
         this.setButtonsText();
+        this.autoAltChanged.emit(this.isAuto);
     }
 
     setButtonsText(){

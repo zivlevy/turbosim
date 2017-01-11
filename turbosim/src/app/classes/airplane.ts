@@ -13,7 +13,7 @@ export class Airplane {
     simulatorService: SimulatorService;
     geoHelperService: GeoHelperService;
 
-    distancePerTick:number = 1;
+    distancePerTick: number = 1;
     counter: number = 0;
 
     constructor(from, to, targetAltitude) {
@@ -32,7 +32,11 @@ export class Airplane {
         this.move();
     }
 
-    move() :number{
+    currentAltitudeLevel() {
+        return (Math.floor((this.currentAltitude - 30000) / 2000));
+    }
+
+    move(): number {
 
         if (this.currentwaypoint > this.greatCircleArray.length - 1) return;
         //new altitude

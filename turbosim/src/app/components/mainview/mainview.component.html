@@ -1,5 +1,5 @@
 <app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
-<turbulence-alert></turbulence-alert>
+<turbulence-alert *ngIf="isAlertBoxShow" [bottomAlertBoxColor]="bottomAlertColor" [currentAlertBoxColor]="currentAlertColor" [topAlertBoxColor]="topAlertColor"></turbulence-alert>
 <div id="mapid"></div>
 <!--Top Pane-->
 <div id="toppane">
@@ -34,7 +34,7 @@
     <img id="swap-id" class="rightpane-button" src="../../assets/swap.png" (click)="swapAirports()">
     <img id="airplane-to" class="rightpane-button" src="../../assets/land@2x.png" (click)="showModal($event,'landing')">
     <div class="airport-name" (click)="showModal($event,'landing')">{{landAirport.ICAO}}</div>
-    <elevation-buttons [currentAltitude]="airplane.currentAltitude" (altitudeselected)="altitude_clicked($event)"></elevation-buttons>
+    <elevation-buttons [currentAltitude]="airplane.currentAltitude" (altitudeselected)="altitude_clicked($event)" (autoAltChanged)="autoAlt_changed($event)"></elevation-buttons>
 </div>
 
 <!--Bottom pane-->

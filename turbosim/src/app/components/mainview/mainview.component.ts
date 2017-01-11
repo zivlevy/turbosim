@@ -6,10 +6,12 @@ import {GeoHelperService} from '../../services/geo-helper.service';
 import {Airport} from "../../classes/airport";
 import {SimulatorService} from '../../services/simulator.service';
 import {Airplane} from "../../classes/airplane";
+
 import * as Rx from 'rxjs';
 import 'leaflet';
 import * as d3 from 'd3';
 import 'leaflet-d3-svg-overlay';
+import {AlertManager} from "../../classes/alert-manager";
 
 
 @Component({
@@ -20,6 +22,7 @@ import 'leaflet-d3-svg-overlay';
 
 
 export class MainviewComponent implements OnInit {
+
     map: any; //the leaflet map object
     isEditRouteMode: boolean; //flag route edit mode
     @ViewChild(AirportPickerComponent) public readonly modal: AirportPickerComponent;
@@ -42,9 +45,20 @@ export class MainviewComponent implements OnInit {
     turbulenceAtAlt: Tile [] = [];
     isDayLayer: boolean = true;
 
-    selectedAltitude:number = 1;
+    selectedAltitude: number = 1;
+    isAutoAlt: boolean = false; //when auto alt is selected
+    isFollowAlt: boolean = true; //should the display follow to altitude of the airplane when in auto alt mode
+
     observerHook: any;
     simulatedAirplanes: Array <Airplane>;
+
+    //alert box
+    isAlertBoxShow: boolean = false;
+    bottomAlertColor: string;
+    currentAlertColor: string;
+    topAlertColor: string;
+    kAlertAngle: number = 15;
+    kAlertRange: number = 100;
 
     /***********************
      *  constractor
@@ -198,6 +212,7 @@ export class MainviewComponent implements OnInit {
 
     gotoAltitude(altitude) {
         this.airplane.gotoAltitude(Number(altitude.target.value));
+        this.isFollowAlt = true;
     }
 
     /*********************
@@ -343,20 +358,18 @@ export class MainviewComponent implements OnInit {
 
         this.airplaneLayer = L.d3SvgOverlay((sel, proj) => {
             if (!this.airplane) return;
-            var kAlertAngle = 15;
-            var kAlertRange = 100;
 
 
             //alert zone border
             var locations = [];
             var currentLocation = {lat: this.airplane.currentPosition.lat, lng: this.airplane.currentPosition.lng}
             locations.push(currentLocation);
-            for (var az = -kAlertAngle; az <= kAlertAngle; az += 5) {
+            for (var az = -this.kAlertAngle; az <= this.kAlertAngle; az += 5) {
                 var currentCalcCourse = this.airplane.currentAzimuth + az;
                 //correct to 0-359
                 if (currentCalcCourse >= 360) currentCalcCourse -= 360;
                 if (currentCalcCourse <= 0) currentCalcCourse = 360 + currentCalcCourse;
-                var coord = this.geoHelperService.newLocationFromPointWithDistanceBearing(currentLocation, kAlertRange, currentCalcCourse);
+                var coord = this.geoHelperService.newLocationFromPointWithDistanceBearing(currentLocation, this.kAlertRange, currentCalcCourse);
                 locations.push(coord);
 
             }
@@ -461,10 +474,18 @@ export class MainviewComponent implements OnInit {
     /***************************
      altitude selection
      ***************************/
-    altitude_clicked(e){
+    altitude_clicked(e) {
         this.selectedAltitude = e;
+        this.isFollowAlt = false;
         this.redrawAll();
     }
+
+    autoAlt_changed(e) {
+        this.isAutoAlt = e;
+
+    }
+
+
     /***************************
      sim tick
      ***************************/
@@ -474,9 +495,20 @@ export class MainviewComponent implements OnInit {
         this.airplane.simTick();
         this.simTickSimulatedAirplanes();
         this.mapService.airplaneAtLocation(this.airplane.currentPosition.lat, this.airplane.currentPosition.lng, this.airplane.currentAltitude);
-
         this.turbulenceAtAlt = this.mapService.getTurbulenceByAlt(this.selectedAltitude);
+        //change current altitude if auto alt is on
+        if (this.isAutoAlt && this.isFollowAlt) {
+            this.selectedAltitude = this.airplane.currentAltitudeLevel()
+        }
+
+        let arrTurbelenceBelow: Array<Tile> = this.selectedAltitude > 0 ? this.mapService.getTurbulenceByAlt(this.selectedAltitude - 1) : [];
+        let arrTurbelenceAbove: Array<Tile> = this.selectedAltitude < 4 ? this.mapService.getTurbulenceByAlt(this.selectedAltitude + 1) : [];
+        let am = AlertManager.getAlertLevel(arrTurbelenceBelow, this.turbulenceAtAlt, arrTurbelenceAbove, this.airplane);
+
+        this.isAlertBoxShow=am.isAlert; this.topAlertColor = am.above ; this.bottomAlertColor = am.below; this.currentAlertColor = am.at;
+
         this.redrawAll();
+
     }
 }
 
