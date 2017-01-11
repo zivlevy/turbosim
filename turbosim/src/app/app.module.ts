@@ -20,6 +20,7 @@ import {ToggleComponent} from './components/toggle/toggle.component';
 import {AirportPickerComponent} from './components/airport-picker/airport-picker.component';
 import { ElevationButtonsComponent } from './components/elevation-buttons/elevation-buttons.component';
 import { ScenarioComponent } from './components/scenario/scenario.component';
+import { TurbulenceAlertComponent } from './components/turbulence-alert/turbulence-alert.component';
 
 
 
@@ -38,7 +39,8 @@ const routes: Routes = [
     ToggleComponent,
     AirportPickerComponent,
     ElevationButtonsComponent,
-    ScenarioComponent
+    ScenarioComponent,
+    TurbulenceAlertComponent
   ],
   imports: [
     BrowserModule,
