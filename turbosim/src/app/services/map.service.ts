@@ -77,8 +77,8 @@ export class MapService {
 
       if (altLevel>=0) {
 
-        const tileX = this.geoHelperService.lat2tile(lat,11);
-        const tileY = this.geoHelperService.long2tile(lng,11);
+        const tileY = this.geoHelperService.lat2tile(lat,11);
+        const tileX = this.geoHelperService.long2tile(lng,11);
 
         //check if there is already turbulence in this tile
         const severityInLocaation = this.myTurbulence[altLevel].get(tileX + '/' + tileY + '/' + (altLevel+10));
@@ -101,6 +101,11 @@ export class MapService {
     return arr;
   }
 
+  getTurbulenceMapByAlt (alt:number) {
+      let map : Map<string,Tile> = new Map();
+      map = this.myTurbulence[alt];
+      return map;
+  }
   /****************************
    * get Severity from location
    ****************************/

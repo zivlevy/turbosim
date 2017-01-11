@@ -220,32 +220,17 @@ export class MainviewComponent implements OnInit {
      ********************/
     initSsimulatedAirplanes() {
         this.simulatedAirplanes = [];
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
+
+        this.simulatedAirplanes.push(new Airplane({lat: 33.5, lng: 32.5}, {lat: 40.639751, lng: -73.778925}, 38000));
         this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 30}, {lat: 30, lng: 40}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 20, lng: 90}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 20, lng: 90}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 40}, {lat: 30, lng: -120}, 38000));
+
+
 
     }
 
     simTickSimulatedAirplanes() {
         this.simulatedAirplanes.forEach((airplane) => {
             airplane.simTick();
-
             this.mapService.airplaneAtLocation(airplane.currentPosition.lat, airplane.currentPosition.lng, airplane.currentAltitude);
 
         })
@@ -493,19 +478,32 @@ export class MainviewComponent implements OnInit {
     simTick() {
         //move the airplane
         this.airplane.simTick();
+
+        //move simulated airplanes
         this.simTickSimulatedAirplanes();
+        // find if there is turbulence at airplane location
         this.mapService.airplaneAtLocation(this.airplane.currentPosition.lat, this.airplane.currentPosition.lng, this.airplane.currentAltitude);
+
+        //get the turbulence at the current selected altitude
         this.turbulenceAtAlt = this.mapService.getTurbulenceByAlt(this.selectedAltitude);
+
         //change current altitude if auto alt is on
         if (this.isAutoAlt && this.isFollowAlt) {
-            this.selectedAltitude = this.airplane.currentAltitudeLevel()
+            this.selectedAltitude = this.airplane.currentAltitudeLevel();
         }
 
-        let arrTurbelenceBelow: Array<Tile> = this.selectedAltitude > 0 ? this.mapService.getTurbulenceByAlt(this.selectedAltitude - 1) : [];
-        let arrTurbelenceAbove: Array<Tile> = this.selectedAltitude < 4 ? this.mapService.getTurbulenceByAlt(this.selectedAltitude + 1) : [];
-        let am = AlertManager.getAlertLevel(arrTurbelenceBelow, this.turbulenceAtAlt, arrTurbelenceAbove, this.airplane);
+        // calculate alerts
+        let airplaneAltitudeLevel = this.airplane.currentAltitudeLevel();
+        if (airplaneAltitudeLevel >0) {
+            let arrTurbelenceBelow: Map<string,Tile> = airplaneAltitudeLevel > 0 ? this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel - 1) : new Map();
+            let arrTurbelenceAt: Map<string,Tile> =  this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel );
+            let arrTurbelenceAbove: Map<string,Tile> = airplaneAltitudeLevel < 4 ? this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel + 1) : new Map();
+            let am = AlertManager.getAlertLevel(arrTurbelenceBelow, arrTurbelenceAt, arrTurbelenceAbove, this.airplane);
+            this.isAlertBoxShow=am.isAlert; this.topAlertColor = am.above ; this.bottomAlertColor = am.below; this.currentAlertColor = am.at;
+        } else {this.isAlertBoxShow=false;}
 
-        this.isAlertBoxShow=am.isAlert; this.topAlertColor = am.above ; this.bottomAlertColor = am.below; this.currentAlertColor = am.at;
+
+
 
         this.redrawAll();
 
