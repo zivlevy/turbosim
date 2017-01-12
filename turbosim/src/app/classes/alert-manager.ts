@@ -18,7 +18,7 @@ export class AlertManager {
         currentTile.tileY = this.MapUtils.lat2tile(airplane.currentPosition.lat, 11);
         currentTile.tileX = this.MapUtils.long2tile(airplane.currentPosition.lng, 11);
 
-        for (let az: number = -this.kAlertAngle; az <= this.kAlertAngle; az += 5) {
+        for (let az: number = -this.kAlertAngle; az <= this.kAlertAngle; az += 3) {
             let currentCalcCourse: number = airplane.currentAzimuth + az;
 
             //correct to 0-359

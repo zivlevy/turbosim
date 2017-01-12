@@ -8,7 +8,7 @@
   position: absolute;
   width:150px;
   height:30px;
-  top: 10px;
+  top: 50px;
   left: calc(50% - 38px);
   border-radius: 3px;
   z-index: 10000;
@@ -16,6 +16,20 @@
 
   color:white;
 
+}
+
+.scenario-picker{
+  background-color: #2aabd2;
+  position: absolute;
+  width:150px;
+  height:30px;
+  top: 10px;
+  left: calc(50% - 38px);
+  border-radius: 3px;
+  z-index: 10000;
+  text-align: center;
+
+  color:white;
 }
 .addTurboArea:hover {
   color: #1f2021;

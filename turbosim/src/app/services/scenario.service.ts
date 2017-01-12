@@ -5,10 +5,10 @@ import {SimRoute,Scenario} from "../classes/simroute";
 import {environment} from '../../environments/environment';
 
 @Injectable()
-export class SimroutesService {
+export class ScenarioService {
     baseUrl: string;
   constructor(private http: Http) {
-      this.baseUrl = environment.turboAreaServer + 'simroutes';// 'http://localhost:3000/turboareas';
+      this.baseUrl = environment.turboAreaServer;// 'http://localhost:3000/turboareas';
 
   }
 
@@ -22,7 +22,6 @@ export class SimroutesService {
     var scenarrio: Scenario = new Scenario();
     scenarrio._id = item._id;
     scenarrio.name= item.name;
-    scenarrio.routes = item.routes.slice();
 
     return scenarrio;
 
@@ -30,7 +29,7 @@ export class SimroutesService {
 
   getScenarios(): Observable<Scenario[]> {
 
-    return this.http.get(this.baseUrl)
+    return this.http.get(this.baseUrl + 'scenarios')
         .map((res: Response) => res.json())
         .flatMap((x) => {
           var y = [];

@@ -12,15 +12,15 @@ import {MapService} from './services/map.service';
 import {AirportService} from './services/airport.service';
 import {GeoHelperService} from './services/geo-helper.service';
 import {SimulatorService} from './services/simulator.service';
-import {SimroutesService} from "./services/simroutes.service";
+import {ScenarioService} from "./services/scenario.service";
 
 import {ModalModule} from '../../node_modules/ng2-modal';
 import {MainviewComponent} from './components/mainview/mainview.component';
 import {ToggleComponent} from './components/toggle/toggle.component';
 import {AirportPickerComponent} from './components/airport-picker/airport-picker.component';
 import { ElevationButtonsComponent } from './components/elevation-buttons/elevation-buttons.component';
-import { ScenarioComponent } from './components/scenario/scenario.component';
 import { TurbulenceAlertComponent } from './components/turbulence-alert/turbulence-alert.component';
+import { SimroutesComponent } from './components/simroutes/simroutes.component';
 
 
 
@@ -28,7 +28,7 @@ import { TurbulenceAlertComponent } from './components/turbulence-alert/turbulen
 const routes: Routes = [
   { path: 'turbo-editor', component: MapComponent },
   { path: 'main-view', component: MainviewComponent },
-  { path: 'scenario', component: ScenarioComponent },
+  { path: 'simroute', component: SimroutesComponent },
 ];
 
 @NgModule({
@@ -39,8 +39,8 @@ const routes: Routes = [
     ToggleComponent,
     AirportPickerComponent,
     ElevationButtonsComponent,
-    ScenarioComponent,
-    TurbulenceAlertComponent
+    TurbulenceAlertComponent,
+    SimroutesComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +56,7 @@ const routes: Routes = [
     AirportService,
     GeoHelperService,
     SimulatorService,
-    SimroutesService],
+    ScenarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

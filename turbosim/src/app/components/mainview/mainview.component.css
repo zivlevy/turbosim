@@ -87,17 +87,31 @@
     color: white;
     text-align: center;
 }
-
-#alt-select{
+.scenario-picker{
+    color:white;
+    display: flex;
+    margin-top: 15px;
+    margin-left:25px;
+    /*width: 200px;*/
+}
+.scenario-select {
+    margin-left: 20px;
+    color:white;
+    background-color: rgb(38,44,55);
+}
+#alt-select {
     margin-top: 15px;
     color:whitesmoke;
 }
 #gotoaltitude {
     margin-left: 20px;
+    color:white;
+    background-color: rgb(38,44,55);
 }
 
 
 #altitude {
+
     color:whitesmoke;
     text-align: center;
 }

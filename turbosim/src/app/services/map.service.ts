@@ -25,7 +25,7 @@ export class MapService {
   constructor(private http: Http, private geoHelperService:GeoHelperService) {
     // private instance variable to hold base url
     // this.baseUrl = 'http://localhost:3000/turboareas';
-    this.baseUrl = environment.turboAreaServer + 'turboareas';// 'http://localhost:3000/turboareas';
+    this.baseUrl = environment.turboAreaServer +'turboareas';// 'http://localhost:3000/turboareas';
 
     this.gju = require('geojson-utils');
     this.turboAreas = [];
@@ -34,6 +34,14 @@ export class MapService {
     //init map info
     this.mapLayerURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
+
+    // this.subscription = this.getTurboAreas().subscribe((item:any) => {
+    //   this.turboAreas.push(item);
+    // });
+  }
+
+  setScenario(scenarioId) {
+    if (this.subscription) this.subscription.unsubscribe();
     //init turbulence for all heights
     this.myTurbulence = [];
     for (let i:number =0;i<5;i++) {
@@ -41,11 +49,12 @@ export class MapService {
     }
 
     this.turboAreaList = new Subject();
-    this.subscription = this.getTurboAreas().subscribe((item:any) => {
+
+    this.turboAreas = [];
+    this.subscription = this.getTurboAreas(scenarioId).subscribe((item:any) => {
       this.turboAreas.push(item);
     });
   }
-
 
   getColorbySeverity(severity: number) {
     var color;
@@ -88,9 +97,7 @@ export class MapService {
           tile = this.getTurbulenceAtLocation(lat,lng,alt);
           this.myTurbulence[altLevel].set(tileX + '/' + tileY + '/' + (altLevel+10),tile);
         }
-
       }
-
   }
 
   getTurbulenceByAlt (alt:number) {
@@ -143,9 +150,9 @@ export class MapService {
     return turboArea;
   }
 
-  getTurboAreas(): Observable<TurboArea[]> {
+  getTurboAreas(scenarioId:string): Observable<TurboArea[]> {
 
-    return this.http.get(this.baseUrl)
+    return this.http.get(this.baseUrl + '/byscenario/' +scenarioId)
     // ...and calling .json() on the response to return data
       .map((res: Response) => res.json())
       .flatMap((x) => {

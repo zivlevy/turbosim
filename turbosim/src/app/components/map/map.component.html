@@ -3,7 +3,11 @@
 <!--a button to add new TurboArea-->
 <div class="addTurboArea myButton" *ngIf="!isEditTurboArea" (click)="addTurboAreaClicked()"><span>Add Turbo Area</span></div>
 
-
+<div class="scenario-picker" *ngIf="!isEditTurboArea">
+  <select [(ngModel)]="selectedScenario" (change)="scenarioChanged()" class="form-control" id="scenario" name="scenario">
+    <option  [ngValue]="scenario" *ngFor="let scenario of arrScenarios">{{scenario.name}}</option>
+  </select>
+</div>
 
 <div *ngIf="isEditTurboArea" id="turboarea-form">
 

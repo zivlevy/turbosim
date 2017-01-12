@@ -6,12 +6,14 @@ import {GeoHelperService} from '../../services/geo-helper.service';
 import {Airport} from "../../classes/airport";
 import {SimulatorService} from '../../services/simulator.service';
 import {Airplane} from "../../classes/airplane";
+import {Observable} from "rxjs";
 
-import * as Rx from 'rxjs';
 import 'leaflet';
 import * as d3 from 'd3';
 import 'leaflet-d3-svg-overlay';
 import {AlertManager} from "../../classes/alert-manager";
+import {Scenario} from "../../classes/simroute";
+import {ScenarioService} from "../../services/scenario.service";
 
 
 @Component({
@@ -60,10 +62,15 @@ export class MainviewComponent implements OnInit {
     kAlertAngle: number = 15;
     kAlertRange: number = 100;
 
+    //scenario
+    arrScenarios: Array<Scenario> = [];
+    selectedScenario: Scenario = null;
+    observeScenarioService: Observable<any>;
+
     /***********************
      *  constractor
      **********************/
-    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService, private simulatorService: SimulatorService) {
+    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService, private simulatorService: SimulatorService, private scenarioService: ScenarioService) {
         this.mapService = mapService;
         this.geoHelperService = geoHelperService;
         this.isEditRouteMode = false;
@@ -108,7 +115,7 @@ export class MainviewComponent implements OnInit {
             name: "John F Kennedy Intl",
             symbol: "JFK"
         };
-
+        this.initScenarioaObserver();
         this.initRoute();
         this.initSsimulatedAirplanes();
 
@@ -149,6 +156,28 @@ export class MainviewComponent implements OnInit {
             this.redrawAll();
         });
 
+    }
+
+    /***************************
+     init Scenario Observer
+     ***************************/
+    initScenarioaObserver() {
+        console.log('here');
+        this.observeScenarioService = this.scenarioService.getScenarios();
+        this.observeScenarioService.subscribe((item: Scenario) => {
+                this.arrScenarios.push(item);
+            }, () => {
+            },
+            () => { //completion
+                if (this.arrScenarios) this.selectedScenario = this.arrScenarios[0];
+                this.mapService.setScenario(this.selectedScenario._id);
+            });
+
+    }
+
+    scenarioChanged() {
+        console.log(this.selectedScenario);
+        this.mapService.setScenario(this.selectedScenario._id);
     }
 
     /***********************
@@ -223,7 +252,6 @@ export class MainviewComponent implements OnInit {
 
         this.simulatedAirplanes.push(new Airplane({lat: 33.5, lng: 32.5}, {lat: 40.639751, lng: -73.778925}, 38000));
         this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 30}, {lat: 30, lng: 40}, 38000));
-
 
 
     }
@@ -494,15 +522,18 @@ export class MainviewComponent implements OnInit {
 
         // calculate alerts
         let airplaneAltitudeLevel = this.airplane.currentAltitudeLevel();
-        if (airplaneAltitudeLevel >0) {
+        if (airplaneAltitudeLevel > 0) {
             let arrTurbelenceBelow: Map<string,Tile> = airplaneAltitudeLevel > 0 ? this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel - 1) : new Map();
-            let arrTurbelenceAt: Map<string,Tile> =  this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel );
+            let arrTurbelenceAt: Map<string,Tile> = this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel);
             let arrTurbelenceAbove: Map<string,Tile> = airplaneAltitudeLevel < 4 ? this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel + 1) : new Map();
             let am = AlertManager.getAlertLevel(arrTurbelenceBelow, arrTurbelenceAt, arrTurbelenceAbove, this.airplane);
-            this.isAlertBoxShow=am.isAlert; this.topAlertColor = am.above ; this.bottomAlertColor = am.below; this.currentAlertColor = am.at;
-        } else {this.isAlertBoxShow=false;}
-
-
+            this.isAlertBoxShow = am.isAlert;
+            this.topAlertColor = am.above;
+            this.bottomAlertColor = am.below;
+            this.currentAlertColor = am.at;
+        } else {
+            this.isAlertBoxShow = false;
+        }
 
 
         this.redrawAll();

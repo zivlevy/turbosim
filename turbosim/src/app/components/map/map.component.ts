@@ -6,6 +6,8 @@ import 'leaflet';
 import 'leaflet.pm';
 import GeoJsonObject = GeoJSON.GeoJsonObject;
 import GeoJSONOptions = L.GeoJSONOptions;
+import {ScenarioService} from "../../services/scenario.service";
+import {Scenario} from "../../classes/simroute";
 
 @Component({
   selector: 'app-map',
@@ -15,9 +17,9 @@ import GeoJSONOptions = L.GeoJSONOptions;
 export class MapComponent implements OnInit {
 
   map: any; //the leaflet map object
-  mapService: MapService;
   gju: any;  // geoJson utility object
   observeTurboService: Observable<any>;
+  observeScenarioService: Observable<any>;
 
   isInsertTurboArea: boolean; //when in insert new mode for TurboArea
   isEditTurboArea: boolean; // when in edit mode for TurboArea
@@ -25,9 +27,12 @@ export class MapComponent implements OnInit {
   bankTurboArea: TurboArea;
 
   currentEditedLayer: any;
+  arrScenarios:Array<Scenario> = [];
+  selectedScenario:Scenario = null;
 
-  constructor(mapService: MapService) {
-    this.mapService = mapService;
+
+  constructor(private mapService: MapService, private scenarioService:ScenarioService) {
+
     this.gju = require('geojson-utils');
     this.tempTurboArea = new TurboArea();
     this.bankTurboArea = new TurboArea();
@@ -39,8 +44,10 @@ export class MapComponent implements OnInit {
     this.initMapControl();
     this.initMapEvents();
 
-    //init TurboArea observer
-    this.initTurboAreaObserver();
+    this.initScenarioaObserver();
+
+    // //init TurboArea observer
+    // this.initTurboAreaObserver();
 
     this.isEditTurboArea = false;
     this.isInsertTurboArea = false;
@@ -71,28 +78,51 @@ export class MapComponent implements OnInit {
    ***************************/
   initMapEvents() {
     this.map.on('mousemove',(e)=>{
-      this.map.eachLayer((layer)=>{
-        if (layer.turboArea){
-          console.log(layer.turboArea.isPointInArea(e.latlng.lng, e.latlng.lat,38000));
-        }
-      })
+
     });
 
+  }
+  /***************************
+   init Scenario Observer
+   ***************************/
+  initScenarioaObserver() {
+    console.log('here');
+    this.observeScenarioService = this.scenarioService.getScenarios();
+    this.observeScenarioService.subscribe((item:Scenario) => {
+      this.arrScenarios.push(item);
+    },()=>{},
+        ()=>{ //completion
+        if (this.arrScenarios) this.selectedScenario = this.arrScenarios[0];
+        this.initTurboAreaObserver();
+    });
+
+  }
+  scenarioChanged(){
+    console.log(this.selectedScenario);
+    this.clearAllTurboAreas();
+    this.initTurboAreaObserver();
   }
 
   /***************************
    init TurboMap Observer
    ***************************/
   initTurboAreaObserver() {
-    this.observeTurboService = this.mapService.getTurboAreas();
+    this.observeTurboService = this.mapService.getTurboAreas(this.selectedScenario._id);
     this.observeTurboService.subscribe((item: TurboArea) => {
-      console.log(item);
       this.drawTurboAreaOnMap(item);
     });
 
   }
 
-
+  /***************************
+   clear all map turbo areas
+   ***************************/
+  clearAllTurboAreas() {
+    this.map.eachLayer((layer)=> {
+      //remove all layers that are not tile layers (that have _tile property)
+      if (!layer._tiles) this.map.removeLayer(layer);
+    });
+  }
   /***************************
    draw turbo area on map
    ***************************/
@@ -149,6 +179,7 @@ export class MapComponent implements OnInit {
   addTurboAreaClicked() {
     let range: number = 180;
     this.tempTurboArea = new TurboArea();
+    this.tempTurboArea.scenario = this.selectedScenario._id;
     this.tempTurboArea.altitude = 32000;
     this.tempTurboArea.severity = 2;
     this.tempTurboArea.heightSpan = 2000;

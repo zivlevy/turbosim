@@ -3,6 +3,7 @@ var GeoJSON = require('geojson');
 
 export class TurboArea {
   _id: string;
+  scenario:string;
   altitude: number;
   severity: number;
   heightSpan: number;

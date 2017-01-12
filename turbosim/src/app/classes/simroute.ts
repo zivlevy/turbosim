@@ -9,5 +9,4 @@ export class SimRoute {
 export class Scenario {
     _id:string;
     name:string;
-    routes: Array<SimRoute>;
 }
