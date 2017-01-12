@@ -1,8 +1,11 @@
 import {Airport} from "./airport";
 export class SimRoute {
+    _id: string;
+    scenario:string;
     toAirport:Airport;
     landAirport:Airport;
     altitude:number;
+    isRealtime: boolean;
 
 }
 

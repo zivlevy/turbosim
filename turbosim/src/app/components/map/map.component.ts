@@ -196,9 +196,6 @@ export class MapComponent implements OnInit {
     this.currentEditedLayer.pm.enable({draggable: true});
     this.isEditTurboArea = true;
     this.isInsertTurboArea = true;
-    console.log(this.currentEditedLayer);
-
-
   }
 
   cancel_clicked() {

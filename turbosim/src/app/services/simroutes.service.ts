@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
 import {Observable, Subject} from 'rxjs';
-import {Scenario} from "../classes/simroute";
+import {SimRoute,Scenario} from "../classes/simroute";
 import {environment} from '../../environments/environment';
 
+
 @Injectable()
-export class ScenarioService {
-    baseUrl: string;
+export class SimroutesService {
+
+  baseUrl: string;
   constructor(private http: Http) {
-      this.baseUrl = environment.turboAreaServer;// 'http://localhost:3000/turboareas';
+    this.baseUrl = environment.turboAreaServer +'simroutes';
 
   }
 
@@ -17,24 +19,27 @@ export class ScenarioService {
    * Rest API
    ****************************/
 
-  convertJsonToScenario(item: Scenario): Scenario {
+  convertJsonToSSimroute(item: SimRoute): SimRoute {
 
-    var scenarrio: Scenario = new Scenario();
-    scenarrio._id = item._id;
-    scenarrio.name= item.name;
-
-    return scenarrio;
+    var simroute: SimRoute = new SimRoute();
+    simroute._id = item._id;
+    simroute.scenario= item.scenario;
+    simroute.altitude = item.altitude;
+    simroute.toAirport = item.toAirport;
+    simroute.landAirport=item.landAirport;
+    simroute.isRealtime= item.isRealtime;
+    return simroute;
 
   }
 
-  getScenarios(): Observable<Scenario[]> {
+  getSimroutes(scenarioId:string): Observable<SimRoute> {
 
-    return this.http.get(this.baseUrl + 'scenarios')
+    return this.http.get(this.baseUrl + '/byscenario/' + scenarioId)
         .map((res: Response) => res.json())
         .flatMap((x) => {
           var y = [];
-          x.forEach((item: Scenario) => {
-            y.push(this.convertJsonToScenario(item));
+          x.forEach((item: SimRoute) => {
+            y.push(this.convertJsonToSSimroute(item));
           });
           return y;
         })
@@ -44,32 +49,32 @@ export class ScenarioService {
 
   }
 
-  deleteScenario(id: string): Observable<Comment[]> {
+  deleteSimroute(id: string): Observable<Comment[]> {
     return this.http.delete(`${this.baseUrl}/${id}`) // ...using put request
         .map((res: Response) => res.json()) // ...and calling .json() on the response to return data
         .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
 
-  addScenario(body: Object): Observable<Scenario[]> {
+  addSimroute(body: Object): Observable<Scenario[]> {
     let bodyString = JSON.stringify(body); // Stringify payload
     let headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
     let options = new RequestOptions({headers: headers}); // Create a request option
     return this.http.post(this.baseUrl, bodyString, options) // ...using post request
         .map((res: Response) => res.json())
         .map((x) => {
-          return this.convertJsonToScenario(x);
+          return this.convertJsonToSSimroute(x);
         })
         .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }
 
-  editScenario(body: any): Observable<Scenario[]> {
+  editSimroute(body: any): Observable<Scenario[]> {
     let bodyString = JSON.stringify(body); // Stringify payload
     let headers = new Headers({'Content-Type': 'application/json'}); // ... Set content type to JSON
     let options = new RequestOptions({headers: headers}); // Create a request option
     return this.http.put(`${this.baseUrl}/${body._id}`, bodyString, options) // ...using post request
         .map((res: Response) => res.json())
         .map((x) => {
-          return this.convertJsonToScenario(x);
+          return this.convertJsonToSSimroute(x);
         })
         .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
   }

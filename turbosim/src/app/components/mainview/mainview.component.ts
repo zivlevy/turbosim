@@ -12,8 +12,9 @@ import 'leaflet';
 import * as d3 from 'd3';
 import 'leaflet-d3-svg-overlay';
 import {AlertManager} from "../../classes/alert-manager";
-import {Scenario} from "../../classes/simroute";
+import {Scenario, SimRoute} from "../../classes/simroute";
 import {ScenarioService} from "../../services/scenario.service";
+import {SimroutesService} from "../../services/simroutes.service";
 
 
 @Component({
@@ -67,10 +68,14 @@ export class MainviewComponent implements OnInit {
     selectedScenario: Scenario = null;
     observeScenarioService: Observable<any>;
 
+    //sim routes
+    arrsimroutes: Array<SimRoute> = [];
+    observeSimroutesService: Observable<any>;
+
     /***********************
      *  constractor
      **********************/
-    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService, private simulatorService: SimulatorService, private scenarioService: ScenarioService) {
+    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService, private simulatorService: SimulatorService, private scenarioService: ScenarioService, private simroutesService:SimroutesService) {
         this.mapService = mapService;
         this.geoHelperService = geoHelperService;
         this.isEditRouteMode = false;
@@ -162,7 +167,6 @@ export class MainviewComponent implements OnInit {
      init Scenario Observer
      ***************************/
     initScenarioaObserver() {
-        console.log('here');
         this.observeScenarioService = this.scenarioService.getScenarios();
         this.observeScenarioService.subscribe((item: Scenario) => {
                 this.arrScenarios.push(item);
@@ -171,15 +175,32 @@ export class MainviewComponent implements OnInit {
             () => { //completion
                 if (this.arrScenarios) this.selectedScenario = this.arrScenarios[0];
                 this.mapService.setScenario(this.selectedScenario._id);
+                this.initSimRoutesObserver();
             });
 
     }
 
     scenarioChanged() {
-        console.log(this.selectedScenario);
         this.mapService.setScenario(this.selectedScenario._id);
+        this.initSimRoutesObserver();
     }
 
+    /***************************
+     init SimRoutes Observer
+     ***************************/
+    initSimRoutesObserver() {
+        this.observeSimroutesService = this.simroutesService.getSimroutes(this.selectedScenario._id);
+        this.observeSimroutesService.subscribe((item: SimRoute) => {
+
+            console.log(item);
+            if (item.isRealtime) this.arrsimroutes.push(item);
+            }, () => {
+            },
+            () => { //completion
+                this.initSsimulatedAirplanes();
+            });
+
+    }
     /***********************
      *  airport selection
      **********************/
@@ -248,10 +269,13 @@ export class MainviewComponent implements OnInit {
      * simulted airplanes
      ********************/
     initSsimulatedAirplanes() {
+        console.log('here');
         this.simulatedAirplanes = [];
 
-        this.simulatedAirplanes.push(new Airplane({lat: 33.5, lng: 32.5}, {lat: 40.639751, lng: -73.778925}, 38000));
-        this.simulatedAirplanes.push(new Airplane({lat: 30, lng: 30}, {lat: 30, lng: 40}, 38000));
+        this.arrsimroutes.forEach((item)=>{
+            console.log(item);
+            this.simulatedAirplanes.push(new Airplane({lat: item.toAirport.latitude, lng: item.toAirport.longitude}, {lat: item.landAirport.latitude, lng: item.landAirport.longitude}, item.altitude));
+        })
 
 
     }

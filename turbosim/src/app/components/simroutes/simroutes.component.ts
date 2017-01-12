@@ -2,6 +2,8 @@ import { Component, OnInit ,ViewChild} from '@angular/core';
 import {AirportPickerComponent} from "../airport-picker/airport-picker.component";
 import {Airport} from "../../classes/airport";
 import {SimRoute, Scenario} from "../../classes/simroute";
+import {SimroutesService} from "../../services/simroutes.service";
+import {Observable} from "rxjs";
 import {ScenarioService} from "../../services/scenario.service";
 
 @Component({
@@ -15,17 +17,20 @@ export class SimroutesComponent implements OnInit {
   landAirport: Airport;
   whichAirport: string; // which airport button was clicked
   routes:Array<SimRoute> =[];
-  scenarios:Array <Scenario>;
   targetAltitude:number = 30000;
 
-  constructor(private scenarioService: ScenarioService) {
+  //senarios
+  arrScenarios:Array<Scenario> = [];
+  selectedScenario:Scenario = null;
+  observeScenarioService: Observable<any>;
+
+  constructor(private simroutesService: SimroutesService, private scenarioService: ScenarioService) {
 
   }
 
   ngOnInit() {
 
-    this.initRoutes();
-    this.initScenarios();
+    this.initScenarioaObserver();
     this.toAirport = {
       ICAO: "LLBG",
       altitude: "135",
@@ -48,14 +53,35 @@ export class SimroutesComponent implements OnInit {
     };
   }
 
-  initScenarios(){
-    this.scenarioService.getScenarios().subscribe((item)=>{
-      console.log(item);
+  /***************************
+   init Scenario Observer
+   ***************************/
+  initScenarioaObserver() {
+    this.observeScenarioService = this.scenarioService.getScenarios();
+    this.observeScenarioService.subscribe((item:Scenario) => {
+          this.arrScenarios.push(item);
+        },()=>{},
+        ()=>{ //completion
+          if (this.arrScenarios) this.selectedScenario = this.arrScenarios[0];
+          this.initSimroutes();
+        });
+
+  }
+
+  scenarioChanged() {
+    console.log(this.selectedScenario);
+    this.initSimroutes();
+  }
+
+
+
+  initSimroutes(){
+    this.routes = [];
+    this.simroutesService.getSimroutes(this.selectedScenario._id).subscribe((item)=>{
+        this.routes.push(item);
     });
   }
-  initRoutes(){
-    this.routes = [];
-  }
+
   airportSelected(airport: Airport) {
     if (this.whichAirport === 'takeoff') {
       this.toAirport = airport;
@@ -78,12 +104,21 @@ export class SimroutesComponent implements OnInit {
     route.toAirport = this.toAirport;
     route.landAirport = this.landAirport;
     route.altitude = this.targetAltitude;
-    this.routes.push(route);
-    console.log(this.routes);
-  }
-  deleteRoute(e){
+    route.scenario = this.selectedScenario._id;
 
-    this.routes.splice(e,1);
+    this.simroutesService.addSimroute(route).subscribe((item: any) => {
+      this.routes.push(item);
+
+    });;
+
+
+  }
+  deleteRoute(route:SimRoute,index){
+    this.simroutesService.deleteSimroute(route._id).subscribe((item: any) => {
+      this.routes.splice(index,1);
+
+    });;
+
 
   }
 

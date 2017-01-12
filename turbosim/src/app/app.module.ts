@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 
 import {AppComponent} from './app.component';
 import {MapComponent} from './components/map/map.component';
@@ -18,46 +18,46 @@ import {ModalModule} from '../../node_modules/ng2-modal';
 import {MainviewComponent} from './components/mainview/mainview.component';
 import {ToggleComponent} from './components/toggle/toggle.component';
 import {AirportPickerComponent} from './components/airport-picker/airport-picker.component';
-import { ElevationButtonsComponent } from './components/elevation-buttons/elevation-buttons.component';
-import { TurbulenceAlertComponent } from './components/turbulence-alert/turbulence-alert.component';
-import { SimroutesComponent } from './components/simroutes/simroutes.component';
-
-
+import {ElevationButtonsComponent} from './components/elevation-buttons/elevation-buttons.component';
+import {TurbulenceAlertComponent} from './components/turbulence-alert/turbulence-alert.component';
+import {SimroutesComponent} from './components/simroutes/simroutes.component';
+import {SimroutesService} from "./services/simroutes.service";
 
 
 const routes: Routes = [
-  { path: 'turbo-editor', component: MapComponent },
-  { path: 'main-view', component: MainviewComponent },
-  { path: 'simroute', component: SimroutesComponent },
+    {path: 'turbo-editor', component: MapComponent},
+    {path: 'main-view', component: MainviewComponent},
+    {path: 'simroute', component: SimroutesComponent},
 ];
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    MapComponent,
-    MainviewComponent,
-    ToggleComponent,
-    AirportPickerComponent,
-    ElevationButtonsComponent,
-    TurbulenceAlertComponent,
-    SimroutesComponent
-  ],
-  imports: [
-    BrowserModule,
-    FormsModule,
-    HttpModule,
-    RouterModule.forRoot(routes),
-    JsonpModule,
-    ReactiveFormsModule,
-    ModalModule
-  ],
-  providers: [
-    MapService,
-    AirportService,
-    GeoHelperService,
-    SimulatorService,
-    ScenarioService],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        MapComponent,
+        MainviewComponent,
+        ToggleComponent,
+        AirportPickerComponent,
+        ElevationButtonsComponent,
+        TurbulenceAlertComponent,
+        SimroutesComponent
+    ],
+    imports: [
+        BrowserModule,
+        FormsModule,
+        HttpModule,
+        RouterModule.forRoot(routes),
+        JsonpModule,
+        ReactiveFormsModule,
+        ModalModule
+    ],
+    providers: [
+        MapService,
+        AirportService,
+        GeoHelperService,
+        SimulatorService,
+        ScenarioService,
+        SimroutesService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

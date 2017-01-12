@@ -1,5 +1,13 @@
 <app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
-
+<div class="scenario-picker main-container">
+  <span>Scenario:</span>
+  <div *ngIf="!isEditTurboArea">
+    <select class="scenario-select" [(ngModel)]="selectedScenario" (change)="scenarioChanged()"
+            id="scenario" name="scenario">
+      <option [ngValue]="scenario" *ngFor="let scenario of arrScenarios">{{scenario.name}}</option>
+    </select>
+  </div>
+</div>
 <div class="main-container">
   <div class="airport-title">From</div>
   <div class="airport-title">to</div>
@@ -30,6 +38,6 @@
   <div class="route-list-row">{{route.toAirport.ICAO}}</div>
   <div class="route-list-row">{{route.landAirport.ICAO}}</div>
   <div class="route-list-row">{{route.altitude}}</div>
-  <button (click)="deleteRoute(i)">delete</button>
+  <button (click)="deleteRoute(route,i)">delete</button>
 
 </div>
