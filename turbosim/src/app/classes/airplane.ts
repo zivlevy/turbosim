@@ -15,6 +15,7 @@ export class Airplane {
 
     distancePerTick: number = 1;
     counter: number = 0;
+    isLanded :boolean = false;
 
     constructor(from, to, targetAltitude) {
 
@@ -38,7 +39,11 @@ export class Airplane {
 
     move(): number {
 
-        if (this.currentwaypoint > this.greatCircleArray.length - 1) return;
+        if (this.currentwaypoint > this.greatCircleArray.length - 1) {
+            console.log('end');
+            this.isLanded=true;
+            return;
+        };
         //new altitude
         if (this.targetAltitude !== this.currentAltitude) {
             this.currentAltitude = this.targetAltitude > this.currentAltitude ? this.currentAltitude + 500 : this.currentAltitude - 500;
@@ -75,6 +80,7 @@ export class Airplane {
         this.currentAzimuth = this.geoHelperService.bigCircleAzimuth(this.greatCircleArray[0], this.greatCircleArray[1]);
 
     };
+
 
 
 }

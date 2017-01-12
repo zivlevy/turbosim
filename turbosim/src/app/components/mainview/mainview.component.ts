@@ -39,6 +39,7 @@ export class MainviewComponent implements OnInit {
     greatCircleLayer: L.Layer;
     airplaneLayer: L.Layer;
     turbulenceLayer: L.Layer;
+    turbulenceLayer_temp: L.Layer;
 
     isEditMode: boolean = false;
 
@@ -46,6 +47,7 @@ export class MainviewComponent implements OnInit {
 
     airplane: Airplane;
     turbulenceAtAlt: Tile [] = [];
+    turbulenceAtAlt_temp: Tile [] = [];
     isDayLayer: boolean = true;
 
     selectedAltitude: number = 1;
@@ -72,21 +74,20 @@ export class MainviewComponent implements OnInit {
     arrsimroutes: Array<SimRoute> = [];
     observeSimroutesService: Observable<any>;
 
+    //redraw
+    isNeedRedraw: boolean = true;
+    isFirstTick: boolean = true;
+
     /***********************
      *  constractor
      **********************/
-    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService, private simulatorService: SimulatorService, private scenarioService: ScenarioService, private simroutesService:SimroutesService) {
+    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService, private simulatorService: SimulatorService, private scenarioService: ScenarioService, private simroutesService: SimroutesService) {
         this.mapService = mapService;
         this.geoHelperService = geoHelperService;
         this.isEditRouteMode = false;
         //layers
         this.greatCircleLayer = null;
 
-        this.simSpeed = 5;
-        this.simulatorService.setTimeTickSpeed(5);
-        this.observerHook = this.simulatorService.getSimTicker().subscribe((item) => {
-            this.simTick();
-        });
 
     }
 
@@ -123,11 +124,25 @@ export class MainviewComponent implements OnInit {
         this.initScenarioaObserver();
         this.initRoute();
         this.initSsimulatedAirplanes();
+        this.initSimulator();
+
 
     }
 
     ngOnDestroy() {
         this.observerHook.unsubscribe();
+    }
+
+    /***************************
+     init simulator
+     ***************************/
+    initSimulator() {
+        this.simSpeed = 5;
+        this.simulatorService.setTimeTickSpeed(5);
+        this.observerHook = this.simulatorService.getSimTicker().subscribe((item) => {
+            this.simTick();
+
+        });
     }
 
     /***************************
@@ -158,6 +173,7 @@ export class MainviewComponent implements OnInit {
      ***************************/
     initMapEvents() {
         this.map.on('zoomend', () => {
+            this.isNeedRedraw = true;
             this.redrawAll();
         });
 
@@ -192,15 +208,35 @@ export class MainviewComponent implements OnInit {
         this.observeSimroutesService = this.simroutesService.getSimroutes(this.selectedScenario._id);
         this.observeSimroutesService.subscribe((item: SimRoute) => {
 
-            console.log(item);
-            if (item.isRealtime) this.arrsimroutes.push(item);
+                if (item.isRealtime) {
+                    this.arrsimroutes.push(item);
+                } else {
+                    let airplane = new Airplane({
+                        lat: item.toAirport.latitude,
+                        lng: item.toAirport.longitude
+                    }, {lat: item.landAirport.latitude, lng: item.landAirport.longitude}, item.altitude);
+                    while (!airplane.isLanded) {
+                        airplane.move();
+                        this.mapService.airplaneAtLocation(airplane.currentPosition.lat, airplane.currentPosition.lng, airplane.currentAltitude);
+                    }
+                }
+
             }, () => {
             },
             () => { //completion
+                this.mapService.resetTurbulence_temp(); //clear the temp turbulence
                 this.initSsimulatedAirplanes();
+
+                //init display
+                this.turbulenceAtAlt = this.mapService.getTurbulenceByAlt(this.selectedAltitude);
+                this.isNeedRedraw = true;
+                this.redrawAll();
+
+
             });
 
     }
+
     /***********************
      *  airport selection
      **********************/
@@ -269,12 +305,13 @@ export class MainviewComponent implements OnInit {
      * simulted airplanes
      ********************/
     initSsimulatedAirplanes() {
-        console.log('here');
-        this.simulatedAirplanes = [];
 
-        this.arrsimroutes.forEach((item)=>{
-            console.log(item);
-            this.simulatedAirplanes.push(new Airplane({lat: item.toAirport.latitude, lng: item.toAirport.longitude}, {lat: item.landAirport.latitude, lng: item.landAirport.longitude}, item.altitude));
+        this.simulatedAirplanes = [];
+        this.arrsimroutes.forEach((item) => {
+            this.simulatedAirplanes.push(new Airplane({
+                lat: item.toAirport.latitude,
+                lng: item.toAirport.longitude
+            }, {lat: item.landAirport.latitude, lng: item.landAirport.longitude}, item.altitude));
         })
 
 
@@ -292,10 +329,17 @@ export class MainviewComponent implements OnInit {
      * Draw on map
      ********************/
     redrawAll() {
+        if (this.isNeedRedraw) {
+            this.drawTurbulence();
+            this.isNeedRedraw = false;
+            this.mapService.resetTurbulence_temp();
+        } else {
+            this.drawTurbulence_temp();
+        }
         this.drawGreatCircle();
 
-        this.drawTurbulence();
         this.drawAirplane();
+
     }
 
     drawGreatCircle() {
@@ -487,15 +531,6 @@ export class MainviewComponent implements OnInit {
                     var latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
                     return proj.latLngToLayerPoint(latLng).y;
                 })
-                //.attr('stroke', (d) => {
-                //  return this.geoHelperService.getColorBySeverity(d.sev);
-                //})
-                //.attr('stroke-width',(d) => {
-                //  var rInPixels = 5000 / (40075016.686 * Math.abs(Math.cos(this.geoHelperService.tile2lat(d.tileY, 11) / 180 * Math.PI)) / Math.pow(2, this.map.getZoom() + 8));
-                //
-                //  return rInPixels;
-                //
-                //})
                 .attr('opacity', (d) => {
 
                     return d.sev == 0 ? 1.0 : 1.0;
@@ -508,16 +543,65 @@ export class MainviewComponent implements OnInit {
 
     }
 
+    //draw myTurbulence for new turbulence
+    drawTurbulence_temp() {
+        if (this.turbulenceLayer_temp) {
+            this.map.removeLayer(this.turbulenceLayer_temp);
+        }
+
+        //clear layer
+        this.turbulenceLayer_temp = null;
+
+        //don't draw when updating the route
+        if (this.isEditMode) {
+            return;
+        }
+
+
+        this.turbulenceLayer_temp = L.d3SvgOverlay((sel, proj) => {
+            const tiles = sel.selectAll('circle').data(this.turbulenceAtAlt_temp);
+            tiles.enter()
+                .append('circle')
+                .attr('r', (d) => {
+                    var rInMeters = (this.geoHelperService.dist(this.geoHelperService.tile2lat(d.tileY, 11), this.geoHelperService.tile2long(d.tileX, 11), this.geoHelperService.tile2lat(d.tileY + 1, 11), this.geoHelperService.tile2long(d.tileX, 11)) / 2);
+                    //convert to pixels: http://wiki.openstreetmap.org/wiki/Zoom_levels
+                    var rInPixels = rInMeters / (40075016.686 * Math.abs(Math.cos(this.geoHelperService.tile2lat(d.tileY, 11) / 180 * Math.PI)) / Math.pow(2, this.map.getZoom() + 8));
+                    return rInPixels;
+                })
+                .attr('cx', (d) => {
+                    var latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
+                    return proj.latLngToLayerPoint(latLng).x;
+                })
+                .attr('cy', (d) => {
+                    var latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
+                    return proj.latLngToLayerPoint(latLng).y;
+                })
+                .attr('opacity', (d) => {
+
+                    return d.sev == 0 ? 1.0 : 1.0;
+                })
+                .attr('fill', (d) => {
+                    return this.geoHelperService.getColorBySeverity(d.severity, this.isDayLayer);
+                });
+        });
+        this.turbulenceLayer_temp.addTo(this.map);
+
+    }
+
     /***************************
      altitude selection
      ***************************/
     altitude_clicked(e) {
+
         this.selectedAltitude = e;
+        this.turbulenceAtAlt = this.mapService.getTurbulenceByAlt(this.selectedAltitude);
         this.isFollowAlt = false;
+        this.isNeedRedraw = true;
         this.redrawAll();
     }
 
     autoAlt_changed(e) {
+        console.log('autoalt changed');
         this.isAutoAlt = e;
 
     }
@@ -528,6 +612,7 @@ export class MainviewComponent implements OnInit {
      ***************************/
 
     simTick() {
+
         //move the airplane
         this.airplane.simTick();
 
@@ -538,10 +623,16 @@ export class MainviewComponent implements OnInit {
 
         //get the turbulence at the current selected altitude
         this.turbulenceAtAlt = this.mapService.getTurbulenceByAlt(this.selectedAltitude);
+        this.turbulenceAtAlt_temp = this.mapService.getTurbulenceByAlt_temp(this.selectedAltitude);
 
         //change current altitude if auto alt is on
         if (this.isAutoAlt && this.isFollowAlt) {
-            this.selectedAltitude = this.airplane.currentAltitudeLevel();
+            if (this.selectedAltitude !== this.airplane.currentAltitudeLevel()) {
+                this.isNeedRedraw = true;
+                this.selectedAltitude = this.airplane.currentAltitudeLevel();
+            }
+
+
         }
 
         // calculate alerts
