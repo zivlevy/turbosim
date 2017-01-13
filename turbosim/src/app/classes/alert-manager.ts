@@ -57,7 +57,6 @@ export class AlertManager {
                 }
             }
         }
-        console.log(alertLevel);
         let isAlert = (this.maxbelow >= alertLevel || this.maxAt >= alertLevel || this.maxAbove >= alertLevel) ? true : false;
         return {
             isAlert: isAlert,

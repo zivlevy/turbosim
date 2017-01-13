@@ -86,7 +86,6 @@ export class MapComponent implements OnInit {
    init Scenario Observer
    ***************************/
   initScenarioaObserver() {
-    console.log('here');
     this.observeScenarioService = this.scenarioService.getScenarios();
     this.observeScenarioService.subscribe((item:Scenario) => {
       this.arrScenarios.push(item);
@@ -98,7 +97,6 @@ export class MapComponent implements OnInit {
 
   }
   scenarioChanged(){
-    console.log(this.selectedScenario);
     this.clearAllTurboAreas();
     this.initTurboAreaObserver();
   }
@@ -150,7 +148,7 @@ export class MapComponent implements OnInit {
       if (!this.isEditTurboArea) {
         this.isEditTurboArea = true;
         this.bankTurboArea = polygonLayer.turboArea.createCopy();
-        console.log(this.bankTurboArea);
+
         this.tempTurboArea = polygonLayer.turboArea;
         this.map.removeLayer(polygonLayer);
         this.currentEditedLayer = this.drawTurboAreaOnMap(this.tempTurboArea);
@@ -200,7 +198,7 @@ export class MapComponent implements OnInit {
 
   cancel_clicked() {
     if (!this.isInsertTurboArea) {
-      console.log(this.bankTurboArea);
+
       this.drawTurboAreaOnMap(this.bankTurboArea);
 
     }
@@ -214,7 +212,7 @@ export class MapComponent implements OnInit {
   delete_clicked() {
     if (!this.isInsertTurboArea) {
       // remove band turbo area from service
-      this.mapService.deleteTUrboArea(this.tempTurboArea._id).subscribe((res) => console.log(res));
+      this.mapService.deleteTUrboArea(this.tempTurboArea._id).subscribe((res) => {});
     }
     this.isInsertTurboArea = false;
     this.isEditTurboArea = false;

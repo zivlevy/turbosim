@@ -52,7 +52,6 @@ export class AppComponent {
     }
 
     navigateTo(navTarget) {
-        console.log('hhhhhhhh' + navTarget);
         this.router.navigate([navTarget]);
         this.toggleMenu();
     }

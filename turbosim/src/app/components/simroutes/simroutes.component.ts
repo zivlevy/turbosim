@@ -72,7 +72,6 @@ export class SimroutesComponent implements OnInit {
     }
 
     scenarioChanged() {
-        console.log(this.selectedScenario);
         this.initSimroutes();
     }
 

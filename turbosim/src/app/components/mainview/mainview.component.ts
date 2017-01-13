@@ -202,15 +202,21 @@ export class MainviewComponent implements OnInit {
             },
             () => { //completion
                 if (this.arrScenarios) this.selectedScenario = this.arrScenarios[0];
-                this.mapService.setScenario(this.selectedScenario._id);
-                this.initSimRoutesObserver();
+                this.mapService.setScenario(this.selectedScenario._id,()=>{
+                    this.initSimRoutesObserver();
+                });
+
+
             });
 
     }
 
     scenarioChanged() {
-        this.mapService.setScenario(this.selectedScenario._id);
-        this.initSimRoutesObserver();
+        this.mapService.setScenario(this.selectedScenario._id,()=>{
+            this.initSimRoutesObserver();
+        });
+
+
     }
 
     /***************************
@@ -281,7 +287,6 @@ export class MainviewComponent implements OnInit {
      **********************/
     aboutClicked(e) {
         this.about.show(e.clientX - 250, e.clientY + 20);
-        console.log('about clicked');
     }
 
     /***********************
@@ -503,7 +508,7 @@ export class MainviewComponent implements OnInit {
                     return 'translate (-' + proj.unitsPerMeter * size / 2 + ',-' + proj.unitsPerMeter * size / 2 + ') rotate(' + d.azimuth + ',' + (proj.latLngToLayerPoint(d.location).x + proj.unitsPerMeter * size / 2) + ',' + (proj.latLngToLayerPoint(d.location).y + proj.unitsPerMeter * size / 2) + ')'
 
                 })
-                .attr("xlink:href", "assets/airplane.svg")
+                .attr("xlink:href", "/assets/airplane.svg")
                 .attr("x", (d) => {
                     return proj.latLngToLayerPoint(d.location).x;
                 })
@@ -608,12 +613,10 @@ export class MainviewComponent implements OnInit {
     }
 
     alertLevelSelected(alertLevel) {
-        console.log(alertLevel);
         this.alertLevel = alertLevel;
     }
 
     alertShowChanged(showAlert) {
-        console.log(showAlert);
         this.showAlert = showAlert;
     }
 

@@ -22,7 +22,6 @@ export class MapService {
     myTurbulence: Array<Map<string,Tile>>;
     myTurbulence_temp: Array<Map<string,Tile>>;
 
-
     constructor(private http: Http, private geoHelperService: GeoHelperService) {
         // private instance variable to hold base url
         // this.baseUrl = 'http://localhost:3000/turboareas';
@@ -41,7 +40,8 @@ export class MapService {
         // });
     }
 
-    setScenario(scenarioId) {
+    setScenario(scenarioId, callback) {
+
         if (this.subscription) this.subscription.unsubscribe();
         //init turbulence for all heights
         this.myTurbulence = [];
@@ -57,6 +57,8 @@ export class MapService {
         this.turboAreas = [];
         this.subscription = this.getTurboAreas(scenarioId).subscribe((item: any) => {
             this.turboAreas.push(item);
+        },(err)=>{},()=>{
+             callback();
         });
     }
 

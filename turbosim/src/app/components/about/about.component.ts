@@ -42,7 +42,6 @@ export class AboutComponent implements OnInit {
         e.stopPropagation();
     }
     turbulenceAlertToggle(e){
-        console.log('hrere' + e);
         this.alertShowChanged.emit (e);
     }
 
@@ -53,7 +52,6 @@ export class AboutComponent implements OnInit {
         else {
             this.isMedium = false;
         }
-console.log(alertLevel);
         this.alertLevelSelected.emit(alertLevel);
     }
 }
