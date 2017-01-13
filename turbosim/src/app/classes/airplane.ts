@@ -40,7 +40,6 @@ export class Airplane {
     move(): number {
 
         if (this.currentwaypoint > this.greatCircleArray.length - 1) {
-            console.log('end');
             this.isLanded=true;
             return;
         };

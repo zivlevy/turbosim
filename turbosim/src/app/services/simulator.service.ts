@@ -32,7 +32,6 @@ export class SimulatorService {
     }
 
     setTimeTickSpeed(speed: number) {
-        console.log(speed);
         if (speed > 8)  return;
         switch (speed) {
             case 1:

@@ -22,6 +22,7 @@ import {ElevationButtonsComponent} from './components/elevation-buttons/elevatio
 import {TurbulenceAlertComponent} from './components/turbulence-alert/turbulence-alert.component';
 import {SimroutesComponent} from './components/simroutes/simroutes.component';
 import {SimroutesService} from "./services/simroutes.service";
+import { AboutComponent } from './components/about/about.component';
 
 
 const routes: Routes = [
@@ -39,7 +40,8 @@ const routes: Routes = [
         AirportPickerComponent,
         ElevationButtonsComponent,
         TurbulenceAlertComponent,
-        SimroutesComponent
+        SimroutesComponent,
+        AboutComponent
     ],
     imports: [
         BrowserModule,

@@ -3,9 +3,18 @@
   <component name="ChangeListManager">
     <list default="true" id="92cf6137-3164-4cdb-852c-086d993966a4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/app.module.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/app.module.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/classes/airplane.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/classes/airplane.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.css" afterPath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html" afterPath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.css" afterPath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html" afterPath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/services/map.service.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/services/map.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/services/simulator.service.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/services/simulator.service.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/environments/environment.prod.ts" afterPath="$PROJECT_DIR$/turbosim/src/environments/environment.prod.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/index.html" afterPath="$PROJECT_DIR$/turbosim/src/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -25,84 +34,16 @@
     <favorites_list name="turbosim" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.43202978">
+    <splitter split-orientation="horizontal" split-proportion="0.43788302">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="map.component.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/map/map.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3148">
-                  <caret line="228" column="9" lean-forward="true" selection-start-line="225" selection-start-column="54" selection-end-line="228" selection-end-column="9" />
+                <state relative-caret-position="358">
+                  <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
                   <folding>
                     <element signature="e#327#391#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="simroutes.component.spec.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.spec.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="simroutes.service.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/simroutes.service.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="493">
-                  <caret line="29" column="41" lean-forward="false" selection-start-line="29" selection-start-column="41" selection-end-line="29" selection-end-column="41" />
-                  <folding>
-                    <element signature="e#0#43#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="simroute.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/classes/simroute.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="14" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="simroutes.component.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="680">
-                  <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="scenario.service.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/scenario.service.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1067">
-                  <caret line="76" column="0" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="76" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#43#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="app.module.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/app.module.ts">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="942">
-                  <caret line="58" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#0#56#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -111,18 +52,18 @@
           <file leaf-file-name="simroutes.component.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="612">
-                  <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
+                <state relative-caret-position="153">
+                  <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="mainview.component.ts" pinned="false" current-in-tab="true">
+          <file leaf-file-name="mainview.component.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="666">
-                  <caret line="640" column="120" lean-forward="false" selection-start-line="640" selection-start-column="99" selection-end-line="640" selection-end-column="120" />
+                <state relative-caret-position="817">
+                  <caret line="279" column="39" lean-forward="false" selection-start-line="279" selection-start-column="39" selection-end-line="279" selection-end-column="39" />
                   <folding>
                     <element signature="e#0#59#0" expanded="true" />
                     <element signature="e#267#334#0" expanded="true" />
@@ -131,11 +72,51 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="airplane.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/classes/airplane.ts">
+          <file leaf-file-name="about.component.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/about/about.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="370">
-                  <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+                <state relative-caret-position="612">
+                  <caret line="36" column="5" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="about.component.css" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/about/about.component.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="765">
+                  <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="airport-picker.component.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="646">
+                  <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="airport-picker.component.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="102">
+                  <caret line="6" column="45" lean-forward="false" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="mainview.component.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2720">
+                  <caret line="136" column="21" lean-forward="false" selection-start-line="136" selection-start-column="21" selection-end-line="136" selection-end-column="21" />
                   <folding />
                 </state>
               </provider>
@@ -160,8 +141,8 @@
           <file leaf-file-name="mainview.component.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="613">
-                  <caret line="65" column="43" lean-forward="true" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
+                <state relative-caret-position="527">
+                  <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
                   <folding>
                     <element signature="n#style#0;n#div#0;n#div#4;n#!!top" expanded="true" />
                   </folding>
@@ -169,21 +150,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="turbo-area.ts" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/classes/turbo-area.ts">
+          <file leaf-file-name="map.service.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/map.service.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="85">
-                  <caret line="5" column="10" lean-forward="false" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+                <state relative-caret-position="442">
+                  <caret line="111" column="42" lean-forward="false" selection-start-line="111" selection-start-column="42" selection-end-line="111" selection-end-column="42" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="map.service.ts" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/map.service.ts">
+          <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="358">
-                  <caret line="127" column="25" lean-forward="false" selection-start-line="127" selection-start-column="4" selection-end-line="127" selection-end-column="25" />
+                <state relative-caret-position="85">
+                  <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
                   <folding />
                 </state>
               </provider>
@@ -202,10 +183,44 @@
           <file leaf-file-name="simroutes.component.ts" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1360">
-                  <caret line="80" column="31" lean-forward="false" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
+                <state relative-caret-position="870">
+                  <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="151" selection-end-column="5" />
                   <folding>
-                    <element signature="e#0#60#0" expanded="true" />
+                    <element signature="e#0#59#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="airport-picker.component.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-374">
+                  <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="simroutes.component.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="157">
+                  <caret line="21" column="48" lean-forward="true" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="about.component.html" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/about/about.component.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="595">
+                  <caret line="35" column="92" lean-forward="false" selection-start-line="35" selection-start-column="92" selection-end-line="35" selection-end-column="92" />
+                  <folding>
+                    <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="n#style#0;n#div#0;n#div#7;n#div#0;n#div#0;n#!!top" expanded="true" />
+                    <element signature="e#1124#1130#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -224,14 +239,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>isUndefined</find>
-      <find>toggle</find>
-      <find>UISwitch</find>
-      <find>switchColor</find>
-      <find>isAuto</find>
-      <find>ViewChild</find>
-      <find>airpo</find>
-      <find>emit</find>
       <find>airportSel</find>
       <find>modal</find>
       <find>SimulatorService</find>
@@ -242,7 +249,6 @@
       <find>altitudeselected</find>
       <find>map</find>
       <find>turbosim/src</find>
-      <find>gotoaltitude</find>
       <find>mapService</find>
       <find>SimroutesService</find>
       <find>add</find>
@@ -254,6 +260,15 @@
       <find>initSsimulatedAirplanes</find>
       <find>initSimRoutesObserver</find>
       <find>getTurbulenceMapByAlt</find>
+      <find>isRealtime</find>
+      <find>gotoaltitude</find>
+      <find>swap</find>
+      <find>altitude</find>
+      <find>routes</find>
+      <find>scenario-picker</find>
+      <find>showMo</find>
+      <find>foreach</find>
+      <find>toppane_leftbuttons</find>
     </findStrings>
     <replaceStrings>
       <replace>let</replace>
@@ -271,15 +286,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/turbosim/angular-cli.json" />
-        <option value="$PROJECT_DIR$/turbosim/src/styles.css" />
-        <option value="$PROJECT_DIR$/turbosim/src/index.html" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/classes/airport.ts" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/services/airport.service.ts" />
         <option value="$PROJECT_DIR$/turbosim/src/typings.d.ts" />
         <option value="$PROJECT_DIR$/turbosim/node_modules/leaflet-d3-svg-overlay/L.D3SvgOverlay.js" />
         <option value="$PROJECT_DIR$/turbosim/node_modules/@types/leaflet/index.d.ts" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/services/simulator.service.ts" />
         <option value="$PROJECT_DIR$/turbosim/src/app/components/simcontrol/simcontrol.component.ts" />
         <option value="$PROJECT_DIR$/turbosim/src/app/components/simcontrol/simcontrol.component.css" />
         <option value="$PROJECT_DIR$/turbosim/src/app/components/simcontrol/simcontrol.component.html" />
@@ -307,21 +316,27 @@
         <option value="$PROJECT_DIR$/turbosim/src/app/components/map/map.component.css" />
         <option value="$PROJECT_DIR$/turbosim/src/app/components/map/map.component.html" />
         <option value="$PROJECT_DIR$/turbosim/src/app/classes/turbo-area.ts" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.css" />
         <option value="$PROJECT_DIR$/turbosim/src/app/classes/alert-manager.ts" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.css" />
         <option value="$PROJECT_DIR$/turbosim/src/app/app.component.html" />
         <option value="$PROJECT_DIR$/turbosim/src/app/services/scenario.service.ts" />
         <option value="$PROJECT_DIR$/turbosim/src/app/app.module.ts" />
         <option value="$PROJECT_DIR$/turbosim/src/app/components/map/map.component.ts" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html" />
         <option value="$PROJECT_DIR$/turbosim/src/app/classes/simroute.ts" />
         <option value="$PROJECT_DIR$/turbosim/src/app/services/simroutes.service.ts" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts" />
         <option value="$PROJECT_DIR$/turbosim/src/app/classes/airplane.ts" />
-        <option value="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.ts" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/services/simulator.service.ts" />
+        <option value="$PROJECT_DIR$/turbosim/src/environments/environment.prod.ts" />
         <option value="$PROJECT_DIR$/turbosim/src/app/services/map.service.ts" />
+        <option value="$PROJECT_DIR$/turbosim/src/index.html" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.css" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/about/about.component.ts" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.ts" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.css" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/about/about.component.html" />
+        <option value="$PROJECT_DIR$/turbosim/src/app/components/about/about.component.css" />
       </list>
     </option>
   </component>
@@ -342,9 +357,9 @@
     <handled-path value="$PROJECT_DIR$/turbosim/node_modules" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-1565" />
+    <option name="x" value="-1699" />
     <option name="y" value="-1417" />
-    <option name="width" value="2425" />
+    <option name="width" value="2072" />
     <option name="height" value="1376" />
   </component>
   <component name="ProjectView">
@@ -425,7 +440,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="environments" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="turbosim" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="turbosim" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="turbosim" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -448,10 +485,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -537,36 +570,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="map" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="turbosim" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="turbosim" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="turbosim" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="components" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="mainview" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -623,7 +626,11 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="classes" />
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="about" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -745,7 +752,7 @@
       <workItem from="1483916332701" duration="98000" />
       <workItem from="1484121137063" duration="28731000" />
       <workItem from="1484207748926" duration="4086000" />
-      <workItem from="1484212776872" duration="16871000" />
+      <workItem from="1484212776872" duration="33023000" />
     </task>
     <task id="LOCAL-00001" summary="finished alert view">
       <created>1484148443610</created>
@@ -775,11 +782,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484228695737</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fix performance">
+      <created>1484240313119</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1484240313119</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="274689000" />
+    <option name="totallyTimeSpent" value="290841000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -791,16 +805,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1565" y="-1417" width="2425" height="1376" extended-state="0" />
+    <frame x="-1699" y="-1417" width="2072" height="1376" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1142268" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13368726" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24938574" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24907216" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1186573" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -823,7 +837,8 @@
     <MESSAGE value="finished alert view" />
     <MESSAGE value="Added scenarios" />
     <MESSAGE value="Added simroutes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added simroutes" />
+    <MESSAGE value="Fix performance" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix performance" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -832,80 +847,11 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airplane/airplane.component.ts" />
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/toggle/toggle.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/toggle/toggle.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="9" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="11" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/app.component.spec.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/app.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="21" column="30" lean-forward="false" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/ziv/ziv.component.ts" />
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/app.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/ziv/ziv.component.html" />
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/airport.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="7" column="35" lean-forward="false" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="72" column="24" lean-forward="false" selection-start-line="72" selection-start-column="24" selection-end-line="72" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#77#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -930,6 +876,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="54" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -983,28 +930,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/classes/airport.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!doc;n#Airport#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/geo-helper.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="367">
           <caret line="113" column="0" lean-forward="false" selection-start-line="113" selection-start-column="0" selection-end-line="113" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/environments/environment.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
           <folding />
         </state>
       </provider>
@@ -1026,14 +955,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/scenario/scenario.component.spec.ts" />
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1530">
-          <caret line="90" column="16" lean-forward="false" selection-start-line="94" selection-start-column="6" selection-end-line="94" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/scenario/scenario.component.css" />
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/scenario/scenario.component.html" />
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/scenario/scenario.component.ts" />
@@ -1053,32 +974,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="1" lean-forward="true" selection-start-line="36" selection-start-column="1" selection-end-line="36" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/simulator.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="4" lean-forward="false" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/scenario.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1067">
-          <caret line="76" column="0" lean-forward="true" selection-start-line="8" selection-start-column="1" selection-end-line="76" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/classes/alert-manager.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
@@ -1087,31 +982,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/elevation-buttons/elevation-buttons.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/app.module.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="942">
           <caret line="58" column="24" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
           <folding>
-            <element signature="e#0#56#0" expanded="true" />
+            <element signature="e#0#56#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="38" lean-forward="false" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1123,32 +1000,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/map/map.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3148">
-          <caret line="228" column="9" lean-forward="true" selection-start-line="225" selection-start-column="54" selection-end-line="228" selection-end-column="9" />
-          <folding>
-            <element signature="e#327#391#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.spec.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="80" column="31" lean-forward="false" selection-start-line="80" selection-start-column="31" selection-end-line="80" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#60#0" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1163,40 +1020,218 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/scenario.service.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1151">
+          <caret line="76" column="0" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="76" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/classes/airport.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="3" column="13" lean-forward="false" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!doc;n#Airport#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/classes/airplane.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="40" column="0" lean-forward="true" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="387">
+          <caret line="41" column="70" lean-forward="false" selection-start-line="41" selection-start-column="70" selection-end-line="41" selection-end-column="70" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html">
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/simulator.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="613">
-          <caret line="65" column="43" lean-forward="true" selection-start-line="65" selection-start-column="43" selection-end-line="65" selection-end-column="43" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#4;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="527">
+          <caret line="33" column="37" lean-forward="false" selection-start-line="33" selection-start-column="37" selection-end-line="33" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/environments/environment.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="7" column="2" lean-forward="false" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/services/map.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="127" column="25" lean-forward="false" selection-start-line="127" selection-start-column="4" selection-end-line="127" selection-end-column="25" />
+        <state relative-caret-position="442">
+          <caret line="111" column="42" lean-forward="false" selection-start-line="111" selection-start-column="42" selection-end-line="111" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/environments/environment.prod.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="46" lean-forward="false" selection-start-line="2" selection-start-column="46" selection-end-line="2" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="15" lean-forward="false" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/assets/email-7.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/assets/gear-7.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/assets/gear-7_white.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/elevation-buttons/elevation-buttons.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="31" lean-forward="false" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#92#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="146" column="0" lean-forward="false" selection-start-line="146" selection-start-column="0" selection-end-line="151" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#59#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="24" lean-forward="false" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="38" column="0" lean-forward="false" selection-start-line="38" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="45" lean-forward="false" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/airport-picker/airport-picker.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-374">
+          <caret line="3" column="1" lean-forward="false" selection-start-line="3" selection-start-column="1" selection-end-line="3" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/assets/appIcon.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/about/about.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="5" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="640" column="120" lean-forward="false" selection-start-line="640" selection-start-column="99" selection-end-line="640" selection-end-column="120" />
+        <state relative-caret-position="817">
+          <caret line="279" column="39" lean-forward="false" selection-start-line="279" selection-start-column="39" selection-end-line="279" selection-end-column="39" />
           <folding>
             <element signature="e#0#59#0" expanded="true" />
             <element signature="e#267#334#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="21" column="48" lean-forward="true" selection-start-line="21" selection-start-column="48" selection-end-line="21" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/map/map.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding>
+            <element signature="e#327#391#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#4;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/about/about.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="35" column="92" lean-forward="false" selection-start-line="35" selection-start-column="92" selection-end-line="35" selection-end-column="92" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#2;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#7;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="e#1124#1130#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2720">
+          <caret line="136" column="21" lean-forward="false" selection-start-line="136" selection-start-column="21" selection-end-line="136" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/turbosim/src/app/components/about/about.component.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="62" column="13" lean-forward="true" selection-start-line="62" selection-start-column="13" selection-end-line="62" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>

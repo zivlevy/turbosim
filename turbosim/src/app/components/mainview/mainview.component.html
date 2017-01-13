@@ -1,14 +1,29 @@
 <app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
+<about></about>
 <turbulence-alert *ngIf="isAlertBoxShow" [bottomAlertBoxColor]="bottomAlertColor"
                   [currentAlertBoxColor]="currentAlertColor" [topAlertBoxColor]="topAlertColor"></turbulence-alert>
 <div id="mapid"></div>
 <!--Top Pane-->
 <div id="toppane">
-    <div id="toppane_leftbuttons">
-        <img id="satellite" class="toppane-button" src="../../assets/satellite_green.png">
-        <img id="navarrow" class="toppane-button" src="../../assets/navArrow_green.png">
-        <img id="screenlight" class="toppane-button" src="../../assets/bright-7_white.png">
-        <div id="altitude">Altitude: {{airplane.currentAltitude}} feet</div>
+    <div id="toppane_leftbuttons" class="row">
+        <div class="col-xs-4">
+            <div class="pull-left top-pane-left">
+                <img id="satellite" class="toppane-button" src="../../../assets/satellite_green.png">
+                <img id="navarrow" class="toppane-button" src="../../../assets/navArrow_green.png"
+                     (click)="centerMap()">
+                <img id="screenlight" class="toppane-button" src="../../../assets/bright-7_white.png">
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div id="altitude" class="toppane-button">Altitude: {{airplane.currentAltitude}} feet</div>
+        </div>
+        <div class="col-xs-4">
+            <div class="pull-right top-pane-right">
+                <img class="toppane-button" src="../../../assets/gear-7_white.png" (click)="aboutClicked($event)">
+                <div class="toppane-button toppane-button-right"><span>Help</span></div>
+            </div>
+
+        </div>
     </div>
 </div>
 

@@ -15,6 +15,7 @@ import {AlertManager} from "../../classes/alert-manager";
 import {Scenario, SimRoute} from "../../classes/simroute";
 import {ScenarioService} from "../../services/scenario.service";
 import {SimroutesService} from "../../services/simroutes.service";
+import {AboutComponent} from "../about/about.component";
 
 
 @Component({
@@ -29,6 +30,7 @@ export class MainviewComponent implements OnInit {
     map: any; //the leaflet map object
     isEditRouteMode: boolean; //flag route edit mode
     @ViewChild(AirportPickerComponent) public readonly modal: AirportPickerComponent;
+    @ViewChild(AboutComponent) public readonly about: AboutComponent;
     whichAirport: string; // which airport button was clicked
     toAirport: Airport;
     landAirport: Airport;
@@ -76,7 +78,7 @@ export class MainviewComponent implements OnInit {
 
     //redraw
     isNeedRedraw: boolean = true;
-    isFirstTick: boolean = true;
+    isAllowDraw: boolean = true;
 
     /***********************
      *  constractor
@@ -173,9 +175,17 @@ export class MainviewComponent implements OnInit {
      ***************************/
     initMapEvents() {
         this.map.on('zoomend', () => {
+            this.isAllowDraw = true;
             this.isNeedRedraw = true;
             this.redrawAll();
         });
+
+        this.map.on('zoomstart', () => {
+            this.isAllowDraw = false;
+            this.map.eachLayer((item) => {
+                if (!item._url) this.map.removeLayer(item);
+            })
+        })
 
     }
 
@@ -205,6 +215,7 @@ export class MainviewComponent implements OnInit {
      init SimRoutes Observer
      ***************************/
     initSimRoutesObserver() {
+        this.arrsimroutes = [];
         this.observeSimroutesService = this.simroutesService.getSimroutes(this.selectedScenario._id);
         this.observeSimroutesService.subscribe((item: SimRoute) => {
 
@@ -263,6 +274,13 @@ export class MainviewComponent implements OnInit {
     }
 
     /***********************
+     *  about clicked
+     **********************/
+    aboutClicked (e){
+        this.about.show(e.clientX - 250, e.clientY +20);
+        console.log('about clicked');
+    }
+    /***********************
      *  route
      **********************/
     initRoute() {
@@ -275,11 +293,7 @@ export class MainviewComponent implements OnInit {
         }, {lat: this.landAirport.latitude, lng: this.landAirport.longitude}, 32000);
 
         this.redrawAll();
-        this.map.fitBounds([
-            [this.toAirport.latitude, this.toAirport.longitude],
-            [this.landAirport.latitude, this.landAirport.longitude],
-
-        ]);
+        this.centerMap();
     }
 
     /***********************
@@ -329,6 +343,7 @@ export class MainviewComponent implements OnInit {
      * Draw on map
      ********************/
     redrawAll() {
+        if (!this.isAllowDraw) return;
         if (this.isNeedRedraw) {
             this.drawTurbulence();
             this.isNeedRedraw = false;
@@ -589,6 +604,13 @@ export class MainviewComponent implements OnInit {
     }
 
     /***************************
+     center map
+     ***************************/
+    centerMap() {
+        this.map.panTo([this.airplane.currentPosition.lat, this.airplane.currentPosition.lng]);
+    }
+
+    /***************************
      altitude selection
      ***************************/
     altitude_clicked(e) {
@@ -601,9 +623,7 @@ export class MainviewComponent implements OnInit {
     }
 
     autoAlt_changed(e) {
-        console.log('autoalt changed');
         this.isAutoAlt = e;
-
     }
 
 

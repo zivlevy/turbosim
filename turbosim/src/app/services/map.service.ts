@@ -109,6 +109,7 @@ export class MapService {
 
     getTurbulenceByAlt(alt: number) {
         let arr: Tile [] = [];
+        if (!this.myTurbulence) return arr;
         this.myTurbulence[alt].forEach((item) => {
             arr.push(item);
         });
@@ -117,7 +118,6 @@ export class MapService {
 
     getTurbulenceByAlt_temp(alt: number) {
         let arr: Tile [] = [];
-        console.log('================   ' + alt);
         this.myTurbulence_temp[alt].forEach((item) => {
             arr.push(item);
         });

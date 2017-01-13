@@ -1,0 +1,46 @@
+<div (click)="hide()" class="modal fade" tabindex="-1" [ngClass]="{'in': visibleAnimate}"
+     [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
+    <div class="moveable" [ngStyle]="{'left':modalLeft, 'top':modalTop}" (click)="preventClose($event)">
+
+
+        <div class="row">
+            <img class="app-icon" src="../../../assets/appIcon.png" alt="">
+
+        </div>
+
+        <div class="row">
+            <div class="about-text">Skypath</div>
+        </div>
+        <div class="row">
+            <div class="about-text" style="font-size:10px; margin-top: 0px;">simulator</div>
+        </div>
+
+        <div class="row">
+            <div class="seperation-line" ></div>
+        </div>
+
+        <div class="row">
+            <div class="turbulence-text">Turbulence alert</div>
+        </div>
+
+        <div class="row">
+            <div class="turbulence-text">Alert level</div>
+        </div>
+
+
+        <div class="row">
+            <div class="seperation-line" ></div>
+        </div>
+
+        <div class="row">
+            <div class="credit-text" style="margin-top: 50px;">Copyright &copy; 2016 YAMASEE</div>
+        </div>
+
+        <div class="row">
+            <div class="credit-text">All Rights Reserved</div>
+        </div>
+
+    </div>
+
+
+</div>

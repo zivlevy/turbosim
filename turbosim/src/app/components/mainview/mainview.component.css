@@ -16,7 +16,7 @@
     height: 50px;
     background-color: rgb(39, 44, 54);
 
-    display:flex;
+    display: flex;
 }
 
 #leftpane {
@@ -56,7 +56,7 @@
 }
 
 .leftpane-button {
-    margin-left: 18px;
+    margin-left: 23px;
     margin-top: 10px;
     height: 44px;
     width: 44px;
@@ -67,6 +67,21 @@
     margin-top: 10px;
     height: 44px;
     width: 44px;
+}
+.top-pane-left {
+    display: flex;
+    margin-left: 15px;
+}
+.top-pane-right {
+    display: flex;
+}
+
+.toppane-button-right {
+    padding-top: 4px;
+    font-size: 16px;
+    color: white;
+    margin-right: 10px;
+
 }
 
 .airport-name {
@@ -79,7 +94,6 @@
     margin-left: 25px;
     height: 30px;
     width: 30px;
-
 }
 
 .pane-text {
@@ -87,42 +101,46 @@
     color: white;
     text-align: center;
 }
-.scenario-picker{
-    color:white;
+
+.scenario-picker {
+    color: white;
     display: flex;
     margin-top: 15px;
-    margin-left:25px;
+    margin-left: 25px;
     /*width: 200px;*/
 }
+
 .scenario-select {
     margin-left: 20px;
-    color:white;
-    background-color: rgb(38,44,55);
-}
-#alt-select {
-    margin-top: 15px;
-    color:whitesmoke;
-}
-#gotoaltitude {
-    margin-left: 20px;
-    color:white;
-    background-color: rgb(38,44,55);
+    color: white;
+    background-color: rgb(38, 44, 55);
 }
 
+#alt-select {
+    margin-top: 15px;
+    color: whitesmoke;
+}
+
+#gotoaltitude {
+    margin-left: 20px;
+    color: white;
+    background-color: rgb(38, 44, 55);
+}
 
 #altitude {
 
-    color:whitesmoke;
+    color: whitesmoke;
     text-align: center;
 }
 
 #toogle-myinfo-text {
+    margin-left: 15px;
     margin-top: 150px;
 }
 
 #toogle-myinfo {
     margin-top: 2px;
-    margin-left: 12px;
+    margin-left: 20px;
 
 }
 
