@@ -47,7 +47,7 @@ const routes: Routes = [
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(routes),
+        RouterModule.forRoot(routes, {useHash: true, initialNavigation: false}),
         JsonpModule,
         ReactiveFormsModule,
         ModalModule

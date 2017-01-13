@@ -1,3 +1,6 @@
+.row{
+    margin: 0;
+}
 #toppane {
     position: absolute;
     top: 0;
@@ -56,7 +59,7 @@
 }
 
 .leftpane-button {
-    margin-left: 23px;
+    margin-left: 18px;
     margin-top: 10px;
     height: 44px;
     width: 44px;
@@ -70,7 +73,6 @@
 }
 .top-pane-left {
     display: flex;
-    margin-left: 15px;
 }
 .top-pane-right {
     display: flex;
@@ -134,13 +136,12 @@
 }
 
 #toogle-myinfo-text {
-    margin-left: 15px;
     margin-top: 150px;
 }
 
 #toogle-myinfo {
     margin-top: 2px;
-    margin-left: 20px;
+    margin-left: 12px;
 
 }
 

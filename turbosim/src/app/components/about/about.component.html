@@ -19,12 +19,20 @@
             <div class="seperation-line" ></div>
         </div>
 
-        <div class="row">
+        <div class="row turbulence-alert-row">
             <div class="turbulence-text">Turbulence alert</div>
+            <app-toggle checked (change)="turbulenceAlertToggle($event)" class="turbulence-toggle" [color]="blue"></app-toggle>
         </div>
 
         <div class="row">
             <div class="turbulence-text">Alert level</div>
+        </div>
+        <div class="row">
+            <div class="alert-level-row">
+                <div class="alert-level-choice" (click)="changeAlertLevel(2)" [ngClass]="{'selected-choice': isMedium }">L-M </div>
+                <div class="alert-level-choice" (click)="changeAlertLevel(3)"  [ngClass]="{'selected-choice': !isMedium}">M </div>
+            </div>
+
         </div>
 
 

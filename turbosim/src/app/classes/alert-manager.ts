@@ -9,7 +9,8 @@ export class AlertManager {
     static maxAt: number = 0;
     static maxAbove: number = 0;
 
-    public static getAlertLevel(arrTurbelenceBelow: Map<string,Tile>, arrTurbelenceAt: Map<string,Tile>, arrTurbelenceAbove: Map<string,Tile>, airplane: Airplane) {
+
+    public static getAlertLevel(arrTurbelenceBelow: Map<string,Tile>, arrTurbelenceAt: Map<string,Tile>, arrTurbelenceAbove: Map<string,Tile>, airplane: Airplane , alertLevel:number = 2) {
         this.maxAbove = 0;
         this.maxAt = 0;
         this.maxbelow = 0;
@@ -56,7 +57,8 @@ export class AlertManager {
                 }
             }
         }
-        let isAlert = (this.maxbelow > 0 || this.maxAt > 0 || this.maxAbove > 0) ? true : false;
+        console.log(alertLevel);
+        let isAlert = (this.maxbelow >= alertLevel || this.maxAt >= alertLevel || this.maxAbove >= alertLevel) ? true : false;
         return {
             isAlert: isAlert,
             below: AlertManager.MapUtils.getColorBySeverity(this.maxbelow, true),

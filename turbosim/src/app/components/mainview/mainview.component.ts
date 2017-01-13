@@ -59,13 +59,15 @@ export class MainviewComponent implements OnInit {
     observerHook: any;
     simulatedAirplanes: Array <Airplane>;
 
-    //alert box
+    //alert
     isAlertBoxShow: boolean = false;
     bottomAlertColor: string;
     currentAlertColor: string;
     topAlertColor: string;
     kAlertAngle: number = 15;
     kAlertRange: number = 100;
+    alertLevel: number = 2;
+    showAlert: boolean = true;
 
     //scenario
     arrScenarios: Array<Scenario> = [];
@@ -270,16 +272,18 @@ export class MainviewComponent implements OnInit {
         this.landAirport = this.toAirport;
         this.toAirport = tmp;
         this.initRoute();
+        this.isNeedRedraw = true;
 
     }
 
     /***********************
      *  about clicked
      **********************/
-    aboutClicked (e){
-        this.about.show(e.clientX - 250, e.clientY +20);
+    aboutClicked(e) {
+        this.about.show(e.clientX - 250, e.clientY + 20);
         console.log('about clicked');
     }
+
     /***********************
      *  route
      **********************/
@@ -603,6 +607,16 @@ export class MainviewComponent implements OnInit {
 
     }
 
+    alertLevelSelected(alertLevel) {
+        console.log(alertLevel);
+        this.alertLevel = alertLevel;
+    }
+
+    alertShowChanged(showAlert) {
+        console.log(showAlert);
+        this.showAlert = showAlert;
+    }
+
     /***************************
      center map
      ***************************/
@@ -657,11 +671,11 @@ export class MainviewComponent implements OnInit {
 
         // calculate alerts
         let airplaneAltitudeLevel = this.airplane.currentAltitudeLevel();
-        if (airplaneAltitudeLevel > 0) {
+        if (airplaneAltitudeLevel > 0 && this.showAlert) {
             let arrTurbelenceBelow: Map<string,Tile> = airplaneAltitudeLevel > 0 ? this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel - 1) : new Map();
             let arrTurbelenceAt: Map<string,Tile> = this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel);
             let arrTurbelenceAbove: Map<string,Tile> = airplaneAltitudeLevel < 4 ? this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel + 1) : new Map();
-            let am = AlertManager.getAlertLevel(arrTurbelenceBelow, arrTurbelenceAt, arrTurbelenceAbove, this.airplane);
+            let am = AlertManager.getAlertLevel(arrTurbelenceBelow, arrTurbelenceAt, arrTurbelenceAbove, this.airplane, this.alertLevel);
             this.isAlertBoxShow = am.isAlert;
             this.topAlertColor = am.above;
             this.bottomAlertColor = am.below;

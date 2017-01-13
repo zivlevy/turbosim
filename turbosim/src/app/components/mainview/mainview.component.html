@@ -1,5 +1,5 @@
 <app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
-<about></about>
+<about (alertLevelSelected)="alertLevelSelected($event)" (alertShowChanged)="alertShowChanged($event)"></about>
 <turbulence-alert *ngIf="isAlertBoxShow" [bottomAlertBoxColor]="bottomAlertColor"
                   [currentAlertBoxColor]="currentAlertColor" [topAlertBoxColor]="topAlertColor"></turbulence-alert>
 <div id="mapid"></div>
@@ -33,11 +33,11 @@
         <img id="routeedit-off" *ngIf="!isEditRouteMode" class="leftpane-button" src="../../assets/route_off.png">
         <img id="routeedit-on" *ngIf="isEditRouteMode" class="leftpane-button" src="../../assets/route_on.png">
 
-        <div id="toogle-myinfo-text" class="pane-text">my info</div>
-        <div id="toogle-myinfo">
-            <app-toggle></app-toggle>
+        <!--<div id="toogle-myinfo-text" class="pane-text">my info</div>-->
+        <!--<div id="toogle-myinfo">-->
+            <!--<app-toggle></app-toggle>-->
 
-        </div>
+        <!--</div>-->
 
 
     </div>

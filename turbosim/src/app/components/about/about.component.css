@@ -5,7 +5,7 @@
 .moveable{
     position:absolute;
     width:300px;
-    height:350px;
+    height:400px;
     background-color: rgb(85,85,85);
 
 }
@@ -26,12 +26,47 @@
     text-align: center;
 }
 
+.turbulence-alert-row {
+    display: flex;
+    margin-top: 10px;
+}
+
+.turbulence-toggle{
+    margin-left:70px;
+    margin-top: 4px;
+  }
 .turbulence-text {
     margin-top: 10px;
     margin-left: 50px;
     font-size: 14px;
     color:white;
     text-align: left;
+}
+
+
+.alert-level-row {
+    position: relative;
+    left:calc(50% - 115px);
+    width:230px;
+    display: flex;
+    border:solid;
+    border-color:white;
+    border-width: 1px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.alert-level-choice{
+    width: 125px;
+    height:30px;
+    text-align: center;
+    line-height: 30px;
+    color:white;
+}
+
+.selected-choice {
+    background-color: white;
+    color: grey;
 }
 
 .seperation-line {

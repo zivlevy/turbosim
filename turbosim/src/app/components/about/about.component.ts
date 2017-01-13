@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 
 @Component({
     selector: 'about',
@@ -11,10 +11,16 @@ export class AboutComponent implements OnInit {
     private modalLeft: string;
     private modalTop: string;
 
+
+    @Input() isMedium: boolean = true;
+    @Output() alertLevelSelected = new EventEmitter();
+    @Output() alertShowChanged = new EventEmitter();
+
     constructor() {
     }
 
     ngOnInit() {
+        this.isMedium = true;
     }
 
 
@@ -34,5 +40,20 @@ export class AboutComponent implements OnInit {
     preventClose(e) {
         e.preventDefault();
         e.stopPropagation();
+    }
+    turbulenceAlertToggle(e){
+        console.log('hrere' + e);
+        this.alertShowChanged.emit (e);
+    }
+
+    changeAlertLevel(alertLevel) {
+        if (alertLevel === 2) {
+            this.isMedium = true
+        }
+        else {
+            this.isMedium = false;
+        }
+console.log(alertLevel);
+        this.alertLevelSelected.emit(alertLevel);
     }
 }
