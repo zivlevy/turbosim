@@ -18,11 +18,15 @@ export class ElevationButtonsComponent implements OnInit {
     selectedButton: number = 1;
 
     constructor() {
-        this.elevationButtons.push({id: 0, text: '30-31'});
-        this.elevationButtons.push({id: 1, text: '32-33'});
-        this.elevationButtons.push({id: 2, text: '34-35'});
-        this.elevationButtons.push({id: 3, text: '36-37'});
         this.elevationButtons.push({id: 4, text: '38-39'});
+        this.elevationButtons.push({id: 3, text: '36-37'});
+        this.elevationButtons.push({id: 2, text: '34-35'});
+        this.elevationButtons.push({id: 1, text: '32-33'});
+        this.elevationButtons.push({id: 0, text: '30-31'});
+
+
+
+
 
     }
 
@@ -35,6 +39,7 @@ export class ElevationButtonsComponent implements OnInit {
             if (propName ==='currentAltitude' && this.isAuto) {
                 this.currentAltLevel = (Math.floor((chng.currentValue - 30000) /2000));
                 this.selectedButton = this.currentAltLevel;
+                this.altitudeselected.emit(this.currentAltLevel);
                 if (!isUndefined( this.elevationButtons[this.currentAltLevel])) {
                     this.setButtonsText();
                 }
@@ -59,10 +64,10 @@ export class ElevationButtonsComponent implements OnInit {
     setButtonsText(){
         for (let i=0;i < this.elevationButtons.length;i++){
             if (this.isAuto) {
-                this.elevationButtons[i].text = (i-this.currentAltLevel ) *2000;
+                this.elevationButtons[i].text = (4- i-  this.currentAltLevel ) *2000;
 
             } else {
-                this.elevationButtons[i].text = (30 + i*2) + '-' + (31 + i*2);
+                this.elevationButtons[i].text = (38 - i*2) + '-' + (39 - i*2);
 
             }
         }

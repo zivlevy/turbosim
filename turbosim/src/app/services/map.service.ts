@@ -19,14 +19,14 @@ export class MapService {
     baseUrl: string;
 
     //turbulence
-    myTurbulence: Array<Map<string,Tile>>;
-    myTurbulence_temp: Array<Map<string,Tile>>;
+    myTurbulence: Array<Map<string,Tile>> =[];
+    myTurbulence_temp: Array<Map<string,Tile>> =[];
 
     constructor(private http: Http, private geoHelperService: GeoHelperService) {
         // private instance variable to hold base url
-        // this.baseUrl = 'http://localhost:3000/turboareas';
-        this.baseUrl = environment.turboAreaServer + 'turboareas';// 'http://localhost:3000/turboareas';
 
+        this.baseUrl = environment.turboAreaServer + 'turboareas';// 'http://localhost:3000/turboareas';
+        // this.baseUrl = 'http://130.211.172.31:3000/turboareas';
         this.gju = require('geojson-utils');
         this.turboAreas = [];
 
@@ -111,7 +111,7 @@ export class MapService {
 
     getTurbulenceByAlt(alt: number) {
         let arr: Tile [] = [];
-        if (!this.myTurbulence) return arr;
+        if (!this.myTurbulence[alt]) return arr;
         this.myTurbulence[alt].forEach((item) => {
             arr.push(item);
         });

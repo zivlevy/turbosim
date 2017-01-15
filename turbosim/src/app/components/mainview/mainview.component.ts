@@ -168,8 +168,6 @@ export class MainviewComponent implements OnInit {
         // start the map in South-East England
         this.map.setView(L.latLng(51.3, 0.7), 3);
         this.map.addLayer(osm);
-
-
     }
 
     /***************************
@@ -188,7 +186,6 @@ export class MainviewComponent implements OnInit {
                 if (!item._url) this.map.removeLayer(item);
             })
         })
-
     }
 
     /***************************
@@ -205,10 +202,7 @@ export class MainviewComponent implements OnInit {
                 this.mapService.setScenario(this.selectedScenario._id,()=>{
                     this.initSimRoutesObserver();
                 });
-
-
             });
-
     }
 
     scenarioChanged() {

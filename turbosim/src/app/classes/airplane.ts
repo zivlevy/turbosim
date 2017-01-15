@@ -1,7 +1,10 @@
 import {SimulatorService} from "../services/simulator.service";
 import {GeoHelperService} from "../services/geo-helper.service";
+import {Injectable} from "@angular/core";
+import {ReflectiveInjector} from '@angular/core';
 
 
+@Injectable()
 export class Airplane {
     routePoints: Array <{lat: number, lng: number}>;
     greatCircleArray: Array <{lat: number, lng: number}>;
@@ -10,18 +13,19 @@ export class Airplane {
     currentAltitude: number;
     targetAltitude: number;// the altitude the airplane needs to get to
     currentwaypoint: number; //the waypoint the airplane is headed to
-    simulatorService: SimulatorService;
-    geoHelperService: GeoHelperService;
 
     distancePerTick: number = 1;
     counter: number = 0;
     isLanded :boolean = false;
+    geoHelperService :GeoHelperService;
+    simulatorService: SimulatorService;
+
 
     constructor(from, to, targetAltitude) {
+        let injector = ReflectiveInjector.resolveAndCreate([GeoHelperService,SimulatorService]);
+        this.geoHelperService = injector.get(GeoHelperService);
+        this.simulatorService = injector.get(SimulatorService);
 
-
-        this.simulatorService = new SimulatorService();
-        this.geoHelperService = new GeoHelperService();
         this.currentAltitude = 25000;
         this.targetAltitude = targetAltitude;
         this.initRoute(from, to);
