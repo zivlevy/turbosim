@@ -19,7 +19,7 @@ import {Router} from '@angular/router';
 
             })),
             state('open', style({
-                left: 'calc(100% - 240px)',
+                left: 'calc(100% - 180px)',
 
             })),
             transition('close => open', animate('300ms ease-in')),
@@ -36,7 +36,7 @@ export class AppComponent {
     }
 
     ngOnInit() {
-        this.router.navigate(['/planner']);
+        this.router.navigate(['/main-view']);
 
 
     }

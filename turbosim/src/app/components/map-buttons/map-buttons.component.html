@@ -1,0 +1,5 @@
+<div class="botton-group">
+  <div *ngFor="let b of elevationButtons" class="elevation-button">
+    <div class="button-text" [ngClass]="{'selected': selectedButton== b.id}" (click)="altitude_clicked(b.id)">{{b.text}}</div>
+  </div>
+</div>

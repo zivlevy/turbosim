@@ -1,0 +1,8 @@
+
+<aside>
+ <simroutes (scenario_Changed)="scenarioChanged($event)" (routes_Changed)="routeChanged($event)"></simroutes>
+</aside>
+
+<div id="map">
+<app-map [selectedScnario]="selectedScenario" [routeChangedDate]="routeChangeDate"></app-map>
+</div>

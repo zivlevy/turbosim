@@ -12,7 +12,7 @@ body {
 }
 .menue-popup {
   position: absolute;
-  width:350px;
+  width:250px;
   top :10px;
   z-index: 1000;
   display: flex;

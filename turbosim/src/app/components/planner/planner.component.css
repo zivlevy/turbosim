@@ -1,0 +1,16 @@
+aside {
+    position: absolute;
+    top:0;
+    left:0;
+    width:300px;
+    height: 100%;
+    background-color: red;
+}
+#map {
+    position: absolute;
+    top:0;
+    left: 300px;
+    height: 100%;
+    width:calc(100% - 300px);
+    background-color: #1f7e9a;
+}

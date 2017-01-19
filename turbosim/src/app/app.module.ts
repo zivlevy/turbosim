@@ -23,22 +23,18 @@ import {TurbulenceAlertComponent} from './components/turbulence-alert/turbulence
 import {SimroutesComponent} from './components/simroutes/simroutes.component';
 import {SimroutesService} from "./services/simroutes.service";
 import {AboutComponent} from './components/about/about.component';
-import {EditorComponent} from './components/editor/editor.component';
 import { PlannerComponent } from './components/planner/planner.component';
 import { MapButtonsComponent } from './components/map-buttons/map-buttons.component';
 
 
 const routes: Routes = [
     {path: 'planner', component: PlannerComponent},
-    {path: 'main-view', component: MainviewComponent},
-    {path: 'simroute', component: SimroutesComponent},
-    {path: 'map', component: MapComponent}
+    {path: 'main-view', component: MainviewComponent}
 ];
 
 @NgModule({
     declarations: [
         AppComponent,
-        EditorComponent,
         MainviewComponent,
         ToggleComponent,
         AirportPickerComponent,
