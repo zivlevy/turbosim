@@ -1,70 +1,80 @@
 <app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
 <div class="all-page">
     <div class="page-content">
-    <div class="scenario-picker-container main-container">
-        <span>Scenario:</span>
-        <div class="scenario-picker">
-            <select class="scenario-select" [(ngModel)]="selectedScenario" (change)="scenarioChanged()"
-                    id="scenario" name="scenario">
-                <option [ngValue]="scenario" *ngFor="let scenario of arrScenarios">{{scenario.name}}</option>
-            </select>
+        <div id="top-pane">
+            <div class="scenario-picker-container main-container">
+                <span>Scenario:</span>
+                <div class="scenario-picker">
+                    <select class="scenario-select" [(ngModel)]="selectedScenario" (change)="scenarioChanged()"
+                            id="scenario" name="scenario">
+                        <option [ngValue]="scenario" *ngFor="let scenario of arrScenarios">{{scenario.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="main-container">
+                <div class="airport-title">From</div>
+                <div class="airport-title">to</div>
+                <div class="airport-title">altitude</div>
+                <div class="airport-title">Realtime</div>
+                <div style="width:50px;"></div>
+
+            </div>
+
+            <div class="main-container">
+                <div class="airport-name" (click)="showModal($event,'takeoff' ,20,0)">{{toAirport.ICAO}}</div>
+                <div class="airport-name" (click)="showModal($event,'landing', 20 ,0)">{{landAirport.ICAO}}</div>
+                <div id="alt-select" class="airport-name">
+                    <select id="gotoaltitude" name="altitude" (change)="setAltitude($event)">
+                        <option value="30000">30000</option>
+                        <option value="31000">31000</option>
+                        <option value="32000">32000</option>
+                        <option value="33000">33000</option>
+                        <option value="34000">34000</option>
+                        <option value="35000">35000</option>
+                        <option value="36000">36000</option>
+                        <option value="37000">37000</option>
+                        <option value="38000">38000</option>
+                        <option value="39000">39000</option>
+                    </select>
+                </div>
+                <div class="airport-name">
+                    <input class="roundedOne" type="checkbox" [(ngModel)]="isRealtime">
+                </div>
+                <div class="btn btn-success btn-sm delete-button" (click)="addRoute()">
+                    <i class="fa fa-plus"></i>
+                </div>
+            </div>
+
         </div>
-    </div>
-    <div class="main-container">
-        <div class="airport-title">From</div>
-        <div class="airport-title">to</div>
-        <div class="airport-title">altitude</div>
-        <div class="airport-title">Realtime</div>
 
-    </div>
+        <div id="bottom-pane">
+            <div id="route-rows">
+                <div class="route-list" *ngFor="let route of routes ; let i = index">
+                    <div class="route-list-row">{{route.toAirport.ICAO}}</div>
+                    <div class="route-list-row">{{route.landAirport.ICAO}}</div>
+                    <div class="route-list-row">{{route.altitude}}</div>
+                    <div class="route-list-row">{{route.isRealtime}}</div>
 
-    <div class="main-container">
-        <div class="airport-name" (click)="showModal($event,'takeoff' ,20,0)">{{toAirport.ICAO}}</div>
-        <div class="airport-name" (click)="showModal($event,'landing', 20 ,0)">{{landAirport.ICAO}}</div>
-        <div id="alt-select" class="airport-name">
-            <select id="gotoaltitude" name="altitude" (change)="setAltitude($event)">
-                <option value="30000">30000</option>
-                <option value="31000">31000</option>
-                <option value="32000">32000</option>
-                <option value="33000">33000</option>
-                <option value="34000">34000</option>
-                <option value="35000">35000</option>
-                <option value="36000">36000</option>
-                <option value="37000">37000</option>
-                <option value="38000">38000</option>
-                <option value="39000">39000</option>
-            </select>
+                    <div class="btn btn-sm btn-danger delete-button" (click)="deleteRoute(route,i)">
+                        <i class="fa fa-trash-o fa-lg"></i></div>
+
+
+                </div>
+
+                <div class="route-list row-realtime" *ngFor="let route of routesRealtime ; let i = index">
+                    <div class="route-list-row ">{{route.toAirport.ICAO}}</div>
+                    <div class="route-list-row ">{{route.landAirport.ICAO}}</div>
+                    <div class="route-list-row ">{{route.altitude}}</div>
+                    <div class="route-list-row ">{{route.isRealtime}}</div>
+
+                    <div class="btn btn-sm btn-danger delete-button" (click)="deleteRoute(route,i)">
+                        <i class="fa fa-trash-o fa-lg"></i></div>
+
+
+                </div>
+            </div>
         </div>
-        <div class="airport-name">
-            <input class="roundedOne" type="checkbox" [(ngModel)]="isRealtime">
-        </div>
-        <div class="btn btn-success btn-sm delete-button" (click)="addRoute()">
-            <i class="fa fa-plus"></i>
-        </div>
-    </div>
-
-    <div class="route-list" *ngFor="let route of routes ; let i = index">
-        <div class="route-list-row">{{route.toAirport.ICAO}}</div>
-        <div class="route-list-row">{{route.landAirport.ICAO}}</div>
-        <div class="route-list-row">{{route.altitude}}</div>
-        <div class="route-list-row">{{route.isRealtime}}</div>
-
-        <div class="btn btn-sm btn-danger delete-button" (click)="deleteRoute(route,i)">
-            <i class="fa fa-trash-o fa-lg"></i></div>
 
 
     </div>
-
-    <div class="route-list" *ngFor="let route of routesRealtime ; let i = index">
-        <div class="route-list-row row-realtime">{{route.toAirport.ICAO}}</div>
-        <div class="route-list-row row-realtime">{{route.landAirport.ICAO}}</div>
-        <div class="route-list-row row-realtime">{{route.altitude}}</div>
-        <div class="route-list-row row-realtime">{{route.isRealtime}}</div>
-
-        <div class="btn btn-sm btn-danger delete-button" (click)="deleteRoute(route,i)">
-            <i class="fa fa-trash-o fa-lg"></i></div>
-
-
-    </div>
-</div>
 </div>

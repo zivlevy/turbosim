@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, Output,EventEmitter} from '@angular/core';
 import {AirportPickerComponent} from "../airport-picker/airport-picker.component";
 import {Airport} from "../../classes/airport";
 import {SimRoute, Scenario} from "../../classes/simroute";
@@ -25,6 +25,8 @@ export class SimroutesComponent implements OnInit {
     arrScenarios: Array<Scenario> = [];
     selectedScenario: Scenario = null;
     observeScenarioService: Observable<any>;
+    @Output() scenario_Changed : EventEmitter<any> = new EventEmitter();
+    @Output() routes_Changed : EventEmitter<any> = new EventEmitter();
 
     constructor(private simroutesService: SimroutesService, private scenarioService: ScenarioService) {
 
@@ -65,7 +67,10 @@ export class SimroutesComponent implements OnInit {
             }, () => {
             },
             () => { //completion
-                if (this.arrScenarios) this.selectedScenario = this.arrScenarios[0];
+                if (this.arrScenarios) {
+                    this.selectedScenario = this.arrScenarios[0];
+                    this.scenario_Changed.emit(this.selectedScenario._id);
+                }
                 this.initSimroutes();
             });
 
@@ -73,6 +78,7 @@ export class SimroutesComponent implements OnInit {
 
     scenarioChanged() {
         this.initSimroutes();
+        this.scenario_Changed.emit(this.selectedScenario._id);
     }
 
 
@@ -121,7 +127,8 @@ export class SimroutesComponent implements OnInit {
                 this.routes.push(item);
             }
 
-        });
+        },()=>{},
+            ()=>{this.routes_Changed.emit(new Date());});
         ;
 
 
@@ -136,7 +143,8 @@ export class SimroutesComponent implements OnInit {
             }
 
 
-        });
+        },()=>{},
+            ()=>{this.routes_Changed.emit(new Date());});
         ;
 
 

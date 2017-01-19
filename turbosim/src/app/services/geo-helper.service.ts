@@ -111,6 +111,15 @@ bigCircleBetweenPoints  (start, end) : any {
   return resultArray;
 }
 
+bigCircleGeoJsonBetweenPoints(startLat,startLng, finishLat, finishLng){
+    let arrBigCircle = this.bigCircleBetweenPoints({lat:startLat,lng:startLng},{lat:finishLat,lng:finishLng});
+    let JSON = {"type":"Feature","geometry":{"type":"LineString","coordinates":[]}};
+    arrBigCircle.forEach((item)=>{
+      JSON.geometry.coordinates.push([item.lng,item.lat]);
+    })
+  return JSON;
+}
+
 newLocationFromPointWithDistanceBearing  (startingPoint, distanceInMiles, bearingInDegrees) {
 
   let lat1 = startingPoint.lat * Math.PI / 180;
@@ -162,6 +171,8 @@ newLocationFromPointWithDistanceBearing  (startingPoint, distanceInMiles, bearin
   return edgePoint;
 }
 
+
+
 bigCircleAzimuth(point1, point2) {
   let lat1 = point1.lat * Math.PI / 180;
   let lon1 = point1.lng * Math.PI / 180;
@@ -173,4 +184,6 @@ bigCircleAzimuth(point1, point2) {
   return Math.atan2(y, x) / (Math.PI / 180);
 
 }
+
+
 }

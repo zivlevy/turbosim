@@ -36,7 +36,7 @@ export class AppComponent {
     }
 
     ngOnInit() {
-        this.router.navigate(['/main-view']);
+        this.router.navigate(['/planner']);
 
 
     }

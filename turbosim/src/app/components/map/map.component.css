@@ -1,4 +1,15 @@
+#map-buttons {
+
+  position: absolute;
+  height:300px;
+  top: calc(50% - 150px);
+
+
+  z-index: 3000;
+}
+
 #mapid {
+  position: absolute;
   height: 100%;
   width: 100%;
 }

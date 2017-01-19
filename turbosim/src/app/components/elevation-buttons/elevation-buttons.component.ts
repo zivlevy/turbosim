@@ -23,11 +23,6 @@ export class ElevationButtonsComponent implements OnInit {
         this.elevationButtons.push({id: 2, text: '34-35'});
         this.elevationButtons.push({id: 1, text: '32-33'});
         this.elevationButtons.push({id: 0, text: '30-31'});
-
-
-
-
-
     }
 
     ngOnInit() {
@@ -43,7 +38,6 @@ export class ElevationButtonsComponent implements OnInit {
                 if (!isUndefined( this.elevationButtons[this.currentAltLevel])) {
                     this.setButtonsText();
                 }
-
             }
        }
     }
@@ -65,13 +59,9 @@ export class ElevationButtonsComponent implements OnInit {
         for (let i=0;i < this.elevationButtons.length;i++){
             if (this.isAuto) {
                 this.elevationButtons[i].text = (4- i-  this.currentAltLevel ) *2000;
-
             } else {
                 this.elevationButtons[i].text = (38 - i*2) + '-' + (39 - i*2);
-
             }
         }
-
     }
-
 }
