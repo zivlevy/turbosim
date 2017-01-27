@@ -1,7 +1,8 @@
+<turbulence-alert *ngIf="isAlertBoxShow" [bottomAlertBoxColor]="bottomAlertColor"
+                  [currentAlertBoxColor]="currentAlertColor" [topAlertBoxColor]="topAlertColor" (reset)="alertResetClicked()"></turbulence-alert>
+
 <app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
 <about (alertLevelSelected)="alertLevelSelected($event)" (alertShowChanged)="alertShowChanged($event)"></about>
-<turbulence-alert *ngIf="isAlertBoxShow" [bottomAlertBoxColor]="bottomAlertColor"
-                  [currentAlertBoxColor]="currentAlertColor" [topAlertBoxColor]="topAlertColor"></turbulence-alert>
 <div id="mapid"></div>
 <!--Top Pane-->
 <div id="toppane">
@@ -51,7 +52,7 @@
     <img id="airplane-to" class="rightpane-button" src="../../assets/land@2x.png" (click)="showModal($event,'landing')">
     <div class="airport-name" (click)="showModal($event,'landing')">{{landAirport.ICAO}}</div>
     <elevation-buttons [currentAltitude]="airplane.currentAltitude" (altitudeselected)="altitude_clicked($event)"
-                       (autoAltChanged)="autoAlt_changed($event)"></elevation-buttons>
+                       (autoAltChanged)="autoAlt_changed($event)" [isAuto]="isAutoAlt"></elevation-buttons>
 </div>
 
 <!--Bottom pane-->

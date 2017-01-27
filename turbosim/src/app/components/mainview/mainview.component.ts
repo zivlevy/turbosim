@@ -55,6 +55,7 @@ export class MainviewComponent implements OnInit {
     selectedAltitude: number = 1;
     isAutoAlt: boolean = false; //when auto alt is selected
     isFollowAlt: boolean = true; //should the display follow to altitude of the airplane when in auto alt mode
+    isAbove30: boolean = false; //we start below 30000
 
     observerHook: any;
     simulatedAirplanes: Array <Airplane>;
@@ -68,6 +69,10 @@ export class MainviewComponent implements OnInit {
     kAlertRange: number = 100;
     alertLevel: number = 2;
     showAlert: boolean = true;
+    //alert sound
+    audio: HTMLAudioElement;
+    isAlertResetMode: boolean; //if the user muted alert
+
 
     //scenario
     arrScenarios: Array<Scenario> = [];
@@ -100,6 +105,10 @@ export class MainviewComponent implements OnInit {
      **********************/
     ngOnInit() {
 
+//init audio
+        this.audio = new Audio();
+        this.audio.src = "../../assets/sound/sound.wav";
+        this.audio.load();
 
         //init map
         this.initMapControl();
@@ -199,14 +208,14 @@ export class MainviewComponent implements OnInit {
             },
             () => { //completion
                 if (this.arrScenarios) this.selectedScenario = this.arrScenarios[0];
-                this.mapService.setScenario(this.selectedScenario._id,()=>{
+                this.mapService.setScenario(this.selectedScenario._id, () => {
                     this.initSimRoutesObserver();
                 });
             });
     }
 
     scenarioChanged() {
-        this.mapService.setScenario(this.selectedScenario._id,()=>{
+        this.mapService.setScenario(this.selectedScenario._id, () => {
             this.initSimRoutesObserver();
         });
 
@@ -646,7 +655,13 @@ export class MainviewComponent implements OnInit {
 
         //move the airplane
         this.airplane.simTick();
+        //change to auto alt above 30000
+        if (this.airplane.currentAltitude >= 30000 && !this.isAbove30) {
+            this.isAutoAlt = true;
+            this.isAbove30 = true;
 
+
+        }
         //move simulated airplanes
         this.simTickSimulatedAirplanes();
         // find if there is turbulence at airplane location
@@ -677,13 +692,29 @@ export class MainviewComponent implements OnInit {
             this.topAlertColor = am.above;
             this.bottomAlertColor = am.below;
             this.currentAlertColor = am.at;
-        } else {
-            this.isAlertBoxShow = false;
+            if (am.isAlert && ! this.isAlertResetMode) {
+                this.audio.play();
+
+            } else {
+                this.audio.pause();
+
+            }
+            if (!am.isAlert)  this.isAlertResetMode = false;
+
+
         }
 
 
         this.redrawAll();
 
+    }
+
+    //alert reset
+    alertResetClicked() {
+        if (!this.isAlertResetMode) {
+            this.isAlertResetMode = true;
+            this.audio.pause(); //stop sound
+        }
     }
 }
 

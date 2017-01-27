@@ -13,16 +13,18 @@ export class ElevationButtonsComponent implements OnInit {
     @Output() autoAltChanged : EventEmitter<any> = new EventEmitter();
 
     @Input() currentAltitude : number = 0; // the altitude of the plane;
-    isAuto: boolean = false;
+    @Input() isAuto: boolean = false;
     currentAltLevel : number=0; //the level of the plane in [0,1,2,3,4];
     selectedButton: number = 1;
 
     constructor() {
-        this.elevationButtons.push({id: 4, text: '38-39'});
-        this.elevationButtons.push({id: 3, text: '36-37'});
-        this.elevationButtons.push({id: 2, text: '34-35'});
-        this.elevationButtons.push({id: 1, text: '32-33'});
-        this.elevationButtons.push({id: 0, text: '30-31'});
+
+        this.elevationButtons.push({id: 4, text: '38-40'});
+        this.elevationButtons.push({id: 3, text: '36-38'});
+        this.elevationButtons.push({id: 2, text: '34-36'});
+        this.elevationButtons.push({id: 1, text: '32-34'});
+        this.elevationButtons.push({id: 0, text: '30-32'});
+        this.setButtonsText();
     }
 
     ngOnInit() {
@@ -41,6 +43,7 @@ export class ElevationButtonsComponent implements OnInit {
             }
        }
     }
+
     altitude_clicked(buttonId) {
         this.altitudeselected.emit(buttonId);
         this.selectedButton = buttonId;
@@ -60,7 +63,7 @@ export class ElevationButtonsComponent implements OnInit {
             if (this.isAuto) {
                 this.elevationButtons[i].text = (4- i-  this.currentAltLevel ) *2000;
             } else {
-                this.elevationButtons[i].text = (38 - i*2) + '-' + (39 - i*2);
+                this.elevationButtons[i].text = (38 - i*2) + '-' + (40 - i*2);
             }
         }
     }

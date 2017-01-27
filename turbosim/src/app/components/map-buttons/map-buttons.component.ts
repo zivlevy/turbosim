@@ -15,11 +15,11 @@ export class MapButtonsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.elevationButtons.push({id: 4, text: '38-39'});
-    this.elevationButtons.push({id: 3, text: '36-37'});
-    this.elevationButtons.push({id: 2, text: '34-35'});
-    this.elevationButtons.push({id: 1, text: '32-33'});
-    this.elevationButtons.push({id: 0, text: '30-31'});
+    this.elevationButtons.push({id: 4, text: '38-40'});
+    this.elevationButtons.push({id: 3, text: '36-38'});
+    this.elevationButtons.push({id: 2, text: '34-36'});
+    this.elevationButtons.push({id: 1, text: '32-34'});
+    this.elevationButtons.push({id: 0, text: '30-32'});
     this.elevationButtons.push({id: -1, text: 'All'});
   }
 

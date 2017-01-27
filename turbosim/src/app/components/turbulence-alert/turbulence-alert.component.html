@@ -12,10 +12,9 @@
             </div>
             <div class="data-row">
                 <div class="iner-data-row">-2000</div>
-                <div class="alert-box" [ngStyle]="{'background-color': bottomAlertBoxColor}"></div>
+                <div class="alert-box"  [ngStyle]="{'background-color': bottomAlertBoxColor}"></div>
             </div>
         </div>
-        <div class="silence-button"><div class="silence-button-text">Silence</div></div>
-
+        <div class="silence-button" (click)="resetclicked()"><div class="silence-button-text">Silence</div></div>
     </div>
 </div>

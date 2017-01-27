@@ -61,6 +61,7 @@
     border: solid;
     border-width:1px;
     border-color: white;
+    z-index: 10000;
 }
 
 .airplane {
@@ -76,7 +77,7 @@
     position: absolute;
     left:160px;
     top:24px;
-
+    cursor: pointer;
     width: 60px;
     height:60px;
     border-radius: 30px;
@@ -97,3 +98,5 @@
 .alert-5 {
     background-color: red;
 }
+
+

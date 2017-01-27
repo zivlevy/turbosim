@@ -3,7 +3,7 @@
 <div class="botton-group">
     <div clasee="toogle-text" class="pane-text">Auto Alt</div>
     <div class="toogle">
-        <app-toggle  (change)="autoAltToggle($event)" [color]="blue"></app-toggle>
+        <app-toggle  (change)="autoAltToggle($event)" [color]="blue" [checked]="isAuto"></app-toggle>
     </div>
 
     <div *ngFor="let b of elevationButtons" class="elevation-button">

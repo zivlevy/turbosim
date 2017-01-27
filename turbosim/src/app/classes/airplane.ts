@@ -16,13 +16,13 @@ export class Airplane {
 
     distancePerTick: number = 1;
     counter: number = 0;
-    isLanded :boolean = false;
-    geoHelperService :GeoHelperService;
+    isLanded: boolean = false;
+    geoHelperService: GeoHelperService;
     simulatorService: SimulatorService;
 
 
     constructor(from, to, targetAltitude) {
-        let injector = ReflectiveInjector.resolveAndCreate([GeoHelperService,SimulatorService]);
+        let injector = ReflectiveInjector.resolveAndCreate([GeoHelperService, SimulatorService]);
         this.geoHelperService = injector.get(GeoHelperService);
         this.simulatorService = injector.get(SimulatorService);
 
@@ -44,9 +44,10 @@ export class Airplane {
     move(): number {
 
         if (this.currentwaypoint > this.greatCircleArray.length - 1) {
-            this.isLanded=true;
+            this.isLanded = true;
             return;
-        };
+        }
+        ;
         //new altitude
         if (this.targetAltitude !== this.currentAltitude) {
             this.currentAltitude = this.targetAltitude > this.currentAltitude ? this.currentAltitude + 500 : this.currentAltitude - 500;
@@ -83,7 +84,6 @@ export class Airplane {
         this.currentAzimuth = this.geoHelperService.bigCircleAzimuth(this.greatCircleArray[0], this.greatCircleArray[1]);
 
     };
-
 
 
 }
