@@ -6,6 +6,9 @@ import {isNullOrUndefined} from "util";
 export class SimulatorService {
     simSpeed: number;
     simTick: Rx.Subject<any>;
+    simdata :{isPause:boolean} = {isPause:true};
+    todos :number[] = [1,2,3,4];
+
     private static instance: SimulatorService = null;
 
     constructor() {
@@ -19,14 +22,26 @@ export class SimulatorService {
         this.simTick = new Rx.Subject();
 
         ticker.subscribe((tick) => {
-            if (tick % this.simSpeed === 0) {
-                this.simTick.next(tick);
+            if (!this.simdata.isPause){
+                if (tick % this.simSpeed === 0) {
+                    this.simTick.next(tick);
+                }
             }
+
         })
 
         return  SimulatorService.instance;
     }
 
+    setNumber (num:number){
+        this.todos.push (num);
+    }
+    toggleSimulatorPause(){
+        this.simdata.isPause = !this.simdata.isPause;
+
+
+
+    }
     getSimTicker() {
         return this.simTick;
     }

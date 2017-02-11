@@ -22,6 +22,9 @@ export class ScenarioService {
     var scenarrio: Scenario = new Scenario();
     scenarrio._id = item._id;
     scenarrio.name= item.name;
+    scenarrio.toAirport = item.toAirport;
+    scenarrio.landAirport=item.landAirport;
+
 
     return scenarrio;
 
@@ -30,8 +33,9 @@ export class ScenarioService {
   getScenarios(): Observable<Scenario[]> {
 
     return this.http.get(this.baseUrl + 'scenarios')
-        .map((res: Response) => res.json())
+        .map((res: Response) =>  res.json())
         .flatMap((x) => {
+        console.log(x);
           var y = [];
           x.forEach((item: Scenario) => {
             y.push(this.convertJsonToScenario(item));

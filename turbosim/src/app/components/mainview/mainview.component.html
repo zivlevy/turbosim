@@ -1,5 +1,5 @@
 <turbulence-alert *ngIf="isAlertBoxShow" [bottomAlertBoxColor]="bottomAlertColor"
-                  [currentAlertBoxColor]="currentAlertColor" [topAlertBoxColor]="topAlertColor" (reset)="alertResetClicked()"></turbulence-alert>
+                  [currentAlertBoxColor]="currentAlertColor" [topAlertBoxColor]="topAlertColor" (reset)="alertResetClicked()    "></turbulence-alert>
 
 <app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
 <about (alertLevelSelected)="alertLevelSelected($event)" (alertShowChanged)="alertShowChanged($event)"></about>
@@ -72,7 +72,10 @@
         </div>
         <div class="col-xs-4">
             <div class="simcontroller">
-                <div class="contorol-button" (click)="simSlow()"><i class="fa fa-backward fa-1x"></i></div>
+                 <div class="contorol-button" (click)="simSlow()"><i class="fa fa-backward fa-1x"></i></div>
+                <div *ngIf="!simData.isPause" class="contorol-button" (click)="simPause()"><i class="fa fa-pause fa-1x"></i></div>
+                <div *ngIf="simData.isPause" class="contorol-button" (click)="simPause()"><i class="fa fa-play fa-1x"></i></div>
+
                 <div class="contorol-button">x{{simSpeed}}</div>
                 <div class="contorol-button" (click)="simFast()"><i class="fa fa-forward fa-1x"></i></div>
             </div>

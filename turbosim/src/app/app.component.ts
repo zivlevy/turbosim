@@ -4,10 +4,11 @@ import {
     state,
     style,
     transition,
-    animate
+    animate, OnInit
 } from '@angular/core';
 
 import {Router} from '@angular/router';
+import {AirportService} from "./services/airport.service";
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -27,18 +28,17 @@ import {Router} from '@angular/router';
         ])
     ]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
     menuState: string;
 
-    constructor(private router: Router,) {
+    constructor(private router: Router,private airportService:AirportService) {
         this.menuState = 'close';
+
 
     }
 
     ngOnInit() {
         this.router.navigate(['/main-view']);
-
-
     }
 
 

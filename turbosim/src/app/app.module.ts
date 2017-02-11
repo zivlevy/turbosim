@@ -14,7 +14,7 @@ import {GeoHelperService} from './services/geo-helper.service';
 import {SimulatorService} from './services/simulator.service';
 import {ScenarioService} from "./services/scenario.service";
 
-import {ModalModule} from '../../node_modules/ng2-modal';
+import {ModalModule} from 'ng2-modal';
 import {MainviewComponent} from './components/mainview/mainview.component';
 import {ToggleComponent} from './components/toggle/toggle.component';
 import {AirportPickerComponent} from './components/airport-picker/airport-picker.component';
@@ -23,8 +23,8 @@ import {TurbulenceAlertComponent} from './components/turbulence-alert/turbulence
 import {SimroutesComponent} from './components/simroutes/simroutes.component';
 import {SimroutesService} from "./services/simroutes.service";
 import {AboutComponent} from './components/about/about.component';
-import { PlannerComponent } from './components/planner/planner.component';
-import { MapButtonsComponent } from './components/map-buttons/map-buttons.component';
+import {PlannerComponent} from './components/planner/planner.component';
+import {MapButtonsComponent} from './components/map-buttons/map-buttons.component';
 
 
 const routes: Routes = [

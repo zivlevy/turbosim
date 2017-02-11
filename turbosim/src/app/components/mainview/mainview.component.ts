@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, OnDestroy} from '@angular/core';
 import {MapService, Tile} from '../../services/map.service';
 import {AirportPickerComponent} from '../airport-picker/airport-picker.component';
 // import {ToggleComponent} from '../toggle/toggle.component';
@@ -16,6 +16,7 @@ import {Scenario, SimRoute} from "../../classes/simroute";
 import {ScenarioService} from "../../services/scenario.service";
 import {SimroutesService} from "../../services/simroutes.service";
 import {AboutComponent} from "../about/about.component";
+import {AirportService} from "../../services/airport.service";
 
 
 @Component({
@@ -25,7 +26,7 @@ import {AboutComponent} from "../about/about.component";
 })
 
 
-export class MainviewComponent implements OnInit {
+export class MainviewComponent implements OnInit ,OnDestroy{
 
     map: any; //the leaflet map object
     isEditRouteMode: boolean; //flag route edit mode
@@ -87,25 +88,29 @@ export class MainviewComponent implements OnInit {
     isNeedRedraw: boolean = true;
     isAllowDraw: boolean = true;
 
+    //sim control
+    simData: {isPause:boolean} = {isPause:true};
+
+    todos:number[];
     /***********************
      *  constractor
      **********************/
-    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService, private simulatorService: SimulatorService, private scenarioService: ScenarioService, private simroutesService: SimroutesService) {
-        this.mapService = mapService;
-        this.geoHelperService = geoHelperService;
+    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService,
+                private simulatorService: SimulatorService, private scenarioService: ScenarioService,
+                private simroutesService: SimroutesService, private airportService:AirportService) {
+
         this.isEditRouteMode = false;
         //layers
         this.greatCircleLayer = null;
-
-
     }
 
     /***********************
      *  onInit
      **********************/
     ngOnInit() {
+        this.simData = this.simulatorService.simdata;
 
-//init audio
+        //init audio
         this.audio = new Audio();
         this.audio.src = "../../assets/sound/sound.wav";
         this.audio.load();
@@ -124,6 +129,7 @@ export class MainviewComponent implements OnInit {
             name: "Ben Gurion",
             symbol: "TLV"
         };
+
         this.landAirport = {
             ICAO: "KJFK",
             altitude: "13",
@@ -154,7 +160,6 @@ export class MainviewComponent implements OnInit {
         this.simulatorService.setTimeTickSpeed(5);
         this.observerHook = this.simulatorService.getSimTicker().subscribe((item) => {
             this.simTick();
-
         });
     }
 
@@ -202,21 +207,31 @@ export class MainviewComponent implements OnInit {
      ***************************/
     initScenarioaObserver() {
         this.observeScenarioService = this.scenarioService.getScenarios();
-        this.observeScenarioService.subscribe((item: Scenario) => {
-                this.arrScenarios.push(item);
-            }, () => {
-            },
-            () => { //completion
-                if (this.arrScenarios) this.selectedScenario = this.arrScenarios[0];
-                this.mapService.setScenario(this.selectedScenario._id, () => {
-                    this.initSimRoutesObserver();
+        let airports$ = this.airportService.getAirports();
+        airports$.subscribe(null,null,()=>{
+            this.observeScenarioService.subscribe((item: Scenario) => {
+                    console.log(item);
+                    this.arrScenarios.push(item);
+                }, () => {
+                },
+                () => { //completion
+                    console.log('start scenario');
+                    if (this.arrScenarios) {
+                        this.selectedScenario = this.arrScenarios[0];
+                     }
+                    this.scenarioChanged();
                 });
-            });
+        })
+
+
     }
 
     scenarioChanged() {
+        this.toAirport = this.airportService.getAirportByICAO(this.selectedScenario.toAirport);
+        this.landAirport = this.airportService.getAirportByICAO(this.selectedScenario.landAirport);
         this.mapService.setScenario(this.selectedScenario._id, () => {
             this.initSimRoutesObserver();
+            this.initRoute();
         });
 
 
@@ -320,6 +335,13 @@ export class MainviewComponent implements OnInit {
         if (this.simSpeed < 8) this.simSpeed += 1;
 
         this.simulatorService.setTimeTickSpeed(this.simSpeed);
+    }
+
+    simPause() {
+        this.simulatorService.toggleSimulatorPause();
+        this.simulatorService.setNumber(222);
+        console.log(this.todos);
+        console.log(this.simData);
     }
 
     gotoAltitude(altitude) {
@@ -521,8 +543,8 @@ export class MainviewComponent implements OnInit {
 
 
         });
-
         this.airplaneLayer.addTo(this.map);
+
     }
 
     //draw myTurbulence
@@ -621,6 +643,7 @@ export class MainviewComponent implements OnInit {
 
     alertShowChanged(showAlert) {
         this.showAlert = showAlert;
+        if (!showAlert) this.isAlertBoxShow = false; //hide alert box if needed
     }
 
     /***************************
@@ -700,13 +723,8 @@ export class MainviewComponent implements OnInit {
 
             }
             if (!am.isAlert)  this.isAlertResetMode = false;
-
-
         }
-
-
         this.redrawAll();
-
     }
 
     //alert reset

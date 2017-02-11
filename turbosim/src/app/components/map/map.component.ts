@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Input, SimpleChanges} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, SimpleChanges, OnChanges} from '@angular/core';
 import {MapService} from '../../services/map.service';
 import {Observable} from "rxjs";
 import {TurboArea} from "../../classes/turbo-area";
@@ -6,7 +6,7 @@ import 'leaflet';
 import 'leaflet.pm';
 import GeoJsonObject = GeoJSON.GeoJsonObject;
 import GeoJSONOptions = L.GeoJSONOptions;
-import {Scenario, SimRoute} from "../../classes/simroute";
+import {SimRoute} from "../../classes/simroute";
 import {SimroutesService} from "../../services/simroutes.service";
 import {GeoHelperService} from "../../services/geo-helper.service";
 
@@ -16,7 +16,7 @@ import {GeoHelperService} from "../../services/geo-helper.service";
     templateUrl: './map.component.html',
     styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnChanges {
 
     map: any; //the leaflet map object
     gju: any;  // geoJson utility object
