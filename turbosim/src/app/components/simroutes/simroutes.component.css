@@ -34,7 +34,7 @@
     position: relative;
     top:0;
     left:0;
-    width:300px;
+    width:340px;
     height: 100%;
 
 }
@@ -88,7 +88,7 @@
     background-color: goldenrod;
 }
 
-.delete-button{
+.route-button{
     color:white;
     width:40px;
     margin-left: 1px;

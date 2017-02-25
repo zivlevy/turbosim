@@ -7,6 +7,7 @@ import {Airport} from "../../classes/airport";
 import {SimulatorService} from '../../services/simulator.service';
 import {Airplane} from "../../classes/airplane";
 import {Observable} from "rxjs";
+import {Router} from '@angular/router';
 
 import 'leaflet';
 import * as d3 from 'd3';
@@ -17,7 +18,7 @@ import {ScenarioService} from "../../services/scenario.service";
 import {SimroutesService} from "../../services/simroutes.service";
 import {AboutComponent} from "../about/about.component";
 import {AirportService} from "../../services/airport.service";
-
+import {AuthService} from "../../services/auth.service";
 
 @Component({
     selector: 'app-mainview',
@@ -95,9 +96,17 @@ export class MainviewComponent implements OnInit ,OnDestroy{
     /***********************
      *  constractor
      **********************/
-    constructor(private mapService: MapService, private  geoHelperService: GeoHelperService,
-                private simulatorService: SimulatorService, private scenarioService: ScenarioService,
-                private simroutesService: SimroutesService, private airportService:AirportService) {
+    constructor(
+        private mapService: MapService,
+        private  geoHelperService: GeoHelperService,
+        private simulatorService: SimulatorService,
+        private scenarioService: ScenarioService,
+        private simroutesService: SimroutesService,
+        private airportService:AirportService,
+        private router:Router,
+        private authService:AuthService
+
+    ) {
 
         this.isEditRouteMode = false;
         //layers
@@ -222,8 +231,6 @@ export class MainviewComponent implements OnInit ,OnDestroy{
                     this.scenarioChanged();
                 });
         })
-
-
     }
 
     scenarioChanged() {
@@ -298,6 +305,14 @@ export class MainviewComponent implements OnInit ,OnDestroy{
         this.initRoute();
         this.isNeedRedraw = true;
 
+    }
+
+    /*********************
+    restart
+    *********************/
+    restart(){
+        this.initRoute();
+        this.isNeedRedraw = true;
     }
 
     /***********************
@@ -733,6 +748,13 @@ export class MainviewComponent implements OnInit ,OnDestroy{
             this.isAlertResetMode = true;
             this.audio.pause(); //stop sound
         }
+    }
+
+    /*********************
+    admin operations
+    *********************/
+    gotoEditor(){
+        this.router.navigate(['/planner']);
     }
 }
 

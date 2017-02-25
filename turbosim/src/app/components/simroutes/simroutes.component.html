@@ -49,14 +49,47 @@
 
         <div id="bottom-pane">
             <div id="route-rows">
-                <div class="route-list" *ngFor="let route of routes ; let i = index">
-                    <div class="route-list-row">{{route.toAirport.ICAO}}</div>
-                    <div class="route-list-row">{{route.landAirport.ICAO}}</div>
-                    <div class="route-list-row">{{route.altitude}}</div>
-                    <div class="route-list-row">{{route.isRealtime}}</div>
+                <div *ngFor="let route of routes ; let i = index">
+                    <div class="route-list" *ngIf="i!==routeInEdit">
+                        <div class="route-list-row">{{route.toAirport.ICAO}}</div>
+                        <div class="route-list-row">{{route.landAirport.ICAO}}</div>
+                        <div class="route-list-row">{{route.altitude}}</div>
+                        <div class="route-list-row">{{route.isRealtime}}</div>
 
-                    <div class="btn btn-sm btn-danger delete-button" (click)="deleteRoute(route,i)">
-                        <i class="fa fa-trash-o fa-lg"></i></div>
+                        <div class="btn btn-sm btn-primary route-button" (click)="editRoute(route,i)">
+                            <i class="fa fa-pencil-square-o fa-lg"></i></div>
+
+                        <div class="btn btn-sm btn-danger route-button" (click)="deleteRoute(route,i)">
+                            <i class="fa fa-trash-o fa-lg"></i></div>
+                    </div>
+                    <div class="route-list" *ngIf="i===routeInEdit">
+                        <div class="route-list-row">{{routeInEditInfo.toAirport.ICAO}}</div>
+                        <div class="route-list-row">{{routeInEditInfo.landAirport.ICAO}}</div>
+                        <div id="alt-select-routeinedit" class="airport-name">
+                            <select id="gotoaltitude-routeinedit" name="altitude"
+                                    (change)="setAltitudeRouteInEdit($event)" [value]="routeInEditInfo.altitude">
+                                <option value="30000">30000</option>
+                                <option value="31000">31000</option>
+                                <option value="32000">32000</option>
+                                <option value="33000">33000</option>
+                                <option value="34000">34000</option>
+                                <option value="35000">35000</option>
+                                <option value="36000">36000</option>
+                                <option value="37000">37000</option>
+                                <option value="38000">38000</option>
+                                <option value="39000">39000</option>
+                            </select>
+                        </div>
+                        <div class="route-list-row">{{routeInEditInfo.isRealtime}}</div>
+
+                        <div class="btn btn-sm btn-success route-button" (click)="approvedEditRoute(route,i)">
+                            <i class="fa fa-check-square-o  fa-lg"></i></div>
+
+                        <div class="btn btn-sm btn-warning route-button" (click)="cancelEditRoute(route,i)">
+                            <i class="fa fa-ban fa-lg"></i></div>
+
+
+                    </div>
 
 
                 </div>

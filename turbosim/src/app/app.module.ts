@@ -25,11 +25,23 @@ import {SimroutesService} from "./services/simroutes.service";
 import {AboutComponent} from './components/about/about.component';
 import {PlannerComponent} from './components/planner/planner.component';
 import {MapButtonsComponent} from './components/map-buttons/map-buttons.component';
-
+import { RouteeditComponent } from './components/routeedit/routeedit.component';
+import {LoginComponent} from "./components/login/login.component";
+import {RegisterComponent} from "./components/register/register.component";
+import {LogoComponent} from "./components/logo/logo.component";
+import {AuthService} from './services/auth.service';
+import {ValidateService} from './services/validate.service';
+import {FlashMessagesModule} from 'angular2-flash-messages';
+import {Globals} from './globals';
+import {AuthGuard} from './guards/auth.guard';
+import {AdminGuard} from './guards/admin.guard';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
-    {path: 'planner', component: PlannerComponent},
-    {path: 'main-view', component: MainviewComponent}
+    {path: 'register', component: RegisterComponent},
+    {path: 'login', component: LoginComponent},
+    {path: 'planner', component: PlannerComponent,canActivate:[AdminGuard]},
+    {path: 'main-view', component: MainviewComponent,canActivate:[AuthGuard]}
 ];
 
 @NgModule({
@@ -44,7 +56,12 @@ const routes: Routes = [
         AboutComponent,
         MapComponent,
         PlannerComponent,
-        MapButtonsComponent
+        MapButtonsComponent,
+        RouteeditComponent,
+        LoginComponent,
+        RegisterComponent,
+        LogoComponent,
+        DashboardComponent
     ],
     imports: [
         BrowserModule,
@@ -53,7 +70,8 @@ const routes: Routes = [
         RouterModule.forRoot(routes, {useHash: true, initialNavigation: false}),
         JsonpModule,
         ReactiveFormsModule,
-        ModalModule
+        ModalModule,
+        FlashMessagesModule
     ],
     providers: [
         MapService,
@@ -61,7 +79,13 @@ const routes: Routes = [
         GeoHelperService,
         SimulatorService,
         ScenarioService,
-        SimroutesService],
+        SimroutesService,
+        AuthService,
+        ValidateService,
+        Globals,
+        AuthGuard,
+        AdminGuard
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

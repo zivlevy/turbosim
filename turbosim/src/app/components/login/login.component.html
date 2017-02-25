@@ -1,0 +1,27 @@
+<div class=" vertical-center">
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron center-panel  col-sm-8 col-sm-offset-2">
+
+
+                <eo-logo></eo-logo>
+                <flash-messages></flash-messages>
+                <form id="myForm" (submit)="onLoginSubmit()">
+                    <h2 id="MyHeader">Login</h2>
+
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input [(ngModel)]="user.username" name="username" type="text" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input [(ngModel)]="user.password" name="password" type="password" class="form-control">
+                    </div>
+
+                    <input type="submit" class="btn btn-primary" value="Login">
+                </form>
+
+            </div>
+        </div>
+    </div>

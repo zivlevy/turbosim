@@ -28,6 +28,9 @@ export class SimroutesComponent implements OnInit {
     @Output() scenario_Changed : EventEmitter<any> = new EventEmitter();
     @Output() routes_Changed : EventEmitter<any> = new EventEmitter();
 
+    routeInEdit:number = -1;
+    routeInEditInfo:SimRoute ;
+
     constructor(private simroutesService: SimroutesService, private scenarioService: ScenarioService) {
 
     }
@@ -129,7 +132,6 @@ export class SimroutesComponent implements OnInit {
 
         },()=>{},
             ()=>{this.routes_Changed.emit(new Date());});
-        ;
 
 
     }
@@ -145,10 +147,32 @@ export class SimroutesComponent implements OnInit {
 
         },()=>{},
             ()=>{this.routes_Changed.emit(new Date());});
-        ;
-
-
     }
+    setAltitudeRouteInEdit(e) {
+        this.routeInEditInfo.altitude = Number(e.target.value);
+    }
+
+    editRoute(route: SimRoute, index) {
+        this.routeInEditInfo = JSON.parse(JSON.stringify(route));
+        this.routeInEdit = index;
+    }
+    cancelEditRoute(route: SimRoute, index) {
+        this.routeInEdit = -1;
+    }
+
+    approvedEditRoute(route: SimRoute, index) {
+        this.routeInEdit = -1;
+        this.simroutesService.editSimroute(this.routeInEditInfo).subscribe((item: any) => {
+                if (item.isRealtime) {
+                    this.routesRealtime[index] = item;
+                } else {
+                    this.routes[index] = item;
+                }
+            },()=>{},
+            ()=>{this.routes_Changed.emit(new Date());});
+    }
+
+
 
     /***********************
      *  airport selection

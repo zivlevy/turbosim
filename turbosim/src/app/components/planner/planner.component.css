@@ -1,16 +1,26 @@
+.goto-simulator {
+    position: absolute;
+    top:20px;
+    left:250px;
+    background-color: #014c8c;
+    color:whitesmoke;
+    border-radius: 3px;
+    z-index: 10000;
+    padding: 5px;
+}
 aside {
     position: absolute;
     top:0;
     left:0;
-    width:300px;
+    width:340px;
     height: 100%;
     background-color: red;
 }
 #map {
     position: absolute;
     top:0;
-    left: 300px;
+    left: 340px;
     height: 100%;
-    width:calc(100% - 300px);
+    width:calc(100% - 340px);
     background-color: #1f7e9a;
 }
