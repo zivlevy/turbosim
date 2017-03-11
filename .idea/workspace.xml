@@ -2,23 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="92cf6137-3164-4cdb-852c-086d993966a4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/turbosim/src/assets/helpscreen.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/turbosim/src/app/components/help/help.component.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/turbosim/src/app/components/help/help.component.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/turbosim/src/app/components/help/help.component.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/turbosim/src/app/guards/auth.guard.ts" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/turbosim/src/app/components/routeedit/routeedit.component.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/turbosim/src/app/components/routeedit/routeedit.component.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/turbosim/src/app/components/routeedit/routeedit.component.ts" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/turbosim/src/app/routeit/routeit.component.css" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/turbosim/src/app/routeit/routeit.component.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/turbosim/src/app/routeit/routeit.component.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/angular-cli.json" afterPath="$PROJECT_DIR$/turbosim/angular-cli.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/package.json" afterPath="$PROJECT_DIR$/turbosim/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/app.component.html" afterPath="$PROJECT_DIR$/turbosim/src/app/app.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/app.module.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html" afterPath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/components/mainview/mainview.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html" afterPath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts" afterPath="$PROJECT_DIR$/turbosim/src/app/components/simroutes/simroutes.component.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -511,7 +498,7 @@
       <workItem from="1488038605619" duration="13387000" />
       <workItem from="1489216503101" duration="8019000" />
       <workItem from="1489236304374" duration="4257000" />
-      <workItem from="1489249825999" duration="2340000" />
+      <workItem from="1489249825999" duration="2419000" />
     </task>
     <task id="LOCAL-00001" summary="finished alert view">
       <created>1484148443610</created>
@@ -604,11 +591,18 @@
       <option name="project" value="LOCAL" />
       <updated>1486854959640</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Added ability to edit all route params">
+      <created>1489253178425</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1489253178425</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="430905000" />
+    <option name="totallyTimeSpent" value="430984000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -660,7 +654,8 @@
     <MESSAGE value="New planner view" />
     <MESSAGE value="Sound added, Altitude buttons text changed" />
     <MESSAGE value="added different routes for scenarions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added different routes for scenarions" />
+    <MESSAGE value="Added ability to edit all route params" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added ability to edit all route params" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -895,6 +890,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
           <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
