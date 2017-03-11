@@ -1,0 +1,9 @@
+<div (click)="hide()" class="modal fade" tabindex="-1" [ngClass]="{'in': visibleAnimate}"
+     [ngStyle]="{'display': visible ? 'block' : 'none', 'opacity': visibleAnimate ? 1 : 0}">
+    <div class="container-fluid">
+        <div class="row" [ngStyle]="{'left':modalLeft, 'top':modalTop}" (click)="preventClose($event)">
+            <img class="myimg img-responsive" src="assets/helpscreen.jpg" alt="">
+        </div>
+    </div>
+    <button class="close-btn btn btn-primary" (click)="closeClicked()">Close</button>
+</div>

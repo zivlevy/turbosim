@@ -36,7 +36,6 @@ export class SimroutesComponent implements OnInit {
     }
 
     ngOnInit() {
-
         this.initScenarioaObserver();
         this.toAirport = {
             ICAO: "LLBG",
@@ -89,16 +88,19 @@ export class SimroutesComponent implements OnInit {
         this.routes = [];
         this.routesRealtime = [];
         this.simroutesService.getSimroutes(this.selectedScenario._id).subscribe((item) => {
-            if (item.isRealtime) {
-                this.routesRealtime.push(item);
-            } else {
-                this.routes.push(item);
-            }
-
+            this.routes.push(item);
         });
     }
 
     airportSelected(airport: Airport) {
+        if (this.routeInEdit>=0) {
+            if (this.whichAirport === 'takeoff') {
+                this.routeInEditInfo.toAirport = airport;
+            } else {
+                this.routeInEditInfo.landAirport = airport;
+            }
+            return;
+        }
         if (this.whichAirport === 'takeoff') {
             this.toAirport = airport;
         } else {
@@ -124,12 +126,7 @@ export class SimroutesComponent implements OnInit {
         route.scenario = this.selectedScenario._id;
         route.isRealtime = this.isRealtime;
         this.simroutesService.addSimroute(route).subscribe((item: any) => {
-            if (item.isRealtime) {
-                this.routesRealtime.push(item);
-            } else {
-                this.routes.push(item);
-            }
-
+            this.routes.push(item);
         },()=>{},
             ()=>{this.routes_Changed.emit(new Date());});
 
@@ -138,13 +135,7 @@ export class SimroutesComponent implements OnInit {
 
     deleteRoute(route: SimRoute, index) {
         this.simroutesService.deleteSimroute(route._id).subscribe((item: any) => {
-            if (item.isRealtime) {
-                this.routesRealtime.splice(index, 1);
-            } else {
                 this.routes.splice(index, 1);
-            }
-
-
         },()=>{},
             ()=>{this.routes_Changed.emit(new Date());});
     }
@@ -161,13 +152,10 @@ export class SimroutesComponent implements OnInit {
     }
 
     approvedEditRoute(route: SimRoute, index) {
+        console.log(this.routeInEditInfo)
         this.routeInEdit = -1;
         this.simroutesService.editSimroute(this.routeInEditInfo).subscribe((item: any) => {
-                if (item.isRealtime) {
-                    this.routesRealtime[index] = item;
-                } else {
-                    this.routes[index] = item;
-                }
+                this.routes[index] = item;
             },()=>{},
             ()=>{this.routes_Changed.emit(new Date());});
     }

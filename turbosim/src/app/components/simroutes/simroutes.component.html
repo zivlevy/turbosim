@@ -50,7 +50,7 @@
         <div id="bottom-pane">
             <div id="route-rows">
                 <div *ngFor="let route of routes ; let i = index">
-                    <div class="route-list" *ngIf="i!==routeInEdit">
+                    <div class="route-list" [ngClass]="{'row-realtime': route.isRealtime}" *ngIf="i!==routeInEdit">
                         <div class="route-list-row">{{route.toAirport.ICAO}}</div>
                         <div class="route-list-row">{{route.landAirport.ICAO}}</div>
                         <div class="route-list-row">{{route.altitude}}</div>
@@ -62,9 +62,9 @@
                         <div class="btn btn-sm btn-danger route-button" (click)="deleteRoute(route,i)">
                             <i class="fa fa-trash-o fa-lg"></i></div>
                     </div>
-                    <div class="route-list" *ngIf="i===routeInEdit">
-                        <div class="route-list-row">{{routeInEditInfo.toAirport.ICAO}}</div>
-                        <div class="route-list-row">{{routeInEditInfo.landAirport.ICAO}}</div>
+                    <div class="route-list"  *ngIf="i===routeInEdit">
+                        <div class="route-list-row" (click)="showModal($event,'takeoff' ,20,0)">{{routeInEditInfo.toAirport.ICAO}}</div>
+                        <div class="route-list-row" (click)="showModal($event,'landing' ,20,0)">{{routeInEditInfo.landAirport.ICAO}}</div>
                         <div id="alt-select-routeinedit" class="airport-name">
                             <select id="gotoaltitude-routeinedit" name="altitude"
                                     (change)="setAltitudeRouteInEdit($event)" [value]="routeInEditInfo.altitude">
@@ -80,30 +80,14 @@
                                 <option value="39000">39000</option>
                             </select>
                         </div>
-                        <div class="route-list-row">{{routeInEditInfo.isRealtime}}</div>
-
+                        <!--<div class="route-list-row">{{routeInEditInfo.isRealtime}}</div>-->
+                        <input class="roundedOne route-list-row" type="checkbox" [(ngModel)]="routeInEditInfo.isRealtime">
                         <div class="btn btn-sm btn-success route-button" (click)="approvedEditRoute(route,i)">
                             <i class="fa fa-check-square-o  fa-lg"></i></div>
 
                         <div class="btn btn-sm btn-warning route-button" (click)="cancelEditRoute(route,i)">
                             <i class="fa fa-ban fa-lg"></i></div>
-
-
                     </div>
-
-
-                </div>
-
-                <div class="route-list row-realtime" *ngFor="let route of routesRealtime ; let i = index">
-                    <div class="route-list-row ">{{route.toAirport.ICAO}}</div>
-                    <div class="route-list-row ">{{route.landAirport.ICAO}}</div>
-                    <div class="route-list-row ">{{route.altitude}}</div>
-                    <div class="route-list-row ">{{route.isRealtime}}</div>
-
-                    <div class="btn btn-sm btn-danger delete-button" (click)="deleteRoute(route,i)">
-                        <i class="fa fa-trash-o fa-lg"></i></div>
-
-
                 </div>
             </div>
         </div>

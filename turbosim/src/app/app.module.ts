@@ -25,7 +25,6 @@ import {SimroutesService} from "./services/simroutes.service";
 import {AboutComponent} from './components/about/about.component';
 import {PlannerComponent} from './components/planner/planner.component';
 import {MapButtonsComponent} from './components/map-buttons/map-buttons.component';
-import { RouteeditComponent } from './components/routeedit/routeedit.component';
 import {LoginComponent} from "./components/login/login.component";
 import {RegisterComponent} from "./components/register/register.component";
 import {LogoComponent} from "./components/logo/logo.component";
@@ -35,7 +34,8 @@ import {FlashMessagesModule} from 'angular2-flash-messages';
 import {Globals} from './globals';
 import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { HelpComponent } from './components/help/help.component';
+import { RouteitComponent } from './routeit/routeit.component';
 
 const routes: Routes = [
     {path: 'register', component: RegisterComponent},
@@ -57,11 +57,11 @@ const routes: Routes = [
         MapComponent,
         PlannerComponent,
         MapButtonsComponent,
-        RouteeditComponent,
         LoginComponent,
         RegisterComponent,
         LogoComponent,
-        DashboardComponent
+        HelpComponent,
+        RouteitComponent
     ],
     imports: [
         BrowserModule,

@@ -19,6 +19,7 @@ import {SimroutesService} from "../../services/simroutes.service";
 import {AboutComponent} from "../about/about.component";
 import {AirportService} from "../../services/airport.service";
 import {AuthService} from "../../services/auth.service";
+import {HelpComponent} from "../help/help.component";
 
 @Component({
     selector: 'app-mainview',
@@ -33,6 +34,7 @@ export class MainviewComponent implements OnInit ,OnDestroy{
     isEditRouteMode: boolean; //flag route edit mode
     @ViewChild(AirportPickerComponent) public readonly modal: AirportPickerComponent;
     @ViewChild(AboutComponent) public readonly about: AboutComponent;
+    @ViewChild(HelpComponent) public readonly help: HelpComponent;
     whichAirport: string; // which airport button was clicked
     toAirport: Airport;
     landAirport: Airport;
@@ -322,6 +324,12 @@ export class MainviewComponent implements OnInit ,OnDestroy{
         this.about.show(e.clientX - 250, e.clientY + 20);
     }
 
+    /*********************
+    * help clicked
+    *********************/
+    helpClicked (e) {
+        this.help.show();
+    }
     /***********************
      *  route
      **********************/
@@ -721,7 +729,7 @@ export class MainviewComponent implements OnInit ,OnDestroy{
 
         // calculate alerts
         let airplaneAltitudeLevel = this.airplane.currentAltitudeLevel();
-        if (airplaneAltitudeLevel > 0 && this.showAlert) {
+        if (airplaneAltitudeLevel >= 0 && this.showAlert) {
             let arrTurbelenceBelow: Map<string,Tile> = airplaneAltitudeLevel > 0 ? this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel - 1) : new Map();
             let arrTurbelenceAt: Map<string,Tile> = this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel);
             let arrTurbelenceAbove: Map<string,Tile> = airplaneAltitudeLevel < 4 ? this.mapService.getTurbulenceMapByAlt(airplaneAltitudeLevel + 1) : new Map();
