@@ -35,7 +35,6 @@ import {Globals} from './globals';
 import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 import { HelpComponent } from './components/help/help.component';
-import { RouteitComponent } from './routeit/routeit.component';
 
 const routes: Routes = [
     {path: 'register', component: RegisterComponent},
@@ -60,8 +59,7 @@ const routes: Routes = [
         LoginComponent,
         RegisterComponent,
         LogoComponent,
-        HelpComponent,
-        RouteitComponent
+        HelpComponent
     ],
     imports: [
         BrowserModule,
