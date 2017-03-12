@@ -104,27 +104,30 @@
     text-align: center;
 }
 
-.scenario-picker {
-    color: white;
+.bottom-left-pane{
     display: flex;
-    margin-top: 15px;
-    margin-left: 25px;
+}
+.scenario-picker {
+    order: 1;
+    color: white;
+    margin-top: 2px;
+    margin-left: 2px;
     /*width: 200px;*/
 }
 
 .scenario-select {
-    margin-left: 20px;
     color: white;
     background-color: rgb(38, 44, 55);
 }
 
 #alt-select {
-    margin-top: 15px;
+    order: 2;
+    margin: 2px 0 0 10px;
     color: whitesmoke;
 }
 
 #gotoaltitude {
-    margin-left: 20px;
+    width: 65px;
     color: white;
     background-color: rgb(38, 44, 55);
 }
@@ -177,5 +180,17 @@
 
 .contorol-button:hover {
     color: gray;
+}
+
+.color-palate {
+    display: flex;
+    color: whitesmoke;
+}
+.color-palete-item {
+    font-size: 8px;
+}
+.color-img{
+    margin-top: 5px;
+    height: 40px;
 }
 
