@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  turboAreaServer:'http://localhost:3000/'
+  turboAreaServer:'http://localhost/'
 };
