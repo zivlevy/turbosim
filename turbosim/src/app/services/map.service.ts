@@ -32,7 +32,7 @@ export class MapService {
 
 
         //init map info
-        this.mapLayerURL = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+        this.mapLayerURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 
         // this.subscription = this.getTurboAreas().subscribe((item:any) => {

@@ -187,7 +187,7 @@ export class MainviewComponent implements OnInit ,OnDestroy{
 
         // let osmUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
         const osmUrl = this.mapService.mapLayerURL;
-        const osmAttrib = 'Map data © <a href="http://openstreetmap.org">OpenStreetMap</a> contributors';
+        const osmAttrib = 'Map data © <a href="https://openstreetmap.org">OpenStreetMap</a> contributors';
         const osm = L.tileLayer(osmUrl, {minZoom: 3, maxZoom: 7, attribution: osmAttrib});
 
         // start the map in South-East England
