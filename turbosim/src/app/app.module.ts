@@ -35,6 +35,12 @@ import {Globals} from './globals';
 import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 import { HelpComponent } from './components/help/help.component';
+//prineng
+import {DialogModule} from 'primeng/components/dialog/dialog';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { AlertComponent } from './components/alert/alert.component';
+import { RadarComponent } from './components/radar/radar.component';
+
 
 const routes: Routes = [
     {path: 'register', component: RegisterComponent},
@@ -59,17 +65,22 @@ const routes: Routes = [
         LoginComponent,
         RegisterComponent,
         LogoComponent,
-        HelpComponent
+        HelpComponent,
+        AlertComponent,
+        RadarComponent
+
     ],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         FormsModule,
         HttpModule,
         RouterModule.forRoot(routes, {useHash: true, initialNavigation: false}),
         JsonpModule,
         ReactiveFormsModule,
         ModalModule,
-        FlashMessagesModule
+        FlashMessagesModule,
+        DialogModule
     ],
     providers: [
         MapService,

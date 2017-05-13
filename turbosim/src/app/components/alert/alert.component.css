@@ -1,0 +1,40 @@
+.modal {
+    background: rgba(0,0,0,0.6);
+}
+
+.moveable{
+    position:absolute;
+    width:600px;
+    height:600px;
+    background-color: rgb(85,85,85);
+
+}
+
+.moveable {
+    position: relative;
+    /*background: #435a69;*/
+    border: 1px solid white;
+}
+/*.moveable:after, .moveable:before {*/
+    /*bottom: 100%;*/
+    /*left: 82%;*/
+    /*border: solid transparent;*/
+    /*content: " ";*/
+    /*height: 0;*/
+    /*width: 0;*/
+    /*position: absolute;*/
+    /*pointer-events: none;*/
+/*}*/
+
+/*.moveable:after {*/
+    /*border-color: rgba(67, 90, 105, 0);*/
+    /*border-bottom-color: white;*/
+    /*border-width: 10px;*/
+    /*margin-left: -10px;*/
+/*}*/
+/*.moveable:before {*/
+    /*border-color: rgba(147, 171, 186, 0);*/
+    /*border-bottom-color: white;*/
+    /*border-width: 11px;*/
+    /*margin-left: -11px;*/
+/*}*/

@@ -71,6 +71,11 @@
     height: 44px;
     width: 44px;
 }
+
+.bottom-button {
+    position: absolute;
+    bottom: 20px;
+}
 .top-pane-left {
     display: flex;
 }

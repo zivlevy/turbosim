@@ -20,6 +20,7 @@ import {AboutComponent} from "../about/about.component";
 import {AirportService} from "../../services/airport.service";
 import {AuthService} from "../../services/auth.service";
 import {HelpComponent} from "../help/help.component";
+import {AlertComponent} from "../alert/alert.component";
 
 @Component({
     selector: 'app-mainview',
@@ -34,6 +35,10 @@ export class MainviewComponent implements OnInit ,OnDestroy{
     isEditRouteMode: boolean; //flag route edit mode
     @ViewChild(AirportPickerComponent) public readonly modal: AirportPickerComponent;
     @ViewChild(AboutComponent) public readonly about: AboutComponent;
+    @ViewChild('cloudAlert') public readonly cloudAlert: AlertComponent;
+    @ViewChild('lightningAlert') public readonly lightningAlert: AlertComponent;
+    @ViewChild('freezeAlert') public readonly freezeAlert: AlertComponent;
+    @ViewChild('windAlert') public readonly windAlert: AlertComponent;
     @ViewChild(HelpComponent) public readonly help: HelpComponent;
     whichAirport: string; // which airport button was clicked
     toAirport: Airport;
@@ -325,6 +330,22 @@ export class MainviewComponent implements OnInit ,OnDestroy{
     }
 
     /*********************
+    alerrts
+    *********************/
+    alertClicked(alert:string){
+        switch (alert){
+            case ('cloud'):
+                this.cloudAlert.show(window.innerWidth /2 - 300, window.innerHeight /2 - 300);
+                break;
+            case ('lightning'):
+                console.log('here')
+                this.lightningAlert.show(window.innerWidth /2 - 300, window.innerHeight /2 - 300);
+                break;
+
+        }
+
+    }
+    /*********************
     * help clicked
     *********************/
     helpClicked (e) {
@@ -554,9 +575,9 @@ export class MainviewComponent implements OnInit ,OnDestroy{
                 .attr("height", proj.unitsPerMeter * size)
                 .attr("transform", (d) => {
                     return 'translate (-' + proj.unitsPerMeter * size / 2 + ',-' + proj.unitsPerMeter * size / 2 + ') rotate(' + d.azimuth + ',' + (proj.latLngToLayerPoint(d.location).x + proj.unitsPerMeter * size / 2) + ',' + (proj.latLngToLayerPoint(d.location).y + proj.unitsPerMeter * size / 2) + ')'
-
                 })
-                .attr("xlink:href", "/assets/airplane.svg")
+                 // .attr("xlink:href", "/assets/airplane@2x.png")
+                .attr("xlink:xlink:href", 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4iICJodHRwOi8vd3d3LnczLm9yZy9HcmFwaGljcy9TVkcvMS4xL0RURC9zdmcxMS5kdGQiPgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHZlcnNpb249IjEuMSIgaWQ9IkNhcGFfMSIgeD0iMHB4IiB5PSIwcHgiIHdpZHRoPSI1MTJweCIgaGVpZ2h0PSI1MTJweCIgdmlld0JveD0iMCAwIDUxMCA1MTAiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDUxMCA1MTA7IiB4bWw6c3BhY2U9InByZXNlcnZlIj4KPGc+Cgk8ZyBpZD0iYWlycGxhbmVtb2RlLW9uIj4KCQk8cGF0aCBkPSJNNDk3LjI1LDM1N3YtNTFsLTIwNC0xMjcuNVYzOC4yNUMyOTMuMjUsMTcuODUsMjc1LjQsMCwyNTUsMGMtMjAuNCwwLTM4LjI1LDE3Ljg1LTM4LjI1LDM4LjI1VjE3OC41TDEyLjc1LDMwNnY1MSAgICBsMjA0LTYzLjc1VjQzMy41bC01MSwzOC4yNVY1MTBMMjU1LDQ4NC41bDg5LjI1LDI1LjV2LTM4LjI1bC01MS0zOC4yNVYyOTMuMjVMNDk3LjI1LDM1N3oiIGZpbGw9IiMxMTFjOTkiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K')
                 .attr("x", (d) => {
                     return proj.latLngToLayerPoint(d.location).x;
                 })
@@ -764,5 +785,10 @@ export class MainviewComponent implements OnInit ,OnDestroy{
     gotoEditor(){
         this.router.navigate(['/planner']);
     }
+
+    /*********************
+    info operations
+    *********************/
+
 }
 

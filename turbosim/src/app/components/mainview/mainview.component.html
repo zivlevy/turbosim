@@ -5,6 +5,24 @@
 <app-airport-picker (airportSelected)="airportSelected($event)"></app-airport-picker>
 <about (alertLevelSelected)="alertLevelSelected($event)" (alertShowChanged)="alertShowChanged($event)"></about>
 <help></help>
+
+
+<alert #cloudAlert>
+    <radar #radar [reporttype]="'cloud'"></radar>
+</alert>
+
+<alert #lightningAlert>
+    <radar #radar [reporttype]="'lightning'"></radar>
+</alert>
+
+<!--<alert #freezeAlert>-->
+<!--<div><h1>Freeze</h1></div>-->
+<!--</alert>-->
+
+<!--<alert #windAlert>-->
+<!--<div><h1>Wind</h1></div>-->
+<!--</alert>-->
+
 <div id="mapid"></div>
 <!--Top Pane-->
 <div id="toppane">
@@ -24,6 +42,7 @@
             <div class="pull-right top-pane-right">
                 <div *ngIf="authService.user.role==='admin'" class="toppane-button toppane-button-right"
                      (click)="gotoEditor()"><span>Editor</span></div>
+
                 <img class="toppane-button" src="assets/gear-7_white.png" (click)="aboutClicked($event)">
                 <div class="toppane-button toppane-button-right" (click)="helpClicked($event)"><span>Help</span></div>
             </div>
@@ -37,10 +56,14 @@
     <div id="rightpane_buttons">
         <img id="routeedit-off" *ngIf="!isEditRouteMode" class="leftpane-button" src="assets/route_off.png">
         <img id="routeedit-on" *ngIf="isEditRouteMode" class="leftpane-button" src="assets/route_on.png">
-
-
     </div>
 
+    <div id="left_bottom_buttons" class="bottom-button">
+        <img class="leftpane-button" src="assets/cloud-icon.png" (click)="alertClicked('cloud')">
+        <img class="leftpane-button " src="assets/lightning-icon.png" (click)="alertClicked('lightning')">
+        <img class="leftpane-button " src="assets/freeze-icon.png">
+        <img class="leftpane-button " src="assets/wind-icon.png">
+    </div>
 </div>
 
 <!--Right pane-->

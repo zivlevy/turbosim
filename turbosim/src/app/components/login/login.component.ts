@@ -17,6 +17,9 @@ export class LoginComponent implements OnInit {
     }
 
     ngOnInit() {
+        //TODO - remve
+        this.user.username = 'z';
+        this.user.password='z';
     }
 
     onLoginSubmit() {

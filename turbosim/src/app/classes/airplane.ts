@@ -37,7 +37,7 @@ export class Airplane {
         this.move();
     }
 
-    currentAltitudeLevel() {
+    currentAltitudeLevel() : number {
         return (Math.floor((this.currentAltitude - 30000) / 2000));
     }
 

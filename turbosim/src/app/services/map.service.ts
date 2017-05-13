@@ -26,7 +26,7 @@ export class MapService {
         // private instance variable to hold base url
 
         this.baseUrl = environment.turboAreaServer + 'turboareas';// 'http://localhost:3000/turboareas';
-        // this.baseUrl = 'http://130.211.172.31:3000/turboareas';
+        // this.baseUrl = 'http://localhost:3000/turboareas';
         this.gju = require('geojson-utils');
         this.turboAreas = [];
 
