@@ -14,7 +14,6 @@ import {GeoHelperService} from './services/geo-helper.service';
 import {SimulatorService} from './services/simulator.service';
 import {ScenarioService} from "./services/scenario.service";
 
-import {ModalModule} from 'ng2-modal';
 import {MainviewComponent} from './components/mainview/mainview.component';
 import {ToggleComponent} from './components/toggle/toggle.component';
 import {AirportPickerComponent} from './components/airport-picker/airport-picker.component';
@@ -30,16 +29,19 @@ import {RegisterComponent} from "./components/register/register.component";
 import {LogoComponent} from "./components/logo/logo.component";
 import {AuthService} from './services/auth.service';
 import {ValidateService} from './services/validate.service';
-import {FlashMessagesModule} from 'angular2-flash-messages';
+import {FlashMessagesModule} from 'angular2-flash-messages/module';
 import {Globals} from './globals';
 import {AuthGuard} from './guards/auth.guard';
 import {AdminGuard} from './guards/admin.guard';
 import { HelpComponent } from './components/help/help.component';
 //prineng
-import {DialogModule} from 'primeng/components/dialog/dialog';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {SelectButtonModule} from 'primeng/components/selectbutton/selectbutton';
+import {ButtonModule} from 'primeng/components/button/button';
+//alert input
 import { AlertComponent } from './components/alert/alert.component';
 import { RadarComponent } from './components/radar/radar.component';
+import { WeatherReportComponent } from './components/weather-report/weather-report.component';
 
 
 const routes: Routes = [
@@ -67,7 +69,8 @@ const routes: Routes = [
         LogoComponent,
         HelpComponent,
         AlertComponent,
-        RadarComponent
+        RadarComponent,
+        WeatherReportComponent
 
     ],
     imports: [
@@ -78,9 +81,9 @@ const routes: Routes = [
         RouterModule.forRoot(routes, {useHash: true, initialNavigation: false}),
         JsonpModule,
         ReactiveFormsModule,
-        ModalModule,
         FlashMessagesModule,
-        DialogModule
+        SelectButtonModule,
+        ButtonModule
     ],
     providers: [
         MapService,

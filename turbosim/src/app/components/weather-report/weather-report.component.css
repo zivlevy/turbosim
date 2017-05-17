@@ -1,0 +1,50 @@
+.modal {
+    /*background: rgba(0,0,0,0.6);*/
+}
+
+.moveable{
+    position:absolute;
+    width:100px;
+    height:100px;
+    background-color: rgb(85,85,85);
+
+}
+
+.moveable {
+    position: relative;
+    /*background: #435a69;*/
+    border: 1px solid white;
+}
+.moveable:after, .moveable:before {
+    top: 50%;
+    right: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.moveable:after {
+    border-color: rgba(67, 90, 105, 0);
+    border-right-color: white;
+    border-width: 10px;
+    margin-top: -10px;
+}
+.moveable:before {
+    border-color: rgba(147, 171, 186, 0);
+    border-right-color: white;
+    border-width: 11px;
+    margin-top: -11px;
+}
+
+#reportButton {
+    position: relative;
+    top: calc(50% - 40px);
+    left: calc(50% - 40px);
+    width:80px;
+    height: 80px;
+    border-radius: 40px;
+
+}

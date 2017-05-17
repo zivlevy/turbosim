@@ -2,7 +2,7 @@
     position: absolute;
     top:0;
     left:0;
-    font-family: 'FontAwesome';
+
 }
 
 #airplane{
@@ -11,6 +11,29 @@
     left:0;
 }
 
-p {
-    font-family: FontAwesome;
+#select-alt-buttons {
+    position: absolute;
+    left:100px;
+    width:400px;
+
+}
+
+
+/* selected button class*/
+
+.selectButton {
+    position:relative;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width:504px;
+    left:48px;
+
+}
+
+.ui-c {
+    width:40px;
+}
+.wrapper {
+    display: block;
+    text-align: center;
 }

@@ -1,17 +1,27 @@
-import {Component, OnInit, ElementRef, ViewChild, Input, OnChanges,AfterViewInit} from '@angular/core';
+import {
+    Component, OnInit, ElementRef, ViewChild, Input, OnChanges, AfterViewInit,
+    ViewEncapsulation, EventEmitter, Output
+} from '@angular/core';
 import {GeoHelperService} from "../../services/geo-helper.service";
 import 'fabric';
+import {SelectItem} from "primeng/primeng";
+import {MapService} from "../../services/map.service";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {Subject} from "rxjs/Subject";
+import {Observable} from "rxjs/Observable";
 declare const fabric: any;
 
 @Component({
     selector: 'radar',
     templateUrl: './radar.component.html',
-    styleUrls: ['./radar.component.css']
+    styleUrls: ['./radar.component.css'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class RadarComponent implements OnInit,OnChanges,AfterViewInit {
-    @Input() aircraftLocation: { lat: number, lng: number, heading: number } = {lat: 0, lng: 0, heading: 0};
+    @Input() aircraftLocation: { lat: number, lng: number, heading: number, altitude:number } = {lat: 0, lng: 0, heading: 0, altitude:32};
     @Input() reporttype:string ;
     @ViewChild('fabric') fabricRef: ElementRef;
+    submited$:Subject<null>;
     imgURL:string;
     centerX = 300;
     centerY = 300;
@@ -20,14 +30,26 @@ export class RadarComponent implements OnInit,OnChanges,AfterViewInit {
 
     fabricCanvas: any;
 
-    constructor(private geoService: GeoHelperService) {
+    altitudes: SelectItem[];
+    selectedAltitude: number;
+    constructor(
+        private geoService: GeoHelperService,
+        private mapService:MapService
+    ) {
+        //init altitude select buttons
+        this.altitudes = [];
+        for (let i:number=29; i < 41 ; i++)
+        this.altitudes.push({label:'' + i , value:i});
+
+        this.submited$= new Subject();
+
 
     }
 ngAfterViewInit(){
     if (this.reporttype==='cloud') this.imgURL='/assets/cloud-icon.png';
     if (this.reporttype==='lightning') this.imgURL='/assets/lightning-icon.png';
     this.fabricRef.nativeElement.width = "600";
-    this.fabricRef.nativeElement.height = "600";
+    this.fabricRef.nativeElement.height = "400";
     this.fabricCanvas = new fabric.Canvas(this.reporttype);
     this.fabricCanvas.on('mouse:down', (options)=> {
         if (options.target.get('id') !== 'alert-item') {
@@ -175,8 +197,10 @@ ngAfterViewInit(){
         }
     }
 
-    reset(){
-        console.log('reset' + this.reporttype);
+    init(aircraftLocation){
+        console.log(aircraftLocation);
+        this.aircraftLocation = aircraftLocation;
+        this.selectedAltitude=aircraftLocation.altitude;
         let arr  =this.fabricCanvas.getObjects();
         let toremove =[];
         arr.forEach(item=>{
@@ -185,5 +209,62 @@ ngAfterViewInit(){
         toremove.forEach(item=>{
             this.fabricCanvas.remove(item);
         })
+
+    }
+
+    /*********************
+    API
+    *********************/
+    submitReport(){
+        let arr  =this.fabricCanvas.getObjects();
+        let reportedItems =[];
+        arr.forEach(item=>{
+            if (item.id === 'alert-item') {
+                let wp  = this.getWPFromXY(item.left,item.top);
+                reportedItems.push(item);
+                if (this.reporttype==='cloud'){
+                    this.mapService.reportCloud(wp.lat,wp.lng,this.selectedAltitude);
+                } else  if (this.reporttype==='lightning'){
+                    this.mapService.reportLighning(wp.lat,wp.lng,this.selectedAltitude);
+                }
+
+            }
+        })
+        this.submited$.next();
+
+
+    }
+
+    getWPFromXY (x:number,y:number) {
+
+        const deltaX = this.centerX - x;
+        const deltaY = this.centerY - y;
+        const rad = Math.atan2(deltaY, deltaX); // In radians
+        let deg = rad * (180 / Math.PI);
+
+        //make it angle relative to aircraft nose
+        if (deg >= 0) {
+            deg = deg - 90;
+        } else if (deg < 0 && deg > -90) {
+            deg = -90 + deg;
+        } else {
+            deg = 270 + deg
+        }
+
+
+        //calculate the click distance in miles from aircraft
+        const clickedR = (Math.sqrt(deltaY * deltaY + deltaX * deltaX) / this.scale);
+        console.log(clickedR)
+
+        const location = {lat: this.aircraftLocation.lat, lng: this.aircraftLocation.lng};
+        let wp = this.geoService.newLocationFromPointWithDistanceBearing(location, clickedR, this.aircraftLocation.heading + deg)
+        return wp;
+    }
+
+    /*********************
+
+    *********************/
+    getSubmitted():Observable<null>{
+        return this.submited$.asObservable();
     }
 }

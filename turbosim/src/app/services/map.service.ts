@@ -8,6 +8,8 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {isUndefined} from "util";
 import {GeoHelperService} from "./geo-helper.service";
+import {Cloud, CrossWind, Freeze, Lightning} from "../classes/weatherInfo";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class MapService {
@@ -21,6 +23,21 @@ export class MapService {
     //turbulence
     myTurbulence: Array<Map<string,Tile>> =[];
     myTurbulence_temp: Array<Map<string,Tile>> =[];
+
+
+    //weather info
+    myClouds:Map<string,Cloud> = new Map();
+    myCloudList: BehaviorSubject<Map<string,Cloud>> = new BehaviorSubject(new Map());
+
+    myLightnings:Map<string,Lightning> = new Map();
+    myLightningsList: BehaviorSubject<Map<string,Lightning>> = new BehaviorSubject(new Map());
+
+    myFreeze:Map<string,Freeze> = new Map();
+    myFreezeList: BehaviorSubject<Map<string,Freeze>> = new BehaviorSubject(new Map());
+
+    myCrossWind:Map<string,CrossWind> = new Map();
+    myCrossWindList: BehaviorSubject<Map<string,CrossWind>> = new BehaviorSubject(new Map());
+
 
     constructor(private http: Http, private geoHelperService: GeoHelperService) {
         // private instance variable to hold base url
@@ -234,6 +251,66 @@ export class MapService {
             })
             .catch((error: any) => Observable.throw(error.json().error || 'Server error')); //...errors if any
     }
+
+
+    /*********************
+    Weather  info
+    *********************/
+    reportCloud(lat:number,lng:number,tops:number) {
+        const cloud = new Cloud();
+        cloud.tileX=this.geoHelperService.long2tile(lng, 11);
+        cloud.tileY = this.geoHelperService.lat2tile(lat, 11);
+        cloud.height = tops;
+        this.myClouds.set(cloud.tileX +'/'+ cloud.tileY , cloud);
+        this.myCloudList.next(this.myClouds);
+        console.log(this.myClouds)
+    }
+
+    getCloudInfo(){
+        return this.myCloudList.asObservable();
+    }
+
+    reportLighning(lat:number,lng:number,altitude:number) {
+    const lightning = new Lightning();
+    lightning.tileX=this.geoHelperService.long2tile(lng, 11);
+    lightning.tileY = this.geoHelperService.lat2tile(lat, 11);
+    lightning.height = altitude;
+    this.myLightnings.set(lightning.tileX +'/'+ lightning.tileY , lightning);
+    this.myLightningsList.next(this.myLightnings);
+    console.log(this.myLightnings)
+}
+    getLightningInfo(){
+        return this.myLightningsList.asObservable();
+    }
+
+    reportFreeze(lat:number,lng:number,altitude:number) {
+        console.log(lat)
+        const freeze = new Freeze();
+        freeze.tileX=this.geoHelperService.long2tile(lng, 11);
+        freeze.tileY = this.geoHelperService.lat2tile(lat, 11);
+        freeze.height = altitude;
+        this.myFreeze.set(freeze.tileX +'/'+ freeze.tileY , freeze);
+        this.myFreezeList.next(this.myFreeze);
+    }
+    getFreezeInfo(){
+        return this.myFreezeList.asObservable();
+    }
+
+
+    reportCrosWind(lat:number,lng:number,altitude:number) {
+        const wind = new CrossWind();
+        wind.tileX=this.geoHelperService.long2tile(lng, 11);
+        wind.tileY = this.geoHelperService.lat2tile(lat, 11);
+        wind.height = altitude;
+        this.myCrossWind.set(wind.tileX +'/'+ wind.tileY , wind);
+        this.myCrossWindList.next(this.myCrossWind);
+    }
+    getCrossWindInfo(){
+        return this.myCrossWindList.asObservable();
+    }
+
+
+
 }
 
 export class Tile {

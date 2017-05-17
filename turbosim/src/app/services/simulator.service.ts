@@ -7,7 +7,7 @@ export class SimulatorService {
     simSpeed: number;
     simTick: Rx.Subject<any>;
     simdata :{isPause:boolean} = {isPause:true};
-    todos :number[] = [1,2,3,4];
+    // todos :number[] = [1,2,3,4];
 
     private static instance: SimulatorService = null;
 
@@ -33,9 +33,9 @@ export class SimulatorService {
         return  SimulatorService.instance;
     }
 
-    setNumber (num:number){
-        this.todos.push (num);
-    }
+    // setNumber (num:number){
+    //     this.todos.push (num);
+    // }
     toggleSimulatorPause(){
         this.simdata.isPause = !this.simdata.isPause;
 

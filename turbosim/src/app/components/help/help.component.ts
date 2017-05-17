@@ -7,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelpComponent implements OnInit {
   public visible = false;
-  private visibleAnimate = false;
-  private modalLeft: string;
-  private modalTop: string;
+   visibleAnimate = false;
+   modalLeft: string;
+   modalTop: string;
 
 
 

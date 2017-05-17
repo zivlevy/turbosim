@@ -14,9 +14,9 @@ export class AirportPickerComponent implements OnInit {
   filteredAirports: Array<Airport>;
 
   public visible = false;
-  private visibleAnimate = false;
-  private modalLeft :string;
-  private modalTop:string;
+   visibleAnimate = false;
+   modalLeft :string;
+   modalTop:string;
 
   @Output() airportSelected = new EventEmitter();
 

@@ -15,7 +15,7 @@ export class Airplane {
     currentwaypoint: number; //the waypoint the airplane is headed to
 
     distancePerTick: number = 1;
-    counter: number = 0;
+    // counter: number = 0;
     isLanded: boolean = false;
     geoHelperService: GeoHelperService;
     simulatorService: SimulatorService;

@@ -7,9 +7,9 @@ import {Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 })
 export class AboutComponent implements OnInit {
     public visible = false;
-    private visibleAnimate = false;
-    private modalLeft: string;
-    private modalTop: string;
+     visibleAnimate = false;
+     modalLeft: string;
+     modalTop: string;
 
 
     @Input() isMedium: boolean = true;

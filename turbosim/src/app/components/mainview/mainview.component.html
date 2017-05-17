@@ -7,21 +7,24 @@
 <help></help>
 
 
-<alert #cloudAlert>
+<alert #cloudAlert [lat]="airplane.currentPosition.lat" [lng]="airplane.currentPosition.lng"
+       [altitude]="airplane.currentAltitude" [heading]="airplane.currentAzimuth">
     <radar #radar [reporttype]="'cloud'"></radar>
 </alert>
 
-<alert #lightningAlert>
+<alert #lightningAlert [lat]="airplane.currentPosition.lat" [lng]="airplane.currentPosition.lng"
+       [altitude]="airplane.currentAltitude" [heading]="airplane.currentAzimuth">
     <radar #radar [reporttype]="'lightning'"></radar>
 </alert>
 
-<!--<alert #freezeAlert>-->
-<!--<div><h1>Freeze</h1></div>-->
-<!--</alert>-->
-
+<weather-report #freezeAlert [reporttype]="'freeze'" [aircraftLocation]="{lat:airplane.currentPosition.lat, lng:airplane.currentPosition.lng,
+                altitude:airplane.currentAltitude ,heading:airplane.currentAzimuth}"></weather-report>
+<weather-report #windAlert [reporttype]="'wind'" [aircraftLocation]="{lat:airplane.currentPosition.lat, lng:airplane.currentPosition.lng,
+                altitude:airplane.currentAltitude ,heading:airplane.currentAzimuth}"></weather-report>
 <!--<alert #windAlert>-->
 <!--<div><h1>Wind</h1></div>-->
 <!--</alert>-->
+
 
 <div id="mapid"></div>
 <!--Top Pane-->
@@ -58,16 +61,17 @@
         <img id="routeedit-on" *ngIf="isEditRouteMode" class="leftpane-button" src="assets/route_on.png">
     </div>
 
-    <div id="left_bottom_buttons" class="bottom-button">
-        <img class="leftpane-button" src="assets/cloud-icon.png" (click)="alertClicked('cloud')">
-        <img class="leftpane-button " src="assets/lightning-icon.png" (click)="alertClicked('lightning')">
-        <img class="leftpane-button " src="assets/freeze-icon.png">
-        <img class="leftpane-button " src="assets/wind-icon.png">
+    <div id="left_bottom_buttons" class="bottom-button" *ngIf="airplane.currentAltitude>29000">
+        <img class="leftpane-button" src="assets/cloud-icon.png" (click)="alertClicked('cloud',$event)">
+        <img class="leftpane-button " src="assets/lightning-icon.png" (click)="alertClicked('lightning',$event)">
+        <img class="leftpane-button " src="assets/freeze-icon.png" (click)="alertClicked('freeze',$event)">
+        <img class="leftpane-button " src="assets/wind-icon.png" (click)="alertClicked('wind',$event)">
     </div>
 </div>
 
 <!--Right pane-->
 <div id="rightpane">
+
     <img id="airplane-from" class="rightpane-button" src="assets/to@2x.png" (click)="showModal($event,'takeoff')">
     <div class="airport-name" (click)="showModal($event,'takeoff')">{{toAirport.ICAO}}</div>
     <img id="swap-id" class="rightpane-button" src="assets/swap.png" (click)="swapAirports()">
@@ -83,7 +87,7 @@
         <div class="col-xs-4 bottom-left-pane">
             <div class="scenario-picker">
                 <div>Scenario</div>
-                <div *ngIf="!isEditTurboArea">
+                <div>
                     <select class="scenario-select" [(ngModel)]="selectedScenario" (change)="scenarioChanged()"
                             id="scenario" name="scenario">
                         <option [ngValue]="scenario" *ngFor="let scenario of arrScenarios">{{scenario.name}}</option>
