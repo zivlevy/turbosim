@@ -61,7 +61,7 @@
         <img id="routeedit-on" *ngIf="isEditRouteMode" class="leftpane-button" src="assets/route_on.png">
     </div>
 
-    <div id="left_bottom_buttons" class="bottom-button" *ngIf="airplane.currentAltitude>29000">
+    <div id="left_bottom_buttons" class="bottom-button" *ngIf="airplane.currentAltitude>10000">
         <img class="leftpane-button" src="assets/cloud-icon.png" (click)="alertClicked('cloud',$event)">
         <img class="leftpane-button " src="assets/lightning-icon.png" (click)="alertClicked('lightning',$event)">
         <img class="leftpane-button " src="assets/freeze-icon.png" (click)="alertClicked('freeze',$event)">
@@ -123,7 +123,7 @@
 
                 <div class="contorol-button">x{{simSpeed}}</div>
                 <div class="contorol-button" (click)="simFast()"><i class="fa fa-forward fa-1x"></i></div>
-
+                <div class="contorol-button" (click)="resetWeather()"><i class="fa fa-cloud-download fa-1x"></i></div>
             </div>
         </div>
         <div class="col-xs-4">

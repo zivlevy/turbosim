@@ -32,6 +32,9 @@ export class RadarComponent implements OnInit,OnChanges,AfterViewInit {
 
     altitudes: SelectItem[];
     selectedAltitude: number;
+
+    isDeleteMode:boolean = false;
+
     constructor(
         private geoService: GeoHelperService,
         private mapService:MapService
@@ -49,7 +52,7 @@ ngAfterViewInit(){
     if (this.reporttype==='cloud') this.imgURL='/assets/cloud-icon.png';
     if (this.reporttype==='lightning') this.imgURL='/assets/lightning-icon.png';
     this.fabricRef.nativeElement.width = "600";
-    this.fabricRef.nativeElement.height = "400";
+    this.fabricRef.nativeElement.height = "380";
     this.fabricCanvas = new fabric.Canvas(this.reporttype);
     this.fabricCanvas.on('mouse:down', (options)=> {
         if (options.target.get('id') !== 'alert-item') {
@@ -159,7 +162,7 @@ ngAfterViewInit(){
         }
     }
     canvasClicked(e) {
-        console.log(e)
+        // console.log(e)
         const deltaX = this.centerX - e.offsetX;
         const deltaY = this.centerY - e.offsetY;
         const rad = Math.atan2(deltaY, deltaX); // In radians
@@ -195,6 +198,7 @@ ngAfterViewInit(){
                 this.fabricCanvas.add(oImg);
             });
         }
+
     }
 
     init(aircraftLocation){
@@ -211,6 +215,7 @@ ngAfterViewInit(){
         })
 
     }
+
 
     /*********************
     API
@@ -262,9 +267,10 @@ ngAfterViewInit(){
     }
 
     /*********************
-
+    user actions
     *********************/
     getSubmitted():Observable<null>{
         return this.submited$.asObservable();
     }
+
 }

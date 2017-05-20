@@ -309,6 +309,19 @@ export class MapService {
         return this.myCrossWindList.asObservable();
     }
 
+    // reset weather
+    resetWeather(){
+        this.myCrossWind=new Map();
+        this.myCrossWindList.next(this.myCrossWind);
+        this.myFreeze=new Map();
+        this.myFreezeList.next(this.myFreeze);
+        this.myLightnings=new Map();
+        this.myLightningsList.next(this.myLightnings);
+        this.myClouds=new Map();
+        this.myCloudList.next(this.myClouds);
+
+    }
+
 
 
 }

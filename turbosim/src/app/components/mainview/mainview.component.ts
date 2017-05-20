@@ -346,6 +346,11 @@ export class MainviewComponent implements OnInit, OnDestroy {
         this.initRoute();
         this.isNeedRedraw = true;
     }
+    resetWeather(){
+        this.mapService.resetWeather();
+        this.redrawAll();
+    }
+
 
     /***********************
      *  about clicked
@@ -761,6 +766,25 @@ export class MainviewComponent implements OnInit, OnDestroy {
                     let latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
                     return proj.latLngToLayerPoint(latLng).y;
                 })
+            const zoomLevel = this.map.getZoom();
+            if (zoomLevel>6){
+                lines.enter().append("text")
+                    .attr("width", proj.unitsPerMeter * size)
+                    .attr("height", proj.unitsPerMeter * size)
+                    .attr("transform", (d) => {
+                        return 'translate (-' + (proj.unitsPerMeter * size / 2 -2)+ ',-' + proj.unitsPerMeter * size / 2 + ')'
+                    })
+                    .text((d)=>{return d.height;})
+                    .attr("x", (d) => {
+                        let latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
+                        return proj.latLngToLayerPoint(latLng).x;
+                    })
+                    .attr("y", (d) => {
+                        let latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
+                        return proj.latLngToLayerPoint(latLng).y;
+                    })
+            }
+
         })
         this.cloudInfoLayer.addTo(this.map);
     }
@@ -792,7 +816,7 @@ export class MainviewComponent implements OnInit, OnDestroy {
                 .attr("transform", (d) => {
                     return 'translate (-' + proj.unitsPerMeter * size / 2 + ',-' + proj.unitsPerMeter * size / 2 + ')'
                 })
-                .attr("xlink:xlink:href", 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAByFBMVEX////suhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhbsuhZxdV7VAAAAl3RSTlMAAQIDBQYHCAkKCwwODxAREhMUGhscHiAhIiUmJygpKiwuMTIzODw9Pj9AQkNFRkdMTU9RUlNUV1laXF1eX2dpamtsb3J0dXZ3eHl6gYOEhoeKjJCRkpOUmZyen6ChoqmrrK2usbS3uLm6u8LDxMXGx8jKzM3R09TV1tfZ293e3+Dj5OXm5+jp6uvw8fLz9PX29/n6+/z+BHwIVAAAAqBJREFUeAHF2/lXjHEUx/FPk8HURGYKWQwVkX2XfVFZkkWWJDtlySJLlpJFNROG0Tzff9fBudJzNPecMff5vP6E90+fH+7FfznkVD1FsFOadJpMAjrLAC3gBng5lRvAqyMHOA9ugA8zyAG2kAPcgKUSNcCnSnKA/eQAD0PcAN8XkwO0ghvg1TRuAK+eHKAd3ABDM2Gq2Sm2kgPcBDfA59nkAAfIAR6HjAOMuJzGlpADnAA3wOvp5ACryAE6wA0wUk4O0EAOcAvcAF/mkAMcJAfoLYaxJpdLtpoc4CS4Afoj5ACryQEugRsgGSMH2EEOcBvcAOkqcoAmcgD3djCHnqhxAEW6xjiAwtsIboDD4Aa4iEKI5B3gbhiF0Ojy1B8rTIBhl5/UIlADZNeAG2AfuAHOghugq5gboC/KDZCcC2qAzDJwA+wEN8BxcANcK+IG6I1wA7yLgxpAJhgrgLcJhRNdOpk24wmmemo7wVTL3STuhRGIy7YTTBUfs51gqhbbCaaa8tF2gqm22U4w3X3bCaaq/vcEK0NQ2m0nmKr8q+kE0zXaTjBVaMB0gunW2U4wXZfpBNPN85zf+zgCdNp0gulKUqYTTLfb+R1BoJ45n04EagVrgokrpAkmKnxTLJVAsI75JthaBCs8RJpgosFNcA5Be0CaYKLG/e1FGYJ2YcIEq0LQZn0jTTDRTJpgIvSGNMHEetYEE93ujycRBG++Nz7BKkDQ5kS6FgSlo6QJJvawJph4Tppgop41wcRV99tADBSVWffLaAIcraQJJsLD8jRCsp01wcQj91N3MUhqWRNMdPgmGGWKZerAIf8ku0ATGpSDdZINzrnrReC5Q5pgYqFHmmDiDGmCjU8xbzOY9rqjoOrrBNVK1gQTp2Kgii6AuR8/DvqWjUjk7AAAAABJRU5ErkJggg==')
+                .attr("xlink:xlink:href", 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAMAAAD04JH5AAAByFBMVEUAAAD/AACAAACqAACZAACqAAC2AACfAACqAACzAACiAACqAACkAACqAACfAAClAACqAAChAACmAACnAACqAACkAACqAACnAACqAAClAAClAACoAACqAACmAACoAACkAACoAACmAACnAACoAAClAACoAACmAACnAACpAACmAACnAACmAACnAACmAACoAAClAACoAACmAACoAACnAACoAACmAACnAACnAACmAACnAACmAACnAAClAACmAACmAACoAACmAACnAACoAACoAACoAACnAACoAACmAACnAACmAACmAACnAACmAACnAACmAACnAACmAACmAACoAACmAACnAACmAACnAACnAACnAACnAACmAACnAACnAACmAACnAACnAACnAACmAACnAACnAACnAACnAACnAACmAACnAACnAACmAACnAACnAACnAACnAACmAACnAACnAACnAACmAACnAACnAACnAACnAACmAACnAACnAACnAACnAACnAACnAACnAACmAACmAACnAACnAACmAACnAACnAACmAACnAACnAACnAACnAACmAACnAACnAACnAACnAACnAACnAACmAACnAACnAACnAACnAAAdUYxiAAAAl3RSTlMAAQIDBQYHCAkKCwwODxAREhMUGhscHiAhIiUmJygpKiwuMTIzODw9Pj9AQkNFRkdMTU9RUlNUV1laXF1eX2dpamtsb3J0dXZ3eHl6gYOEhoeKjJCRkpOUmZyen6ChoqmrrK2usbS3uLm6u8LDxMXGx8jKzM3R09TV1tfZ293e3+Dj5OXm5+jp6uvw8fLz9PX29/n6+/z+BHwIVAAAAqBJREFUeAHF2/lXjHEUx/FPk8HURGYKWQwVkX2XfVFZkkWWJDtlySJLlpJFNROG0Tzff9fBudJzNPecMff5vP6E90+fH+7FfznkVD1FsFOadJpMAjrLAC3gBng5lRvAqyMHOA9ugA8zyAG2kAPcgKUSNcCnSnKA/eQAD0PcAN8XkwO0ghvg1TRuAK+eHKAd3ABDM2Gq2Sm2kgPcBDfA59nkAAfIAR6HjAOMuJzGlpADnAA3wOvp5ACryAE6wA0wUk4O0EAOcAvcAF/mkAMcJAfoLYaxJpdLtpoc4CS4Afoj5ACryQEugRsgGSMH2EEOcBvcAOkqcoAmcgD3djCHnqhxAEW6xjiAwtsIboDD4Aa4iEKI5B3gbhiF0Ojy1B8rTIBhl5/UIlADZNeAG2AfuAHOghugq5gboC/KDZCcC2qAzDJwA+wEN8BxcANcK+IG6I1wA7yLgxpAJhgrgLcJhRNdOpk24wmmemo7wVTL3STuhRGIy7YTTBUfs51gqhbbCaaa8tF2gqm22U4w3X3bCaaq/vcEK0NQ2m0nmKr8q+kE0zXaTjBVaMB0gunW2U4wXZfpBNPN85zf+zgCdNp0gulKUqYTTLfb+R1BoJ45n04EagVrgokrpAkmKnxTLJVAsI75JthaBCs8RJpgosFNcA5Be0CaYKLG/e1FGYJ2YcIEq0LQZn0jTTDRTJpgIvSGNMHEetYEE93ujycRBG++Nz7BKkDQ5kS6FgSlo6QJJvawJph4Tppgop41wcRV99tADBSVWffLaAIcraQJJsLD8jRCsp01wcQj91N3MUhqWRNMdPgmGGWKZerAIf8ku0ATGpSDdZINzrnrReC5Q5pgYqFHmmDiDGmCjU8xbzOY9rqjoOrrBNVK1gQTp2Kgii6AuR8/DvqWjUjk7AAAAABJRU5ErkJggg==')
                 .attr("x", (d) => {
                     let latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
                     return proj.latLngToLayerPoint(latLng).x;
@@ -801,6 +825,27 @@ export class MainviewComponent implements OnInit, OnDestroy {
                     let latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
                     return proj.latLngToLayerPoint(latLng).y;
                 })
+
+            const zoomLevel = this.map.getZoom();
+            if (zoomLevel>6) {
+                lines.enter().append("text")
+                    .attr("width", proj.unitsPerMeter * size)
+                    .attr("height", proj.unitsPerMeter * size)
+                    .attr("transform", (d) => {
+                        return 'translate (-' + (proj.unitsPerMeter * size / 2 - 4) + ',-' + proj.unitsPerMeter * size / 2 + ')'
+                    })
+                    .text((d) => {
+                        return d.height;
+                    })
+                    .attr("x", (d) => {
+                        let latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
+                        return proj.latLngToLayerPoint(latLng).x;
+                    })
+                    .attr("y", (d) => {
+                        let latLng = [this.geoHelperService.tile2lat(d.tileY + 0.5, 11), this.geoHelperService.tile2long(d.tileX + 0.5, 11)];
+                        return proj.latLngToLayerPoint(latLng).y;
+                    })
+            }
         })
         this.lightningLayer.addTo(this.map);
     }

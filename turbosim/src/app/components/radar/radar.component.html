@@ -1,5 +1,5 @@
 <canvas #fabric [attr.id]="reporttype" class="mycanvas" width="0" height="0" (click)="canvasClicked($event)"></canvas>
-
+<p id="delete-info" *ngIf="true">Drag icons to edit location. Drag out of scales to delete.</p>
 <p-selectButton [options]="altitudes" [(ngModel)]="selectedAltitude"
                 [styleClass]="'selectButton'"></p-selectButton>
 <div class="wrapper">

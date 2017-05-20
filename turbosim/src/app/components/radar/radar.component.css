@@ -37,3 +37,8 @@
     display: block;
     text-align: center;
 }
+
+#delete-info {
+    text-align: center;
+    color:whitesmoke;
+}
